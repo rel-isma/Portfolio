@@ -4,7 +4,7 @@ import { SocialLinks } from "@/components/social-links";
 
 export function Sidebar() {
   return (
-    <aside className="w-full lg:w-[400px] lg:h-screen overflow-y-auto p-8 bg-white dark:bg-secondary lg:rounded-r-3xl shadow-lg">
+    <aside className="w-full md:w-[400px] md:h-screen  p-8 bg-white dark:bg-secondary md:rounded-r-3xl shadow-lg">
       <div className="flex flex-col h-full">
         <div className="flex items-center space-x-3 mb-8">
           <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
@@ -13,9 +13,9 @@ export function Sidebar() {
           <h2 className="text-xl font-semibold">Rachid El-ismailyly</h2>
         </div>
 
-        <div className="w-full h-64 bg-primary rounded-2xl mb-8" />
+        <div className="w-full aspect-square bg-primary rounded-2xl mb-8" />
 
-        <div className="space-y-6">
+        <div className="space-y-6 mb-4">
           <div>
             <h3 className="text-sm text-foreground/60 dark:text-foreground-dark/60">
               Specialization:

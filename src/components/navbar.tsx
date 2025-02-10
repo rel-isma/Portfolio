@@ -19,7 +19,7 @@ export function Navbar() {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-b border-gray-200 dark:border-gray-700 hidden lg:block">
+      <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-b border-gray-200 dark:border-gray-700 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -62,7 +62,7 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
         <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700">
           <div className="max-w-md mx-auto px-4 h-16">
             <div className="grid grid-cols-7 h-full">
