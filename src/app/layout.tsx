@@ -14,17 +14,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} flex h-screen overflow-hidden`}>
+      <body
+        className={`${inter.className} flex flex-col lg:flex-row min-h-screen`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Sidebar />
-          <div className="flex flex-col flex-grow">
-            <Navbar />
-            <main className="flex-grow overflow-auto p-8">{children}</main>
+          <div className="flex flex-col lg:flex-row w-full max-w-[1440px] mx-auto">
+            <Sidebar />
+            <div className="flex flex-col flex-grow w-full">
+              <Navbar />
+              <main className="flex-grow overflow-auto p-8">{children}</main>
+            </div>
           </div>
         </ThemeProvider>
       </body>
