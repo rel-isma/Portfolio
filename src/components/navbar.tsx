@@ -26,9 +26,9 @@ export function Navbar() {
 
   return (
     <>
-      {/* Desktop */}
-      <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-b border-gray-200 dark:border-gray-700 hidden lg:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Desktop Navbar (Only visible on screens > lg) */}
+      <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-b border-gray-200 dark:border-gray-700 hidden lg:flex">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex items-baseline space-x-4">
@@ -36,7 +36,7 @@ export function Navbar() {
                   <Link
                     key={item.id}
                     href={`#${item.id}`}
-                    className={`px-3 py-2 rounded-md text-ms lg:text-xl font-medium ${
+                    className={`px-3 py-2 rounded-md text-ms lg:text-lg font-medium ${
                       selectedItem === item.id
                         ? "text-primary"
                         : "text-foreground/80 hover:text-foreground dark:text-foreground-dark/80 dark:hover:text-foreground-dark"
@@ -52,18 +52,18 @@ export function Navbar() {
               <ThemeToggle />
               <Button className="bg-primary hover:bg-primary/90">
                 <MessageSquare className="mr-2 h-4 w-4" />
-                let&apos;s talk
+                Let&apos;s talk
               </Button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* table  */}
-      <nav className="sticky top-0 z-50 w-full lg:hidden">
-        <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700">
-          <div className="mx-auto px-4 h-16">
-            <div className="grid grid-cols-7 h-full">
+      {/* Tablet Navbar (Visible only on md screens, hidden on lg) */}
+      <nav className="sticky top-0 z-50 w-full hidden md:flex lg:hidden">
+        <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700 w-full">
+          <div className="mx-auto px-4 h-16 w-full">
+            <div className="grid grid-cols-7 h-full w-full">
               <div className="col-span-5 flex items-center">
                 {navItems.map((item) => (
                   <Link
@@ -88,28 +88,24 @@ export function Navbar() {
               </div>
               <div className="col-span-1"></div>
               <div className="col-span-1 flex items-center justify-end space-x-4">
-                <div className="flex items-center justify-center">
-                  <ThemeToggle />
-                </div>
-                <div className="flex items-center justify-center">
-                  <Button
-                    size="icon"
-                    className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90"
-                  >
-                    <MessageSquare className="h-5 w-5" />
-                  </Button>
-                </div>
+                <ThemeToggle />
+                <Button
+                  size="icon"
+                  className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90"
+                >
+                  <MessageSquare className="h-5 w-5" />
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile  */}
+      {/* Mobile Navbar (Only visible on screens < md) */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-        <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700">
-          <div className="max-w-md mx-auto px-4 h-16">
-            <div className="grid grid-cols-7 h-full">
+        <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700 w-full">
+          <div className="max-w-md mx-auto px-4 h-16 w-full">
+            <div className="grid grid-cols-7 h-full w-full">
               {navItems.map((item) => (
                 <Link
                   key={item.id}
