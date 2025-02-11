@@ -59,43 +59,43 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Tablet Navbar (Visible only on md screens, hidden on lg) */}
+      {/* Tablet Navbar (Visible only on md screens) */}
       <nav className="sticky top-0 z-50 w-full hidden md:flex lg:hidden">
         <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700 w-full">
-          <div className="mx-auto px-4 h-16 w-full">
-            <div className="grid grid-cols-7 h-full w-full">
-              <div className="col-span-5 flex items-center">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className={`flex items-center justify-center flex-1 ${
-                      selectedItem === item.id
-                        ? "text-primary"
-                        : "text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark"
-                    }`}
-                    onClick={() => setSelectedItem(item.id)}
-                  >
-                    <item.icon
-                      className={`h-6 w-6 ${
-                        selectedItem === item.id
-                          ? "bg-primary/20 rounded-lg p-1"
-                          : ""
-                      }`}
-                    />
-                  </Link>
-                ))}
-              </div>
-              <div className="col-span-1"></div>
-              <div className="col-span-1 flex items-center justify-end space-x-4">
-                <ThemeToggle />
-                <Button
-                  size="icon"
-                  className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90"
+          <div className="mx-auto px-4 h-16 w-full flex items-center justify-between">
+            {/* Nav Items Aligned to Start with More Space */}
+            <div className="flex flex-1 items-center justify-start space-x-10">
+              {navItems.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`flex items-center justify-center ${
+                    selectedItem === item.id
+                      ? "text-primary"
+                      : "text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark"
+                  }`}
+                  onClick={() => setSelectedItem(item.id)}
                 >
-                  <MessageSquare className="h-5 w-5" />
-                </Button>
-              </div>
+                  <item.icon
+                    className={`h-6 w-6 ${
+                      selectedItem === item.id
+                        ? "bg-primary/20 rounded-lg p-1"
+                        : ""
+                    }`}
+                  />
+                </Link>
+              ))}
+            </div>
+
+            {/* Theme Toggle & Message Button */}
+            <div className="flex items-center space-x-4">
+              <ThemeToggle />
+              <Button
+                size="icon"
+                className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90"
+              >
+                <MessageSquare className="h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
