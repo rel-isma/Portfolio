@@ -142,12 +142,10 @@ export default function Home() {
               <div className="absolute bottom-0 p-6 w-full">
                 <div className="relative">
                   <div className="relative z-10 text-white">
-                    <h3 className="text-2xl md:text-xl font-bold mb-2">
-                      Project 4
-                    </h3>
+                    <h3 className="text-2xl  font-bold mb-2">Project 4</h3>
                     <Link
                       href="#"
-                      className="inline-block text-lg md:text-base font-semibold border-b border-white/30 hover:border-white transition-colors"
+                      className="inline-block text-lg font-semibold border-b border-white/30 hover:border-white transition-colors"
                     >
                       View Work
                     </Link>

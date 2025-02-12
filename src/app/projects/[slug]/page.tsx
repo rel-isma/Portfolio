@@ -4,7 +4,6 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  console.log(">>>", slug);
 
   return (
     <div className="container mx-auto py-10">
