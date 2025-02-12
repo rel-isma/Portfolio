@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Download, LayoutGrid } from "lucide-react";
+import { Download, LayoutGrid, ArrowUpRight, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -31,10 +33,139 @@ export default function Home() {
             <LayoutGrid className="mr-2 h-5 w-5" />
             My works
           </Button>
-          <Button className="text-lg px-8 py-6" variant="outline">
+          <Button className="text-lg px-8 py-6 " variant="outline">
             <Download className="mr-2 h-5 w-5" />
-            Download cv
+            Download Resume
           </Button>
+        </div>
+      </section>
+
+      <section id="portfolio" className="py-16 lg:py-24 scroll-mt-16">
+        <div className="grid lg:grid-cols-2 gap-12 mb-12">
+          <div className="space-y-4">
+            <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
+              <Star className="mr-1.5 h-4 w-4" />
+              Portfolio
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+              My latest
+              <br />
+              awesome <span className="text-primary">Projects</span>
+            </h2>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg">
+            <div className="aspect-[4/3] relative">
+              <Image
+                src="/a4.png"
+                alt="Project One"
+                className="object-cover"
+                fill
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute bottom-0 p-6 text-white">
+                <h3 className="text-2xl font-bold">Project one</h3>
+                <Link
+                  href="#"
+                  className="inline-block text-lg mt-2 font-semibold border-b border-white/30 hover:border-white transition-colors"
+                >
+                  View Work
+                </Link>
+              </div>
+            </div>
+            {/* <div className="absolute inset-x-0 bottom-0 h-[30%] bg-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="absolute bottom-0 p-6 w-full">
+                <div className="relative">
+                  <div className="relative z-10 text-white">
+                    <h3 className="text-2xl font-bold mb-2">Project One</h3>
+                    <Link
+                      href="#"
+                      className="inline-block text-lg font-semibold border-b border-white/30 hover:border-white transition-colors"
+                    >
+                      View Work
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 mb-12">
+          {[2, 3].map((project) => (
+            <div
+              key={project}
+              className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
+            >
+              <div className="aspect-[4/3] relative">
+                <Image
+                  src="/a1.png"
+                  alt={`Project ${project}`}
+                  className="object-cover"
+                  fill
+                />
+              </div>
+              <div className="absolute inset-x-0 bottom-0 h-[30%] bg-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-0 p-6 w-full">
+                  <div className="relative">
+                    <div className="relative z-10 text-white">
+                      <h3 className="text-2xl font-bold mb-2">
+                        {" "}
+                        Project {project}
+                      </h3>
+                      <Link
+                        href="#"
+                        className="inline-block text-lg font-semibold border-b border-white/30 hover:border-white transition-colors"
+                      >
+                        View Work
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg">
+            <div className="aspect-[4/3] relative">
+              <Image
+                src="/placeholder.svg?height=600&width=800"
+                alt="Project 4"
+                className="object-cover"
+                fill
+              />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 h-[30%] bg-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="absolute bottom-0 p-6 w-full">
+                <div className="relative">
+                  <div className="relative z-10 text-white">
+                    <h3 className="text-2xl md:text-xl font-bold mb-2">
+                      Project 4
+                    </h3>
+                    <Link
+                      href="#"
+                      className="inline-block text-lg md:text-base font-semibold border-b border-white/30 hover:border-white transition-colors"
+                    >
+                      View Work
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <Link
+              href="#"
+              className="inline-flex items-center text-2xl font-semibold hover:text-primary transition-colors group"
+            >
+              View all projects
+              <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </Link>
+          </div>
         </div>
       </section>
 
