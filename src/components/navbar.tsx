@@ -19,8 +19,8 @@ export function Navbar() {
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
     { id: "portfolio", icon: LayoutGrid, label: "Portfolio" },
-    { id: "about", icon: User, label: "About" },
-    { id: "blog", icon: FileText, label: "Blog" },
+    { id: "service", icon: User, label: "service" },
+    { id: "about", icon: FileText, label: "about" },
     { id: "contact", icon: Mail, label: "Contact" },
   ];
 
