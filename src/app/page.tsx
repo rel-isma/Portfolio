@@ -271,7 +271,7 @@ export default function Home() {
               </p>
               <div className="relative w-full aspect-[2/1]">
                 <Image
-                  src={`/placeholder.svg?height=400&width=800`}
+                  src="frontend.svg"
                   alt="Frontend Development"
                   fill
                   className="object-contain"
@@ -297,7 +297,7 @@ export default function Home() {
               </p>
               <div className="relative w-full aspect-[2/1]">
                 <Image
-                  src={`/placeholder.svg?height=400&width=800`}
+                  src="backend.svg"
                   alt="Backend Development"
                   fill
                   className="object-contain"
