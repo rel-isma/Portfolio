@@ -1,87 +1,113 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Download, LayoutGrid, ArrowUpRight, Star } from "lucide-react";
+import {
+  Download,
+  LayoutGrid,
+  ArrowUpRight,
+  Star,
+  Instagram,
+  Linkedin,
+  Github,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [projectsRef, projectsInView] = useInView({
     threshold: 0.1,
+    triggerOnce: true,
   });
 
   const [serviceRef, serviceInView] = useInView({
     threshold: 0.1,
+    triggerOnce: true,
   });
 
   const [homeRef, homeInView] = useInView({
     threshold: 0.1,
+    triggerOnce: true,
   });
 
   const [aboutRef, aboutInView] = useInView({
     threshold: 0.1,
+    triggerOnce: true,
   });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  const [contactRef, contactInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
+  const [typedText, setTypedText] = useState("");
+  const fullText = "Full-Stack Web Developer";
+
+  useEffect(() => {
+    let i = 0;
+    const typingInterval = setInterval(() => {
+      if (i < fullText.length) {
+        setTypedText(fullText.slice(0, i + 1));
+        i++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 100);
+
+    return () => clearInterval(typingInterval);
+  }, []);
 
   return (
-    <motion.div
-      className="min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <motion.section
         id="home"
         className="py-16 lg:py-24"
         ref={homeRef}
-        variants={containerVariants}
-        initial="hidden"
-        animate={homeInView ? "visible" : "hidden"}
+        initial="initial"
+        animate={homeInView ? "animate" : "initial"}
+        variants={staggerContainer}
       >
-        <h1 className="text-4xl lg:text-6xl font-bold space-y-4">
+        <motion.h1
+          className="text-4xl lg:text-6xl font-bold space-y-4"
+          variants={fadeInUp}
+        >
           <span className="text-foreground/60 dark:text-foreground-dark/60">
             Hi! I&apos;m
           </span>
           <br />
           <span className="text-primary">Rachid</span> El-Ismailyly
-        </h1>
-        <h2 className="text-2xl lg:text-4xl font-bold mt-6 flex items-center">
-          <span className="text-primary mr-2">&gt;</span> Full-Stack Web
-          Developer
-        </h2>
+        </motion.h1>
+        <motion.h2
+          className="text-2xl lg:text-4xl font-bold mt-6 flex items-center"
+          variants={fadeInUp}
+        >
+          <span className="text-primary mr-2">&gt;</span> {typedText}
+        </motion.h2>
 
-        <p className="mt-8 text-lg lg:text-xl leading-relaxed max-w-3xl">
+        <motion.p
+          className="mt-8 text-lg lg:text-xl leading-relaxed max-w-3xl"
+          variants={fadeInUp}
+        >
           I Build All Kinds Of <span className="text-primary">Websites</span>{" "}
           And <span className="text-primary">Web Applications</span> That Help
           Businesses Grow And Meet Their Needs. From Interactive User Interfaces
           To Powerful Backend Systems, I Focus On Delivering{" "}
           <span className="text-primary">High-Quality</span>, Scalable, And{" "}
           <span className="text-primary">User-Friendly</span> Solutions.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-12">
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 mt-12"
+          variants={fadeInUp}
+        >
           <Button className="text-lg px-8 py-6" variant="outline">
             <LayoutGrid className="mr-2 h-5 w-5" />
             My works
@@ -90,19 +116,19 @@ export default function Home() {
             <Download className="mr-2 h-5 w-5" />
             Download Resume
           </Button>
-        </div>
+        </motion.div>
       </motion.section>
 
       <motion.section
         id="portfolio"
         className="py-16 lg:py-24 scroll-mt-16"
         ref={projectsRef}
-        variants={containerVariants}
-        initial="hidden"
-        animate={projectsInView ? "visible" : "hidden"}
+        initial="initial"
+        animate={projectsInView ? "animate" : "initial"}
+        variants={staggerContainer}
       >
         <motion.div
-          variants={itemVariants}
+          variants={fadeInUp}
           className="grid lg:grid-cols-2 gap-12 mb-12"
         >
           <div className="space-y-4">
@@ -118,7 +144,7 @@ export default function Home() {
           </div>
 
           <motion.div
-            variants={itemVariants}
+            variants={fadeInUp}
             className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
           >
             <div className="aspect-[4/3] relative">
@@ -144,13 +170,13 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          variants={itemVariants}
+          variants={fadeInUp}
           className="grid lg:grid-cols-2 gap-12 mb-12"
         >
           {[2, 3].map((project) => (
             <motion.div
               key={project}
-              variants={itemVariants}
+              variants={fadeInUp}
               className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
             >
               <div className="aspect-[4/3] relative">
@@ -177,11 +203,11 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          variants={itemVariants}
+          variants={fadeInUp}
           className="grid lg:grid-cols-2 gap-12 items-center"
         >
           <motion.div
-            variants={itemVariants}
+            variants={fadeInUp}
             className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
           >
             <div className="aspect-[4/3] relative">
@@ -221,12 +247,12 @@ export default function Home() {
         id="service"
         className="py-16 lg:py-24 scroll-mt-16"
         ref={serviceRef}
-        variants={containerVariants}
-        initial="hidden"
-        animate={serviceInView ? "visible" : "hidden"}
+        initial="initial"
+        animate={serviceInView ? "animate" : "initial"}
+        variants={staggerContainer}
       >
         <div className="relative">
-          <motion.div variants={itemVariants}>
+          <motion.div variants={fadeInUp}>
             <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
               <Star className="mr-1.5 h-4 w-4" />
               Service
@@ -234,7 +260,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            variants={itemVariants}
+            variants={fadeInUp}
             className="flex justify-between items-start mt-4"
           >
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
@@ -253,7 +279,7 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-2 gap-8 mt-12">
             <motion.div
-              variants={itemVariants}
+              variants={fadeInUp}
               className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group"
             >
               <h3 className="text-3xl font-bold mb-4">Frontend development</h3>
@@ -280,7 +306,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              variants={itemVariants}
+              variants={fadeInUp}
               className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group"
             >
               <h3 className="text-3xl font-bold mb-4">Backend development</h3>
@@ -312,18 +338,18 @@ export default function Home() {
         id="about"
         className="py-16 lg:py-24 scroll-mt-16"
         ref={aboutRef}
-        variants={containerVariants}
-        initial="hidden"
-        animate={aboutInView ? "visible" : "hidden"}
+        initial="initial"
+        animate={aboutInView ? "animate" : "initial"}
+        variants={staggerContainer}
       >
-        <motion.div variants={itemVariants} className="space-y-8">
+        <motion.div variants={fadeInUp} className="space-y-8">
           <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
             <Star className="mr-1.5 h-4 w-4" />
             about
           </div>
 
           <div className="space-y-12">
-            <motion.div variants={itemVariants} className="max-w-4xl">
+            <motion.div variants={fadeInUp} className="max-w-4xl">
               <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-8">
                 Why you <span className="text-primary">hire me</span> for your
                 next <span className="text-primary">project</span>?
@@ -346,7 +372,7 @@ export default function Home() {
                 </div>
 
                 <motion.div
-                  variants={itemVariants}
+                  variants={fadeInUp}
                   className="space-y-4 bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
                 >
                   <Link
@@ -428,7 +454,48 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="space-y-8">
+            <motion.div variants={fadeInUp} className="space-y-8 mt-20">
+              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+                My Passion for Programming:{" "}
+                <span className="text-primary">Creating</span>,{" "}
+                <span className="text-primary">Solving</span>, and{" "}
+                <span className="text-primary">Innovating</span>
+              </h2>
+
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <motion.div variants={fadeInUp}>
+                  <p className="text-lg leading-relaxed">
+                    Ever Since I Wrote My First Lines Of Code, I Knew
+                    Programming Was More Than Just A Skill—It Was A Way To
+                    Create, Solve Problems, And Build Something Meaningful. I
+                    Love The Challenge Of Breaking Down Complex Problems And
+                    Turning Ideas Into Real Applications. Whether It's
+                    Developing Efficient Algorithms, Crafting Intuitive User
+                    Interfaces, Or Optimizing Performance, I'm Always Eager To
+                    Learn And Push My Limits. For Me, Coding Isn't Just A
+                    Profession; It's An Ongoing Journey Of Innovation And
+                    Discovery.
+                  </p>
+                  <Button className="mt-8 text-lg px-8 py-6">
+                    Hire Me <ArrowUpRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </motion.div>
+
+                <motion.div
+                  variants={fadeInUp}
+                  className="relative h-[600px] w-full"
+                >
+                  <Image
+                    src={`/placeholder.svg?height=600&width=400`}
+                    alt="Developer Portrait"
+                    fill
+                    className="object-contain"
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="space-y-8">
               <h3 className="text-3xl font-bold">
                 Turning <span className="text-primary">Ideas</span> into Reality
                 with <span className="text-primary">My Tech Skills</span>
@@ -437,7 +504,7 @@ export default function Home() {
               <div className="grid gap-8">
                 {/* Backend Section */}
                 <motion.div
-                  variants={itemVariants}
+                  variants={fadeInUp}
                   className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
                 >
                   <h4 className="text-2xl font-semibold mb-6">backend</h4>
@@ -487,7 +554,7 @@ export default function Home() {
 
                 {/* Frontend Section */}
                 <motion.div
-                  variants={itemVariants}
+                  variants={fadeInUp}
                   className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
                 >
                   <h4 className="text-2xl font-semibold mb-6">Frontend</h4>
@@ -549,7 +616,7 @@ export default function Home() {
 
                 {/* Programming Languages Section */}
                 <motion.div
-                  variants={itemVariants}
+                  variants={fadeInUp}
                   className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
                 >
                   <h4 className="text-2xl font-semibold mb-6">
@@ -601,7 +668,7 @@ export default function Home() {
 
                 {/* Tools Section */}
                 <motion.div
-                  variants={itemVariants}
+                  variants={fadeInUp}
                   className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
                 >
                   <h4 className="text-2xl font-semibold mb-6">Tools</h4>
@@ -656,7 +723,7 @@ export default function Home() {
             </motion.div>
 
             <motion.p
-              variants={itemVariants}
+              variants={fadeInUp}
               className="text-xl text-center max-w-3xl mx-auto"
             >
               I am always <span className="text-primary">learning</span> and
@@ -666,11 +733,289 @@ export default function Home() {
           </div>
         </motion.div>
       </motion.section>
+      <motion.section
+        id="contact"
+        className="py-16 lg:py-24 scroll-mt-16"
+        ref={contactRef}
+        initial="initial"
+        animate={contactInView ? "animate" : "initial"}
+        variants={staggerContainer}
+      >
+        <motion.div variants={fadeInUp} className="max-w-4xl mx-auto px-4">
+          <div className="space-y-4 text-center mb-12">
+            <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
+              <Star className="mr-1.5 h-4 w-4" />
+              Contacte
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-primary">
+              Let&apos;s make something awesome together!
+            </h2>
+          </div>
 
+          <motion.form
+            // action={async (formData) => {
+            //   "use server";
+            //   // TODO: Implement email sending logic
+            //   // 1. Validate form data
+            //   // 2. Send to your backend API
+            //   // 3. Handle success/error states
+            //   console.log("Form submitted:", Object.fromEntries(formData));
+            // }}
+            className="space-y-8 max-w-3xl mx-auto"
+            variants={fadeInUp}
+          >
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  required
+                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+              <div className="space-y-2">
+                <Input
+                  type="text"
+                  name="company"
+                  placeholder="Company Name"
+                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address*"
+                  required
+                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+              <div className="space-y-2">
+                <Input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number*"
+                  required
+                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Textarea
+                name="message"
+                placeholder="A Few Words*"
+                required
+                className="min-h-[150px] border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
+              />
+            </div>
+
+            <div className="flex flex-col items-center gap-4 pt-4">
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full sm:w-auto text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white rounded-full"
+              >
+                Send Message
+              </Button>
+            </div>
+          </motion.form>
+
+          <motion.div
+            variants={fadeInUp}
+            className="mt-16 text-center space-y-8"
+          >
+            <div className="flex justify-center gap-8">
+              <Link
+                href="#"
+                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <Instagram className="h-6 w-6" />
+                <span className="sr-only">Instagram</span>
+              </Link>
+              <Link
+                href="#"
+                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <Linkedin className="h-6 w-6" />
+                <span className="sr-only">LinkedIn</span>
+              </Link>
+              <Link
+                href="#"
+                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <Github className="h-6 w-6" />
+                <span className="sr-only">GitHub</span>
+              </Link>
+            </div>
+
+            <p className="text-lg">
+              Want to know more about me, tell me about your project or just to
+              say hello?{" "}
+              <Link
+                href="mailto:your@email.com"
+                className="text-primary hover:underline font-medium"
+              >
+                Drop me a line
+              </Link>{" "}
+              and I&apos;ll get back as soon as possible.
+            </p>
+          </motion.div>
+        </motion.div>
+      </motion.section>
+      <motion.footer
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+        className="mt-auto py-16 bg-white dark:bg-secondary"
+      >
+        <motion.div
+          variants={fadeInUp}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                  <span className="text-white text-2xl">R</span>
+                </div>
+                <h2 className="text-xl font-semibold">Rachid El-ismailyly</h2>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">
+                Full-stack developer specializing in modern web applications.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="#home"
+                    className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#portfolio"
+                    className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                  >
+                    Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#service"
+                    className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                  >
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#about"
+                    className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#contact"
+                    className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Services</h3>
+              <ul className="space-y-2">
+                <li className="text-gray-600 dark:text-gray-300">
+                  Frontend Development
+                </li>
+                <li className="text-gray-600 dark:text-gray-300">
+                  Backend Development
+                </li>
+                <li className="text-gray-600 dark:text-gray-300">
+                  UI/UX Design
+                </li>
+                <li className="text-gray-600 dark:text-gray-300">
+                  API Integration
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center space-x-2">
+                  <Mail className="h-5 w-5 text-primary" />
+                  <span className="text-gray-600 dark:text-gray-300">
+                    relismailyly@gmail.com
+                  </span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <Phone className="h-5 w-5 text-primary" />
+                  <span className="text-gray-600 dark:text-gray-300">
+                    +21211563140
+                  </span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <span className="text-gray-600 dark:text-gray-300">
+                    Taounate, Morocco
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-gray-600 dark:text-gray-300">
+                © {new Date().getFullYear()} Rachid El-ismailyly. All rights
+                reserved.
+              </p>
+              <div className="flex space-x-6">
+                <Link
+                  href="#"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                >
+                  <Instagram className="h-5 w-5" />
+                  <span className="sr-only">Instagram</span>
+                </Link>
+                <Link
+                  href="#"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  <span className="sr-only">LinkedIn</span>
+                </Link>
+                <Link
+                  href="#"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                >
+                  <Github className="h-5 w-5" />
+                  <span className="sr-only">GitHub</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </motion.footer>
       <div className="fixed bottom-12 right-12 text-sm font-medium [writing-mode:vertical-rl] hidden lg:flex items-center gap-12">
         <span>SCROLL FOR MORE</span>
         <span className="h-24 w-px bg-foreground/20 dark:bg-foreground-dark/20" />
       </div>
-    </motion.div>
+    </div>
   );
 }
