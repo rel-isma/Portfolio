@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${syne.className} flex flex-col md:flex-row  md:h-screen overflow-hidden`}
+        className={`${syne.className} flex flex-col md:flex-row  md:h-screen`}
       >
         <ThemeProvider
           attribute="class"

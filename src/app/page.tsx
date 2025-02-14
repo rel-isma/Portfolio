@@ -486,7 +486,7 @@ export default function Home() {
                   className="relative h-[600px] w-full"
                 >
                   <Image
-                    src={`/placeholder.svg?height=600&width=400`}
+                    src="/relisma.png"
                     alt="Developer Portrait"
                     fill
                     className="object-contain"
@@ -741,8 +741,8 @@ export default function Home() {
         animate={contactInView ? "animate" : "initial"}
         variants={staggerContainer}
       >
-        <motion.div variants={fadeInUp} className="max-w-4xl mx-auto px-4">
-          <div className="space-y-4 text-center mb-12">
+        <motion.div variants={fadeInUp} className=" mx-auto px-4">
+          <div className="space-y-4 text-start mb-12">
             <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
               <Star className="mr-1.5 h-4 w-4" />
               Contacte
@@ -761,7 +761,7 @@ export default function Home() {
             //   // 3. Handle success/error states
             //   console.log("Form submitted:", Object.fromEntries(formData));
             // }}
-            className="space-y-8 max-w-3xl mx-auto"
+            className="space-y-8 mx-auto"
             variants={fadeInUp}
           >
             <div className="grid sm:grid-cols-2 gap-8">
@@ -771,7 +771,7 @@ export default function Home() {
                   name="name"
                   placeholder="Name"
                   required
-                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
               <div className="space-y-2">
@@ -779,7 +779,7 @@ export default function Home() {
                   type="text"
                   name="company"
                   placeholder="Company Name"
-                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -791,7 +791,7 @@ export default function Home() {
                   name="email"
                   placeholder="Email Address*"
                   required
-                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
               <div className="space-y-2">
@@ -800,7 +800,7 @@ export default function Home() {
                   name="phone"
                   placeholder="Phone Number*"
                   required
-                  className="border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -810,7 +810,7 @@ export default function Home() {
                 name="message"
                 placeholder="A Few Words*"
                 required
-                className="min-h-[150px] border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                className="text-lg min-h-[150px] border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
               />
             </div>
 
@@ -1012,10 +1012,10 @@ export default function Home() {
           </div>
         </motion.div>
       </motion.footer>
-      <div className="fixed bottom-12 right-12 text-sm font-medium [writing-mode:vertical-rl] hidden lg:flex items-center gap-12">
+      {/* <div className="fixed bottom-12 right-12 text-sm font-medium [writing-mode:vertical-rl] hidden lg:flex items-center gap-12">
         <span>SCROLL FOR MORE</span>
         <span className="h-24 w-px bg-foreground/20 dark:bg-foreground-dark/20" />
-      </div>
+      </div> */}
     </div>
   );
 }
