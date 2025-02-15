@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 :root {
   --background: 210 40% 98%;
   --background-dark: 222 47% 11%;
@@ -9,11 +19,13 @@
   --foreground-dark: 210 40% 98%;
   --primary: 229 95% 64%;
   --radius: 0.5rem;
+  --secondary-dark: 209, 100%, 7%;
 }
 
 .dark {
   --background: var(--background-dark);
   --foreground: var(--foreground-dark);
+  --secondary: var(--secondary-dark);
 }
 
 body {

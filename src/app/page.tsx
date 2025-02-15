@@ -149,7 +149,7 @@ export default function Home() {
           >
             <div className="aspect-[4/3] relative">
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="/a7.jpg"
                 alt="Project One"
                 className="object-cover"
                 fill
@@ -181,7 +181,7 @@ export default function Home() {
             >
               <div className="aspect-[4/3] relative">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
+                  src="/a7.jpg"
                   alt={`Project ${project}`}
                   className="object-cover"
                   fill
@@ -212,7 +212,7 @@ export default function Home() {
           >
             <div className="aspect-[4/3] relative">
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="/a7.jpg"
                 alt="Project 4"
                 className="object-cover"
                 fill
@@ -835,35 +835,20 @@ export default function Home() {
                 className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <Instagram className="h-6 w-6" />
-                <span className="sr-only">Instagram</span>
               </Link>
               <Link
                 href="#"
                 className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <Linkedin className="h-6 w-6" />
-                <span className="sr-only">LinkedIn</span>
               </Link>
               <Link
                 href="#"
                 className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <Github className="h-6 w-6" />
-                <span className="sr-only">GitHub</span>
               </Link>
             </div>
-
-            <p className="text-lg">
-              Want to know more about me, tell me about your project or just to
-              say hello?{" "}
-              <Link
-                href="mailto:your@email.com"
-                className="text-primary hover:underline font-medium"
-              >
-                Drop me a line
-              </Link>{" "}
-              and I&apos;ll get back as soon as possible.
-            </p>
           </motion.div>
         </motion.div>
       </motion.section>
@@ -991,21 +976,18 @@ export default function Home() {
                   className="text-gray-600 dark:text-gray-300 hover:text-primary"
                 >
                   <Instagram className="h-5 w-5" />
-                  <span className="sr-only">Instagram</span>
                 </Link>
                 <Link
                   href="#"
                   className="text-gray-600 dark:text-gray-300 hover:text-primary"
                 >
                   <Linkedin className="h-5 w-5" />
-                  <span className="sr-only">LinkedIn</span>
                 </Link>
                 <Link
                   href="#"
                   className="text-gray-600 dark:text-gray-300 hover:text-primary"
                 >
                   <Github className="h-5 w-5" />
-                  <span className="sr-only">GitHub</span>
                 </Link>
               </div>
             </div>
