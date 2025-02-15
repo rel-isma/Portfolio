@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 
 export function ProgressBar() {
-  const [progress, setProgress] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -23,7 +23,7 @@ export function ProgressBar() {
         if (element) {
           const { scrollTop, scrollHeight, clientHeight } = element;
           const windowHeight = scrollHeight - clientHeight;
-          if (windowHeight) {
+          if (windowHeight > 0) {
             const progress = (scrollTop / windowHeight) * 100;
             setProgress(Math.round(progress));
           }
@@ -60,7 +60,7 @@ export function ProgressBar() {
           style={{ width: `${progress}%` }}
         />
       </div>
-      <div className="fixed bottom-4 right-4 h-16 w-16 rounded-full bg-gray-200 shadow-lg z-50 overflow-hidden">
+      <div className="fixed bottom-8 right-4 h-16 w-16 rounded-full bg-transparent shadow-lg z-50 overflow-hidden">
         <svg className="w-full h-full" viewBox="0 0 32 32">
           <circle
             className="text-gray-300"
@@ -75,7 +75,7 @@ export function ProgressBar() {
             className="text-primary"
             strokeWidth="4"
             strokeDasharray={88}
-            strokeDashoffset={88 - (88 * progress) / 100}
+            strokeDashoffset={88 - (88 * progress || 0) / 100}
             strokeLinecap="round"
             stroke="currentColor"
             fill="transparent"

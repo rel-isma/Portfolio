@@ -31,7 +31,7 @@ export default function RootLayout({
             <div className="flex flex-col flex-grow overflow-hidden w-full">
               <Navbar />
               <main
-                className="flex-grow overflow-auto no-scrollbar p-8 relative w-full"
+                className="flex-grow overflow-auto no-scrollbar p-8  relative w-full"
                 id="main-content"
               >
                 <ProgressBar />

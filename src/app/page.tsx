@@ -491,6 +491,7 @@ export default function Home() {
                     fill
                     className="object-contain"
                   />
+                  {/* <ThreeDModel /> */}
                 </motion.div>
               </div>
             </motion.div>
@@ -994,10 +995,6 @@ export default function Home() {
           </div>
         </motion.div>
       </motion.footer>
-      <div className="fixed bottom-12 right-12 text-sm font-medium [writing-mode:vertical-rl] hidden lg:flex items-center gap-12">
-        <span>SCROLL FOR MORE</span>
-        <span className="h-24 w-px bg-foreground/20 dark:bg-foreground-dark/20" />
-      </div>
     </div>
   );
 }

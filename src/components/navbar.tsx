@@ -7,8 +7,8 @@ import {
   MessageSquare,
   Home,
   LayoutGrid,
-  User,
-  FileText,
+  Server,
+  IdCard,
   Mail,
 } from "lucide-react";
 import { useState } from "react";
@@ -19,8 +19,8 @@ export function Navbar() {
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
     { id: "portfolio", icon: LayoutGrid, label: "Portfolio" },
-    { id: "service", icon: User, label: "service" },
-    { id: "about", icon: FileText, label: "about" },
+    { id: "service", icon: Server, label: "service" },
+    { id: "about", icon: IdCard, label: "about" },
     { id: "contact", icon: Mail, label: "Contact" },
   ];
 
@@ -61,7 +61,7 @@ export function Navbar() {
 
       {/* Tablet Navbar (Visible only on md screens) */}
       <nav className="sticky top-0 z-50 w-full hidden md:flex lg:hidden">
-        <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700 w-full">
+        <div className="bg-background/80 backdrop-blur-md dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700 w-full">
           <div className="mx-auto px-4 h-16 w-full flex items-center justify-between">
             <div className="flex flex-1 items-center justify-start space-x-10">
               {navItems.map((item) => (
@@ -100,7 +100,7 @@ export function Navbar() {
 
       {/* Mobile Navbar (Only visible on screens < md) */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-        <div className="bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-t border-gray-200 dark:border-gray-700 w-full">
+        <div className="bg-background/70 backdrop-blur-sm dark:bg-background-dark/70 border-t border-gray-200 dark:border-gray-700 w-full">
           <div className="max-w-md mx-auto px-4 h-16 w-full">
             <div className="grid grid-cols-7 h-full w-full">
               {navItems.map((item) => (
