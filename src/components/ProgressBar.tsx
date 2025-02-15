@@ -43,7 +43,7 @@ export function ProgressBar() {
       ? document.getElementById("main-content")
       : window;
     element?.addEventListener("scroll", updateProgress);
-    updateProgress(); // Call once to set initial state
+    updateProgress();
 
     return () => element?.removeEventListener("scroll", updateProgress);
   }, [isDesktop]);
