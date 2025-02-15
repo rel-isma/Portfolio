@@ -3,30 +3,38 @@ import { Github, Instagram, Linkedin, MessageSquare } from "lucide-react";
 
 export function SocialLinks() {
   return (
-    <div className="flex justify-center space-x-4">
+    <div className="flex justify-center gap-4">
       <Link
-        href="#"
-        className="p-2 rounded-full border hover:bg-gray-100 dark:hover:bg-gray-800"
+        href="https://www.instagram.com/rel_ismaa/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
       >
-        <Linkedin className="h-5 w-5" />
+        <Instagram className="h-6 w-6" />
+      </Link>
+      <Link
+        href="https://www.linkedin.com/in/rachid-el-isamiyly/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      >
+        <Linkedin className="h-6 w-6" />
+      </Link>
+      <Link
+        href="https://github.com/rel-isma"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      >
+        <Github className="h-6 w-6" />
       </Link>
       <Link
         href="#"
-        className="p-2 rounded-full border hover:bg-gray-100 dark:hover:bg-gray-800"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
       >
-        <Github className="h-5 w-5" />
-      </Link>
-      <Link
-        href="#"
-        className="p-2 rounded-full border hover:bg-gray-100 dark:hover:bg-gray-800"
-      >
-        <MessageSquare className="h-5 w-5" />
-      </Link>
-      <Link
-        href="#"
-        className="p-2 rounded-full border hover:bg-gray-100 dark:hover:bg-gray-800"
-      >
-        <Instagram className="h-5 w-5" />
+        <MessageSquare className="h-6 w-6" />
       </Link>
     </div>
   );
