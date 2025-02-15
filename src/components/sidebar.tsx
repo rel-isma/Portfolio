@@ -4,7 +4,10 @@ import { SocialLinks } from "@/components/social-links";
 
 export function Sidebar() {
   return (
-    <aside className="w-full md:w-[400px] md:h-screen  p-8 bg-white dark:bg-secondary md:rounded-r-3xl shadow-lg">
+    <aside
+      id="home"
+      className="w-full md:w-[400px] md:h-screen  p-8 bg-white  bg-gradient-radial dark:bg-secondary md:rounded-r-3xl shadow-lg"
+    >
       <div className="flex flex-col h-full">
         <div className="flex items-center space-x-3 mb-8">
           <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">

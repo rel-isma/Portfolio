@@ -63,8 +63,8 @@ export function Navbar() {
       <nav className="sticky top-4 z-50 w-full hidden md:flex lg:hidden">
         <div className="w-full px-4">
           <div className="mx-auto flex justify-center">
-            <div className="relative px-6 py-3 rounded-full bg-background/90 dark:bg-background-dark/90 backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg">
-              <div className="flex items-center space-x-6">
+            <div className="relative px-6 py-3 rounded-full bg-transparent backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg">
+              <div className="flex items-center space-x-10">
                 {navItems.map((item) => (
                   <Link
                     key={item.id}
@@ -90,7 +90,7 @@ export function Navbar() {
 
       {/* Mobile Navbar (Only visible on screens < md) */}
       <div className="fixed bottom-8 left-0 right-0 z-50 flex justify-center md:hidden">
-        <div className="relative px-6 py-3 rounded-full bg-background/90 dark:bg-background-dark/90 backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg">
+        <div className="relative px-6 py-3 rounded-full bg-transparent dark:bg-background-dark/90 backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg">
           <div className="flex items-center space-x-6">
             {navItems.map((item) => (
               <Link

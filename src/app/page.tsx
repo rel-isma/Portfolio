@@ -108,11 +108,11 @@ export default function Home() {
           className="flex flex-col sm:flex-row gap-4 mt-12"
           variants={fadeInUp}
         >
-          <Button className="text-lg px-8 py-6" variant="outline">
+          <Button className="text-lg sm:text-base px-8 py-6" variant="outline">
             <LayoutGrid className="mr-2 h-5 w-5" />
             My works
           </Button>
-          <Button className="text-lg px-8 py-6 " variant="outline">
+          <Button className="text-lg sm:text-base px-8 py-6 " variant="outline">
             <Download className="mr-2 h-5 w-5" />
             Download Resume
           </Button>
