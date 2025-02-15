@@ -358,14 +358,14 @@ export default function Home() {
               <div className="grid lg:grid-cols-2 gap-12">
                 <div className="space-y-6">
                   <p className="text-lg leading-relaxed">
-                    I'm A Full-Stack Developer Specializing In Modern Web
+                    I&apos;m A Full-Stack Developer Specializing In Modern Web
                     Applications. With Expertise In React, Django, And Software
                     Development, I Deliver Clean, Efficient Solutions That Work.
                     Let Me Turn Your Ideas Into Reality.
                   </p>
                   <p className="text-lg leading-relaxed">
                     As A Graduate Of 1337 School, I Bring Strong Problem-Solving
-                    Skills And A Collaborative Mindset. I'm Committed To
+                    Skills And A Collaborative Mindset. I&apos;m Committed To
                     Delivering Quality Solutions That Exceed Your Expectations.
                   </p>
                   <Button className="text-lg px-8 py-6">Hire Me</Button>
@@ -469,11 +469,11 @@ export default function Home() {
                     Programming Was More Than Just A Skill—It Was A Way To
                     Create, Solve Problems, And Build Something Meaningful. I
                     Love The Challenge Of Breaking Down Complex Problems And
-                    Turning Ideas Into Real Applications. Whether It's
+                    Turning Ideas Into Real Applications. Whether It&apos;s
                     Developing Efficient Algorithms, Crafting Intuitive User
-                    Interfaces, Or Optimizing Performance, I'm Always Eager To
-                    Learn And Push My Limits. For Me, Coding Isn't Just A
-                    Profession; It's An Ongoing Journey Of Innovation And
+                    Interfaces, Or Optimizing Performance, I&apos;m Always Eager
+                    To Learn And Push My Limits. For Me, Coding Isn&apos;t Just
+                    A Profession; It&apos;s An Ongoing Journey Of Innovation And
                     Discovery.
                   </p>
                   <Button className="mt-8 text-lg px-8 py-6">
