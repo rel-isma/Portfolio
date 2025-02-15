@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 
 export function ProgressBar() {
-  const [progress, setProgress] = useState<number>(0);
-  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+  const [progress, setProgress] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -50,20 +50,17 @@ export function ProgressBar() {
 
   return (
     <>
-      <div
-        className={`${
-          isDesktop ? "absolute" : "fixed"
-        } top-0 left-0 right-0 h-1 bg-gray-200 z-50`}
-      >
+      <div className="fixed top-0 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-800 z-50">
         <div
           className="h-full bg-primary transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
-      <div className="fixed bottom-8 right-4 h-16 w-16 rounded-full bg-transparent shadow-lg z-50 overflow-hidden">
+
+      <div className="fixed bottom-24 md:bottom-8 right-4 h-12 w-12 md:h-16 md:w-16 rounded-full bg-background/90 dark:bg-background-dark/90 backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg z-50 overflow-hidden">
         <svg className="w-full h-full" viewBox="0 0 32 32">
           <circle
-            className="text-gray-300"
+            className="text-gray-300/30"
             strokeWidth="4"
             stroke="currentColor"
             fill="transparent"
@@ -89,7 +86,7 @@ export function ProgressBar() {
             }}
           />
         </svg>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm font-semibold text-primary">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs md:text-sm font-semibold text-primary">
           {progress}%
         </div>
       </div>
