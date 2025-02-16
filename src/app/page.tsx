@@ -233,7 +233,7 @@ export default function Home() {
 
           <div className="flex justify-center">
             <Link
-              href="#"
+              href="projects"
               className="inline-flex items-center text-2xl font-semibold hover:text-primary transition-colors group"
             >
               View all projects

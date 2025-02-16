@@ -8,7 +8,7 @@ import {
   Home,
   LayoutGrid,
   Server,
-  IdCard,
+  Info,
   Mail,
 } from "lucide-react";
 import { useState } from "react";
@@ -20,7 +20,7 @@ export function Navbar() {
     { id: "home", icon: Home, label: "Home" },
     { id: "portfolio", icon: LayoutGrid, label: "Portfolio" },
     { id: "service", icon: Server, label: "service" },
-    { id: "about", icon: IdCard, label: "about" },
+    { id: "about", icon: Info, label: "about" },
     { id: "contact", icon: Mail, label: "Contact" },
   ];
 
@@ -35,7 +35,7 @@ export function Navbar() {
                 {navItems.map((item) => (
                   <Link
                     key={item.id}
-                    href={`#${item.id}`}
+                    href={`/#${item.id}`}
                     className={`px-3 py-2 rounded-md text-ms lg:text-lg font-medium ${
                       selectedItem === item.id
                         ? "text-primary"
@@ -68,7 +68,7 @@ export function Navbar() {
                 {navItems.map((item) => (
                   <Link
                     key={item.id}
-                    href={`#${item.id}`}
+                    href={`/#${item.id}`}
                     className={`w-6 h-6 flex items-center justify-center transition-all duration-200 ${
                       selectedItem === item.id
                         ? "text-primary transform scale-125"
@@ -95,7 +95,7 @@ export function Navbar() {
             {navItems.map((item) => (
               <Link
                 key={item.id}
-                href={`#${item.id}`}
+                href={`/#${item.id}`}
                 className={`w-6 h-6 flex items-center justify-center transition-all duration-200 ${
                   selectedItem === item.id
                     ? "text-primary transform scale-125"
