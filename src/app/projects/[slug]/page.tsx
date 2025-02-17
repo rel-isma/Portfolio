@@ -94,7 +94,7 @@ export default function ProjectPage() {
     0
   );
 
-  const languageIcons: { [key: string]: any } = {
+  const languageIcons: { [key: string]: unknown } = {
     TypeScript: FileType,
     JavaScript: FileCode,
     CSS: FileJson,
@@ -117,22 +117,22 @@ export default function ProjectPage() {
         initial="initial"
         animate={inView ? "animate" : "initial"}
         variants={staggerContainer}
-        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+        className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12"
       >
         <Breadcrumb items={breadcrumbItems} />
 
         {/* Title and Buttons */}
         <motion.div
           variants={fadeInUp}
-          className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4"
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
             {project.title}
           </h1>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
             <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-white"
+              size="sm"
+              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white"
               asChild
             >
               <a
@@ -146,9 +146,9 @@ export default function ProjectPage() {
               </a>
             </Button>
             <Button
-              size="lg"
+              size="sm"
               variant="outline"
-              className="border-primary text-primary hover:bg-primary/10"
+              className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10"
               asChild
             >
               <a
@@ -182,37 +182,39 @@ export default function ProjectPage() {
         {/* Project Info Cards */}
         <motion.div
           variants={fadeInUp}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12"
         >
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
-            <Calendar className="h-6 w-6 text-primary" />
-            <h3 className="text-sm font-medium text-muted-foreground">
+          <div className="bg-white dark:bg-secondary rounded-xl p-4 sm:p-6 space-y-1 sm:space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
+            <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h3 className="text-xs sm:text-sm font-medium text-muted-foreground">
               Created
             </h3>
-            <p className="text-lg font-semibold">
+            <p className="text-sm sm:text-lg font-semibold">
               {format(new Date(project.created_at), "MMM d, yyyy")}
             </p>
           </div>
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
-            <Clock className="h-6 w-6 text-primary" />
-            <h3 className="text-sm font-medium text-muted-foreground">
+          <div className="bg-white dark:bg-secondary rounded-xl p-4 sm:p-6 space-y-1 sm:space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
+            <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h3 className="text-xs sm:text-sm font-medium text-muted-foreground">
               Last Updated
             </h3>
-            <p className="text-lg font-semibold">
+            <p className="text-sm sm:text-lg font-semibold">
               {format(new Date(project.pushed_at), "MMM d, yyyy")}
             </p>
           </div>
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
-            <Link2 className="h-6 w-6 text-primary" />
-            <h3 className="text-sm font-medium text-muted-foreground">
+          <div className="bg-white dark:bg-secondary rounded-xl p-4 sm:p-6 space-y-1 sm:space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
+            <Link2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h3 className="text-xs sm:text-sm font-medium text-muted-foreground">
               Client
             </h3>
-            <p className="text-lg font-semibold">{project.client}</p>
+            <p className="text-sm sm:text-lg font-semibold">{project.client}</p>
           </div>
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
-            <Code2 className="h-6 w-6 text-primary" />
-            <h3 className="text-sm font-medium text-muted-foreground">Role</h3>
-            <p className="text-lg font-semibold">{project.role}</p>
+          <div className="bg-white dark:bg-secondary rounded-xl p-4 sm:p-6 space-y-1 sm:space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
+            <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h3 className="text-xs sm:text-sm font-medium text-muted-foreground">
+              Role
+            </h3>
+            <p className="text-sm sm:text-lg font-semibold">{project.role}</p>
           </div>
         </motion.div>
 
@@ -264,10 +266,12 @@ export default function ProjectPage() {
         </motion.div>
 
         {/* Languages Used */}
-        <motion.div variants={fadeInUp} className="mb-12">
-          <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-8">Languages Used</h2>
-            <div className="space-y-6">
+        <motion.div variants={fadeInUp} className="mb-8 sm:mb-12">
+          <div className="bg-white dark:bg-secondary rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-8">
+              Languages Used
+            </h2>
+            <div className="space-y-4 sm:space-y-6">
               {Object.entries(project.languages).map(([language, lines]) => {
                 const Icon = languageIcons[language] || FileCode;
                 const colorClass =
@@ -278,28 +282,30 @@ export default function ProjectPage() {
                 return (
                   <motion.div
                     key={language}
-                    className="flex items-center gap-6 p-4 rounded-xl transition-all duration-300 hover:bg-muted/50"
+                    className="flex items-center gap-3 sm:gap-6 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:bg-muted/50"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
                     <div
-                      className={`w-12 h-12 rounded-xl ${colorClass} flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110`}
+                      className={`w-8 h-8 sm:w-12 sm:h-12 rounded-xl ${colorClass} flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110`}
                     >
-                      <Icon className="w-6 h-6" />
+                      <Icon className="w-4 h-4 sm:w-6 sm:h-6" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-center mb-2">
+                      <div className="flex justify-between items-center mb-1 sm:mb-2">
                         <div>
-                          <h3 className="font-medium text-lg">{language}</h3>
-                          <p className="text-sm text-muted-foreground">
+                          <h3 className="font-medium text-sm sm:text-lg">
+                            {language}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-muted-foreground">
                             {lines.toLocaleString()} lines
                           </p>
                         </div>
-                        <span className="text-sm font-medium">
+                        <span className="text-xs sm:text-sm font-medium">
                           {percentage}%
                         </span>
                       </div>
-                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                      <div className="h-1.5 sm:h-2 rounded-full bg-muted overflow-hidden">
                         <motion.div
                           className={`h-full ${
                             colorClass.includes("bg-")
@@ -352,19 +358,23 @@ export default function ProjectPage() {
         </motion.div>
 
         {/* Key Features */}
-        <motion.div variants={fadeInUp} className="mb-12">
-          <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-6">Key Features</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
+        <motion.div variants={fadeInUp} className="mb-8 sm:mb-12">
+          <div className="bg-white dark:bg-secondary rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+              Key Features
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {project.features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-muted hover:bg-primary/10 transition-colors duration-300"
+                  className="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-muted hover:bg-primary/10 transition-colors duration-300"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  <Code2 className="h-6 w-6 text-primary shrink-0" />
-                  <span className="font-medium">{feature}</span>
+                  <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary shrink-0" />
+                  <span className="text-sm sm:text-base font-medium">
+                    {feature}
+                  </span>
                 </motion.div>
               ))}
             </div>
@@ -385,17 +395,17 @@ export default function ProjectPage() {
 
         {/* Call to Action */}
         <motion.div variants={fadeInUp} className="text-center">
-          <div className="bg-white dark:bg-secondary rounded-2xl p-8 sm:p-12 shadow-lg">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+          <div className="bg-white dark:bg-secondary rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 shadow-lg">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
               Interested in working together?
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8">
               I&apos;m always open to discussing new projects and opportunities.
               Let&apos;s create something amazing together!
             </p>
             <Button
               size="lg"
-              className="bg-primary text-white hover:bg-primary/90 transition-colors duration-300"
+              className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 transition-colors duration-300"
             >
               Let&apos;s Talk
             </Button>
