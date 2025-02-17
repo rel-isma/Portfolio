@@ -12,8 +12,8 @@ interface BreadcrumbProps {
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-4">
-      <ol className="flex flex-wrap items-center space-x-2 text-sm text-muted-foreground">
+    <nav aria-label="Breadcrumb" className="mb-8">
+      <ol className="flex flex-wrap items-center space-x-2 md:text-lg lg:text-lg text-muted-foreground">
         <li>
           <Link href="/" className="hover:text-primary transition-colors">
             Home
