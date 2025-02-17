@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { Clock, Code2, ExternalLink, Github, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import { ProjectSidebar } from "@/components/project-sidebar";
 import { ProjectTimeline } from "@/components/project-timeline";
 import { ProjectTechStack } from "@/components/project-tech-stack";
 import { ProjectStats } from "@/components/project-stats";
@@ -79,8 +78,6 @@ export default function ProjectPage() {
         variants={staggerContainer}
         className="flex flex-col lg:flex-row gap-8"
       >
-        {/* <ProjectSidebar project={project} /> */}
-
         <div className="flex-1">
           <motion.div variants={fadeInUp} className="space-y-6">
             <div className="flex items-start justify-between">

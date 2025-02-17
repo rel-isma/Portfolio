@@ -6,23 +6,63 @@ import Image from "next/image";
 import { ArrowUpRight, Star } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { useEffect, useState } from "react";
-import { getGithubProjects } from "@/lib/github";
+
+const projects = [
+  {
+    id: 1,
+    title: "Project One",
+    description: "A modern web application built with Next.js and TypeScript",
+    image: "/a7.jpg",
+    category: "Web Development",
+    slug: "project-one",
+  },
+  {
+    id: 2,
+    title: "Project Two",
+    description: "Full-stack application with real-time features",
+    image: "/a7.jpg",
+    category: "Full Stack",
+    slug: "project-two",
+  },
+  {
+    id: 3,
+    title: "Project Three",
+    description: "Mobile-first responsive design implementation",
+    image: "/a7.jpg",
+    category: "UI/UX Design",
+    slug: "project-three",
+  },
+  {
+    id: 4,
+    title: "Project Four",
+    description: "E-commerce platform with advanced features",
+    image: "/a7.jpg",
+    category: "E-commerce",
+    slug: "project-four",
+  },
+  {
+    id: 5,
+    title: "Project Five",
+    description: "Content management system with modern architecture",
+    image: "/a7.jpg",
+    category: "CMS",
+    slug: "project-five",
+  },
+  {
+    id: 6,
+    title: "Project Six",
+    description: "Social media platform with real-time messaging",
+    image: "/a7.jpg",
+    category: "Social Media",
+    slug: "project-six",
+  },
+];
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState([]);
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
-
-  useEffect(() => {
-    async function fetchProjects() {
-      const githubProjects = await getGithubProjects("rel-isma");
-      setProjects(githubProjects);
-    }
-    fetchProjects();
-  }, []);
 
   return (
     <div className="min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
@@ -55,28 +95,24 @@ export default function ProjectsPage() {
               variants={fadeInUp}
               className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
             >
-              <Link
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href={`/projects/${project.slug}`}>
                 <div className="aspect-[4/3] relative">
                   <Image
-                    src="/a7.jpg"
-                    alt={project.name}
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                     fill
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="absolute bottom-0 p-6 text-white">
                       <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
-                        {project.language || "Unknown"}
+                        {project.category}
                       </span>
                       <h3 className="text-2xl font-bold mt-2">
-                        {project.name}
+                        {project.title}
                       </h3>
                       <p className="text-white/80 mt-2">
-                        {project.description || "No description available."}
+                        {project.description}
                       </p>
                       <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                         View Project
