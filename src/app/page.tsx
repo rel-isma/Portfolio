@@ -72,8 +72,8 @@ export default function Home() {
       boxShadow: "0px 10px 30px rgba(0,0,0,0.1)",
     },
     hover: {
-      scale: 1.05,
-      rotate: 2,
+      scale: 1.02,
+      rotate: 1,
       boxShadow: "0px 20px 40px rgba(0,0,0,0.2)",
       transition: { duration: 0.3, ease: "easeInOut" },
     },
@@ -230,25 +230,28 @@ export default function Home() {
             variants={fadeInUp}
             className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
           >
-            <div className="aspect-[4/3] relative">
-              <Image
-                src="/a7.jpg"
-                alt="Project 4"
-                className="object-cover"
-                fill
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div className="absolute bottom-0 p-6 text-white">
-                <h3 className="text-2xl font-bold">Project one</h3>
-                <Link
-                  href="#"
-                  className="inline-block text-lg mt-2 font-semibold border-b border-white/30 hover:border-white transition-colors"
-                >
-                  View Work
-                </Link>
+            <Link href={`/projects/project-one`}>
+              <div className="aspect-[4/3] relative">
+                <Image
+                  src="/a7.jpg"
+                  alt="Project One"
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  fill
+                />
               </div>
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 p-6 text-white">
+                  <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
+                    Food Delivery
+                  </span>
+                  <h3 className="text-2xl font-bold mt-2">Project one</h3>
+                  <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
+                    View Project
+                    <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </div>
+                </div>
+              </div>
+            </Link>
           </motion.div>
 
           <div className="flex justify-center">
