@@ -65,6 +65,20 @@ export default function Home() {
     return () => clearInterval(typingInterval);
   }, []);
 
+  const cardHoverEffect = {
+    initial: {
+      scale: 1,
+      rotate: 0,
+      boxShadow: "0px 10px 30px rgba(0,0,0,0.1)",
+    },
+    hover: {
+      scale: 1.05,
+      rotate: 2,
+      boxShadow: "0px 20px 40px rgba(0,0,0,0.2)",
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+  };
+
   return (
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <motion.section
@@ -108,11 +122,11 @@ export default function Home() {
           className="flex flex-col sm:flex-row gap-4 mt-12"
           variants={fadeInUp}
         >
-          <Button className="text-lg sm:text-base px-8 py-6" variant="outline">
+          <Button className="text-lg sm:text-base px-8 py-6 text-white">
             <LayoutGrid className="mr-2 h-5 w-5" />
             My works
           </Button>
-          <Button className="text-lg sm:text-base px-8 py-6 " variant="outline">
+          <Button className="text-lg sm:text-base px-8 py-6" variant="outline">
             <Download className="mr-2 h-5 w-5" />
             Download Resume
           </Button>
@@ -147,25 +161,28 @@ export default function Home() {
             variants={fadeInUp}
             className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
           >
-            <div className="aspect-[4/3] relative">
-              <Image
-                src="/a7.jpg"
-                alt="Project One"
-                className="object-cover"
-                fill
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-              <div className="absolute bottom-0 p-6 text-white">
-                <h3 className="text-2xl font-bold">Project one</h3>
-                <Link
-                  href="#"
-                  className="inline-block text-lg mt-2 font-semibold border-b border-white/30 hover:border-white transition-colors"
-                >
-                  View Work
-                </Link>
+            <Link href={`/projects/project-one`}>
+              <div className="aspect-[4/3] relative">
+                <Image
+                  src="/a7.jpg"
+                  alt="Project One"
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  fill
+                />
               </div>
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 p-6 text-white">
+                  <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
+                    Food Delivery
+                  </span>
+                  <h3 className="text-2xl font-bold mt-2">Project one</h3>
+                  <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
+                    View Project
+                    <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </div>
+                </div>
+              </div>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -179,25 +196,28 @@ export default function Home() {
               variants={fadeInUp}
               className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
             >
-              <div className="aspect-[4/3] relative">
-                <Image
-                  src="/a7.jpg"
-                  alt={`Project ${project}`}
-                  className="object-cover"
-                  fill
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute bottom-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold">Project one</h3>
-                  <Link
-                    href="#"
-                    className="inline-block text-lg mt-2 font-semibold border-b border-white/30 hover:border-white transition-colors"
-                  >
-                    View Work
-                  </Link>
+              <Link href={`/projects/project-one`}>
+                <div className="aspect-[4/3] relative">
+                  <Image
+                    src="/a7.jpg"
+                    alt="Project One"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    fill
+                  />
                 </div>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute bottom-0 p-6 text-white">
+                    <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
+                      Food Delivery
+                    </span>
+                    <h3 className="text-2xl font-bold mt-2">Project one</h3>
+                    <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
+                      View Project
+                      <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
@@ -278,11 +298,14 @@ export default function Home() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 mt-12">
+            {/* Frontend Card */}
             <motion.div
-              variants={fadeInUp}
-              className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group"
+              variants={cardHoverEffect}
+              initial="initial"
+              whileHover="hover"
+              className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
             >
-              <h3 className="text-3xl font-bold mb-4">Frontend development</h3>
+              <h3 className="text-3xl font-bold mb-4">Frontend Development</h3>
               <div className="flex gap-3 mb-4">
                 <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
                   UI/UX Design
@@ -305,11 +328,14 @@ export default function Home() {
               </div>
             </motion.div>
 
+            {/* Backend Card */}
             <motion.div
-              variants={fadeInUp}
-              className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group"
+              variants={cardHoverEffect}
+              initial="initial"
+              whileHover="hover"
+              className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
             >
-              <h3 className="text-3xl font-bold mb-4">Backend development</h3>
+              <h3 className="text-3xl font-bold mb-4">Backend Development</h3>
               <div className="flex gap-3 mb-4">
                 <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
                   Idea to Code
@@ -368,7 +394,9 @@ export default function Home() {
                     Skills And A Collaborative Mindset. I&apos;m Committed To
                     Delivering Quality Solutions That Exceed Your Expectations.
                   </p>
-                  <Button className="text-lg px-8 py-6">Hire Me</Button>
+                  <Button className="text-lg px-8 py-6 text-white">
+                    Hire Me
+                  </Button>
                 </div>
 
                 <motion.div
@@ -476,8 +504,8 @@ export default function Home() {
                     A Profession; It&apos;s An Ongoing Journey Of Innovation And
                     Discovery.
                   </p>
-                  <Button className="mt-8 text-lg px-8 py-6">
-                    Hire Me <ArrowUpRight className="ml-2 h-5 w-5" />
+                  <Button className="mt-8 text-lg px-8 py-6 text-white">
+                    Hire Me
                   </Button>
                 </motion.div>
 
@@ -770,9 +798,9 @@ export default function Home() {
                 <Input
                   type="text"
                   name="name"
-                  placeholder="Name"
+                  placeholder="Name*"
                   required
-                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
               <div className="space-y-2">
@@ -780,7 +808,7 @@ export default function Home() {
                   type="text"
                   name="company"
                   placeholder="Company Name"
-                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -792,16 +820,15 @@ export default function Home() {
                   name="email"
                   placeholder="Email Address*"
                   required
-                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
               <div className="space-y-2">
                 <Input
                   type="tel"
                   name="phone"
-                  placeholder="Phone Number*"
-                  required
-                  className="text-lg border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  placeholder="Phone Number"
+                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -811,7 +838,7 @@ export default function Home() {
                 name="message"
                 placeholder="A Few Words*"
                 required
-                className="text-lg min-h-[150px] border-0 border-b border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                className="text-lg min-h-[150px] border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
               />
             </div>
 

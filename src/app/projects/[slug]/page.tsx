@@ -162,7 +162,7 @@ export default function ProjectPage() {
         {/* Project Info Cards */}
         <motion.div
           variants={fadeInUp}
-          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12"
+          className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12"
         >
           <div className="bg-white dark:bg-secondary rounded-xl p-4 sm:p-6 space-y-1 sm:space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
             <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
@@ -211,7 +211,7 @@ export default function ProjectPage() {
         {/* GitHub Stats */}
         <motion.div
           variants={fadeInUp}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-12"
         >
           <div className="bg-white dark:bg-secondary rounded-2xl p-6 flex items-center gap-4 shadow-lg transition-transform duration-300 hover:scale-105">
             <GitCommit className="h-10 w-10 text-primary" />

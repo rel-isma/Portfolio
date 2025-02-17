@@ -114,9 +114,6 @@ export default function ProjectsPage() {
                       <h3 className="text-2xl font-bold mt-2">
                         {project.title}
                       </h3>
-                      <p className="text-white/80 mt-2">
-                        {project.description}
-                      </p>
                       <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                         View Project
                         <ArrowUpRight className="ml-2 h-4 w-4" />

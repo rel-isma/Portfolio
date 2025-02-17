@@ -50,7 +50,7 @@ export function Navbar() {
             </div>
             <div className="flex items-center space-x-4">
               <ThemeToggle />
-              <Button className="bg-primary hover:bg-primary/90">
+              <Button className="bg-primary text-white hover:bg-primary/90">
                 <MessageSquare className="mr-2 h-4 w-4" />
                 Let&apos;s talk
               </Button>

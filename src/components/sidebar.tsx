@@ -40,7 +40,7 @@ export function Sidebar() {
 
         <div className="mt-auto space-y-4">
           <SocialLinks />
-          <Button className="w-full bg-primary hover:bg-primary/90">
+          <Button className="w-full bg-primary hover:bg-primary/90 text-white">
             <MessageSquare className="mr-2 h-4 w-4" />
             let&apos;s work together
           </Button>
