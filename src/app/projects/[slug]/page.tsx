@@ -124,42 +124,22 @@ export default function ProjectPage() {
         {/* Title and Buttons */}
         <motion.div
           variants={fadeInUp}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4"
+          className="flex flex-col lg:flex-row justify-between items-start mb-6 sm:mb-8 gap-4"
         >
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
             {project.title}
           </h1>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-            <Button
-              size="sm"
-              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white"
-              asChild
-            >
-              <a
-                href={project.liveDemo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center"
-              >
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Live Demo
-              </a>
+            <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8">
+              <Github className="mr-2 h-5 w-5" />
+              Source Code
             </Button>
             <Button
-              size="sm"
+              className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10 px-8 "
               variant="outline"
-              className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10"
-              asChild
             >
-              <a
-                href={project.sourceCode}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center"
-              >
-                <Github className="mr-2 h-4 w-4" />
-                Source Code
-              </a>
+              <ExternalLink className="mr-2 h-5 w-5" />
+              Live Demo
             </Button>
           </div>
         </motion.div>
