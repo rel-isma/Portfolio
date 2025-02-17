@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowUpRight, Star } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { Breadcrumb } from "@/components/breadcrumb";
 
 const projects = [
   {
@@ -64,6 +65,7 @@ export default function ProjectsPage() {
     triggerOnce: true,
   });
 
+  const breadcrumbItems = [{ label: "Projects", href: "/projects" }];
   return (
     <div className="min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <motion.section
@@ -73,6 +75,7 @@ export default function ProjectsPage() {
         variants={staggerContainer}
         className="py-16 lg:py-24"
       >
+        <Breadcrumb items={breadcrumbItems} />
         <motion.div variants={fadeInUp} className="space-y-4 mb-12">
           <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
             <Star className="mr-1.5 h-4 w-4" />
@@ -88,7 +91,7 @@ export default function ProjectsPage() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project) => (
             <motion.div
               key={project.id}

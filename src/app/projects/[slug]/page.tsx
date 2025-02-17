@@ -1,5 +1,6 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
@@ -14,13 +15,18 @@ import {
   Link2,
   Star,
   Users2,
+  FileCode,
+  FileJson,
+  FileIcon as FileHtml,
+  FileType,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProjectTimeline } from "@/components/project-timeline";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { format } from "date-fns";
+import { Breadcrumb } from "@/components/breadcrumb";
 
 export default function ProjectPage() {
+  const params = useParams();
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -78,10 +84,31 @@ export default function ProjectPage() {
     },
   };
 
+  const breadcrumbItems = [
+    { label: "Projects", href: "/projects" },
+    { label: project.title, href: `/projects/${params.slug}` },
+  ];
+
   const totalLines = Object.values(project.languages).reduce(
     (a, b) => a + b,
     0
   );
+
+  const languageIcons: { [key: string]: any } = {
+    TypeScript: FileType,
+    JavaScript: FileCode,
+    CSS: FileJson,
+    HTML: FileHtml,
+  };
+
+  const languageColors: { [key: string]: string } = {
+    TypeScript:
+      "bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400",
+    JavaScript:
+      "bg-yellow-100 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400",
+    CSS: "bg-pink-100 text-pink-600 dark:bg-pink-900/20 dark:text-pink-400",
+    HTML: "bg-orange-100 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400",
+  };
 
   return (
     <div className="min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
@@ -92,6 +119,8 @@ export default function ProjectPage() {
         variants={staggerContainer}
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
       >
+        <Breadcrumb items={breadcrumbItems} />
+
         {/* Title and Buttons */}
         <motion.div
           variants={fadeInUp}
@@ -103,7 +132,7 @@ export default function ProjectPage() {
           <div className="flex gap-4">
             <Button
               size="lg"
-              className="bg-primary text-white hover:bg-primary/90 transition-colors duration-300"
+              className="bg-primary hover:bg-primary/90 text-white"
               asChild
             >
               <a
@@ -112,14 +141,14 @@ export default function ProjectPage() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center"
               >
-                <ExternalLink className="mr-2 h-5 w-5" />
-                <span>Live Demo</span>
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Live Demo
               </a>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+              className="border-primary text-primary hover:bg-primary/10"
               asChild
             >
               <a
@@ -128,8 +157,8 @@ export default function ProjectPage() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center"
               >
-                <Github className="mr-2 h-5 w-5" />
-                <span>Source Code</span>
+                <Github className="mr-2 h-4 w-4" />
+                Source Code
               </a>
             </Button>
           </div>
@@ -144,7 +173,9 @@ export default function ProjectPage() {
               fill
               className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"></div>
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+              <p className="text-white text-2xl font-bold">View Project</p>
+            </div>
           </div>
         </motion.div>
 
@@ -235,27 +266,55 @@ export default function ProjectPage() {
         {/* Languages Used */}
         <motion.div variants={fadeInUp} className="mb-12">
           <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-6">Languages Used</h2>
-            <div className="space-y-4">
-              {Object.entries(project.languages).map(([language, lines]) => (
-                <div key={language} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-lg font-medium">{language}</span>
-                    <span className="text-sm text-muted-foreground">
-                      {((lines / totalLines) * 100).toFixed(1)}% (
-                      {lines.toLocaleString()} lines)
-                    </span>
-                  </div>
-                  <div className="h-2 rounded-full bg-muted overflow-hidden">
-                    <motion.div
-                      className="h-full bg-primary"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${(lines / totalLines) * 100}%` }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                    />
-                  </div>
-                </div>
-              ))}
+            <h2 className="text-2xl font-bold mb-8">Languages Used</h2>
+            <div className="space-y-6">
+              {Object.entries(project.languages).map(([language, lines]) => {
+                const Icon = languageIcons[language] || FileCode;
+                const colorClass =
+                  languageColors[language] ||
+                  "bg-gray-100 text-gray-600 dark:bg-gray-900/20 dark:text-gray-400";
+                const percentage = ((lines / totalLines) * 100).toFixed(1);
+
+                return (
+                  <motion.div
+                    key={language}
+                    className="flex items-center gap-6 p-4 rounded-xl transition-all duration-300 hover:bg-muted/50"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <div
+                      className={`w-12 h-12 rounded-xl ${colorClass} flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110`}
+                    >
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-center mb-2">
+                        <div>
+                          <h3 className="font-medium text-lg">{language}</h3>
+                          <p className="text-sm text-muted-foreground">
+                            {lines.toLocaleString()} lines
+                          </p>
+                        </div>
+                        <span className="text-sm font-medium">
+                          {percentage}%
+                        </span>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <motion.div
+                          className={`h-full ${
+                            colorClass.includes("bg-")
+                              ? colorClass.split(" ")[0].replace("bg-", "bg-")
+                              : "bg-primary"
+                          }`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${percentage}%` }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </motion.div>
@@ -264,7 +323,31 @@ export default function ProjectPage() {
         <motion.div variants={fadeInUp} className="mb-12">
           <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
             <h2 className="text-2xl font-bold mb-6">Development Timeline</h2>
-            <ProjectTimeline timeline={project.timeline} />
+            <div className="relative">
+              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary/20" />
+              <div className="space-y-8">
+                {project.timeline.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.2 }}
+                    className="relative pl-10"
+                  >
+                    <div className="absolute left-0 w-8 h-8 rounded-full border-4 border-background dark:border-background-dark bg-primary" />
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">
+                        {item.date}
+                      </div>
+                      <h4 className="text-lg font-semibold">{item.title}</h4>
+                      <p className="text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
 
@@ -274,13 +357,15 @@ export default function ProjectPage() {
             <h2 className="text-2xl font-bold mb-6">Key Features</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {project.features.map((feature, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-muted transition-colors duration-300 hover:bg-muted/80"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-muted hover:bg-primary/10 transition-colors duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Code2 className="h-6 w-6 text-primary shrink-0" />
                   <span className="font-medium">{feature}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -305,14 +390,14 @@ export default function ProjectPage() {
               Interested in working together?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              I'm always open to discussing new projects and opportunities.
-              Let's create something amazing together!
+              I&apos;m always open to discussing new projects and opportunities.
+              Let&apos;s create something amazing together!
             </p>
             <Button
               size="lg"
               className="bg-primary text-white hover:bg-primary/90 transition-colors duration-300"
             >
-              Let's Talk
+              Let&apos;s Talk
             </Button>
           </div>
         </motion.div>
