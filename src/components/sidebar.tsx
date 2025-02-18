@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Download, MessageSquare } from "lucide-react";
 import { SocialLinks } from "@/components/social-links";
+import Link from "next/link";
+import Image from "next/image";
 
 export function Sidebar() {
   return (
     <aside
-      id="home"
+      id="topHome"
       className="w-full md:w-[400px] md:h-screen  p-8 bg-white  bg-gradient-radial dark:bg-secondary md:rounded-r-3xl shadow-lg"
     >
       <div className="flex flex-col h-full">
@@ -16,7 +18,14 @@ export function Sidebar() {
           <h2 className="text-xl font-semibold">Rachid El-ismailyly</h2>
         </div>
 
-        <div className="w-full aspect-square bg-primary rounded-2xl mb-8" />
+        <div className="w-full aspect-square bg-gradient-to-b from-primary/10 to-primary/5 rounded-2xl mb-8 relative">
+          <Image
+            src="/relisma1.jpg"
+            alt="Profile"
+            fill
+            className="object-cover object-top rounded-2xl"
+          />
+        </div>
 
         <div className="space-y-6 mb-4">
           <div>
@@ -42,7 +51,7 @@ export function Sidebar() {
           <SocialLinks />
           <Button className="w-full bg-primary hover:bg-primary/90 text-white">
             <MessageSquare className="mr-2 h-4 w-4" />
-            let&apos;s work together
+            <Link href="#contact">let&apos;s work together</Link>
           </Button>
           <Button variant="outline" className="w-full">
             <Download className="mr-2 h-4 w-4" />

@@ -21,8 +21,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const [projectsRef, projectsInView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -122,9 +125,13 @@ export default function Home() {
           className="flex flex-col sm:flex-row gap-4 mt-12"
           variants={fadeInUp}
         >
-          <Button className="text-lg sm:text-base px-8 py-6 text-white">
+          <Button
+            className="text-lg sm:text-base px-8 py-6 text-white"
+            // onClick={handleMyWorksClick}
+          >
             <LayoutGrid className="mr-2 h-5 w-5" />
-            My works
+            <Link href="/projects">My works</Link>
+            {/* My works */}
           </Button>
           <Button className="text-lg sm:text-base px-8 py-6" variant="outline">
             <Download className="mr-2 h-5 w-5" />
@@ -292,7 +299,7 @@ export default function Home() {
               and <span className="text-primary">I&apos;m loving it</span>
             </h2>
             <Link
-              href="#contact"
+              href="/#contact"
               className="inline-flex items-center text-xl font-semibold text-primary hover:text-primary/90 transition-colors group"
             >
               Hire Me
@@ -398,7 +405,7 @@ export default function Home() {
                     Delivering Quality Solutions That Exceed Your Expectations.
                   </p>
                   <Button className="text-lg px-8 py-6 text-white">
-                    Hire Me
+                    <Link href="/#contact">Hire Me</Link>
                   </Button>
                 </div>
 
@@ -508,7 +515,7 @@ export default function Home() {
                     Discovery.
                   </p>
                   <Button className="mt-8 text-lg px-8 py-6 text-white">
-                    Hire Me
+                    <Link href="/#contact">Hire Me</Link>
                   </Button>
                 </motion.div>
 
@@ -814,23 +821,12 @@ export default function Home() {
                   className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-8">
               <div className="space-y-2">
                 <Input
                   type="email"
                   name="email"
-                  placeholder="Email Address*"
+                  placeholder="Email*"
                   required
-                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                />
-              </div>
-              <div className="space-y-2">
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
                   className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
@@ -899,7 +895,7 @@ export default function Home() {
           variants={fadeInUp}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
@@ -917,7 +913,7 @@ export default function Home() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="#home"
+                    href="/#home"
                     className="text-gray-600 dark:text-gray-300 hover:text-primary"
                   >
                     Home
@@ -925,7 +921,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="#portfolio"
+                    href="/#portfolio"
                     className="text-gray-600 dark:text-gray-300 hover:text-primary"
                   >
                     Portfolio
@@ -933,7 +929,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="#service"
+                    href="/#service"
                     className="text-gray-600 dark:text-gray-300 hover:text-primary"
                   >
                     Services
@@ -941,7 +937,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="#about"
+                    href="/#about"
                     className="text-gray-600 dark:text-gray-300 hover:text-primary"
                   >
                     About
@@ -949,7 +945,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="#contact"
+                    href="/#contact"
                     className="text-gray-600 dark:text-gray-300 hover:text-primary"
                   >
                     Contact

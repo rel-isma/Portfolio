@@ -15,15 +15,12 @@ import {
   Link2,
   Star,
   Users2,
-  FileCode,
-  FileJson,
-  FileIcon as FileHtml,
-  FileType,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { format } from "date-fns";
 import { Breadcrumb } from "@/components/breadcrumb";
+import Link from "next/link";
 
 export default function ProjectPage() {
   const params = useParams();
@@ -94,13 +91,6 @@ export default function ProjectPage() {
     0
   );
 
-  const languageIcons: { [key: string]: unknown } = {
-    TypeScript: FileType,
-    JavaScript: FileCode,
-    CSS: FileJson,
-    HTML: FileHtml,
-  };
-
   const languageColors: { [key: string]: string } = {
     TypeScript:
       "bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400",
@@ -132,14 +122,22 @@ export default function ProjectPage() {
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
             <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8">
               <Github className="mr-2 h-5 w-5" />
-              Source Code
+              <Link
+                href="https://github.com/rel-isma"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source Code
+              </Link>
             </Button>
             <Button
               className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10 px-8 "
               variant="outline"
             >
               <ExternalLink className="mr-2 h-5 w-5" />
-              Live Demo
+              <Link href="/#home" target="_blank" rel="noopener noreferrer">
+                Live Demo
+              </Link>
             </Button>
           </div>
         </motion.div>
@@ -253,7 +251,6 @@ export default function ProjectPage() {
             </h2>
             <div className="space-y-4 sm:space-y-6">
               {Object.entries(project.languages).map(([language, lines]) => {
-                const Icon = languageIcons[language] || FileCode;
                 const colorClass =
                   languageColors[language] ||
                   "bg-gray-100 text-gray-600 dark:bg-gray-900/20 dark:text-gray-400";
@@ -266,10 +263,14 @@ export default function ProjectPage() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <div
-                      className={`w-8 h-8 sm:w-12 sm:h-12 rounded-xl ${colorClass} flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110`}
-                    >
-                      <Icon className="w-4 h-4 sm:w-6 sm:h-6" />
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
+                      <Image
+                        src={`/${language.toLowerCase()}.svg`}
+                        alt={`${language} logo`}
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-center mb-1 sm:mb-2">
@@ -387,7 +388,7 @@ export default function ProjectPage() {
               size="lg"
               className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 transition-colors duration-300"
             >
-              Let&apos;s Talk
+              <Link href="/#contact">Let&apos;s Talk</Link>
             </Button>
           </div>
         </motion.div>
