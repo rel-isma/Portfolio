@@ -83,7 +83,7 @@ export default function Home() {
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <motion.section
         id="home"
-        className="pb-16 lg:py-24"
+        className="py-16 lg:py-24"
         ref={homeRef}
         initial="initial"
         animate={homeInView ? "animate" : "initial"}
