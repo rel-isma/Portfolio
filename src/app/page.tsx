@@ -124,22 +124,21 @@ export default function Home() {
         >
           <Button
             className="text-lg sm:text-base px-8 py-6 text-white"
+            href="/projects"
             // onClick={handleMyWorksClick}
           >
             <LayoutGrid className="mr-2 h-5 w-5" />
-            <Link href="/projects">My works</Link>
+            My works
             {/* My works */}
           </Button>
-          <Button className="text-lg sm:text-base px-8 py-6" variant="outline">
+          <Button
+            href="/Rachid_El_ismaiyly_Full-Stack.pdf"
+            target="_blank"
+            className="text-lg sm:text-base px-8 py-6"
+            variant="outline"
+          >
             <Download className="mr-2 h-5 w-5" />
-            <Link
-              href="/Rachid_El_ismaiyly_Full-Stack.pdf"
-              target="_blank"
-              download
-            >
-              {" "}
-              Download Resume{" "}
-            </Link>
+            Download Resume
           </Button>
         </motion.div>
       </motion.section>
@@ -408,8 +407,8 @@ export default function Home() {
                     Skills And A Collaborative Mindset. I&apos;m Committed To
                     Delivering Quality Solutions That Exceed Your Expectations.
                   </p>
-                  <Button className="text-lg px-8 py-6 text-white">
-                    <Link href="/#contact">Hire Me</Link>
+                  <Button href="/#contact" className="text-lg px-8 py-6 text-white">
+                    Hire Me
                   </Button>
                 </div>
 
@@ -518,8 +517,8 @@ export default function Home() {
                     A Profession; It&apos;s An Ongoing Journey Of Innovation And
                     Discovery.
                   </p>
-                  <Button className="mt-8 text-lg px-8 py-6 text-white">
-                    <Link href="/#contact">Hire Me</Link>
+                  <Button href="/#contact" className="mt-8 text-lg px-8 py-6 text-white">
+                    Hire Me
                   </Button>
                 </motion.div>
 

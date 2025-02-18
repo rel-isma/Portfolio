@@ -50,9 +50,12 @@ export function Navbar() {
             </div>
             <div className="flex items-center space-x-4">
               <ThemeToggle />
-              <Button className="bg-primary text-white hover:bg-primary/90">
+              <Button
+                href="/#contact"
+                className="bg-primary text-white hover:bg-primary/90"
+              >
                 <MessageSquare className="mr-2 h-4 w-4" />
-                <Link href="#contact">Hire Me</Link>
+                Hire Me
               </Button>
             </div>
           </div>

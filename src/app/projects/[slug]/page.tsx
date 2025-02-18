@@ -120,24 +120,17 @@ export default function ProjectPage() {
             {project.title}
           </h1>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-            <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8">
+            <Button                 href="https://github.com/rel-isma"
+                target="_blank" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8">
               <Github className="mr-2 h-5 w-5" />
-              <Link
-                href="https://github.com/rel-isma"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
                 Source Code
-              </Link>
             </Button>
             <Button
+            href="/#home" target="_blank"
               className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10 px-8 "
               variant="outline"
             >
-              <ExternalLink className="mr-2 h-5 w-5" />
-              <Link href="/#home" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </Link>
+              <ExternalLink className="mr-2 h-5 w-5" />Live Demo
             </Button>
           </div>
         </motion.div>

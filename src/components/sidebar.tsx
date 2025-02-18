@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Download, MessageSquare } from "lucide-react";
 import { SocialLinks } from "@/components/social-links";
-import Link from "next/link";
 import Image from "next/image";
 
 export function Sidebar() {
@@ -49,20 +48,21 @@ export function Sidebar() {
 
         <div className="mt-auto space-y-4">
           <SocialLinks />
-          <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+          <Button
+            href="/#contact"
+            className="w-full bg-primary hover:bg-primary/90 text-white"
+          >
             <MessageSquare className="mr-2 h-4 w-4" />
-            <Link href="#contact">let&apos;s work together</Link>
+            let&apos;s work together
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button
+            href="/Rachid_El_ismaiyly_Full-Stack.pdf"
+            target="_blank"
+            variant="outline"
+            className="w-full"
+          >
             <Download className="mr-2 h-4 w-4" />
-            <Link
-              href="/Rachid_El_ismaiyly_Full-Stack.pdf"
-              target="_blank"
-              download
-            >
-              {" "}
-              Download Resume{" "}
-            </Link>
+            Download Resume
           </Button>
         </div>
       </div>
