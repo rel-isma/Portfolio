@@ -83,7 +83,7 @@ export default function Home() {
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <motion.section
         id="home"
-        className="py-16 lg:py-24"
+        className="pb-16 lg:py-24"
         ref={homeRef}
         initial="initial"
         animate={homeInView ? "animate" : "initial"}
@@ -146,7 +146,7 @@ export default function Home() {
 
       <motion.section
         id="portfolio"
-        className="py-16 lg:py-24 scroll-mt-16"
+        className="pb-16 lg:py-24 scroll-mt-16"
         ref={projectsRef}
         initial="initial"
         animate={projectsInView ? "animate" : "initial"}
@@ -279,7 +279,7 @@ export default function Home() {
 
       <motion.section
         id="service"
-        className="py-16 lg:py-24 scroll-mt-16"
+        className="pb-16 lg:py-24 scroll-mt-16"
         ref={serviceRef}
         initial="initial"
         animate={serviceInView ? "animate" : "initial"}
@@ -376,7 +376,7 @@ export default function Home() {
 
       <motion.section
         id="about"
-        className="py-16 lg:py-24 scroll-mt-16"
+        className="pb-16 lg:py-24 scroll-mt-16"
         ref={aboutRef}
         initial="initial"
         animate={aboutInView ? "animate" : "initial"}
@@ -778,7 +778,7 @@ export default function Home() {
       </motion.section>
       <motion.section
         id="contact"
-        className="py-16 lg:py-24 scroll-mt-16"
+        className="pb-16 lg:py-24 scroll-mt-16"
         ref={contactRef}
         initial="initial"
         animate={contactInView ? "animate" : "initial"}
@@ -790,7 +790,7 @@ export default function Home() {
               <Star className="mr-1.5 h-4 w-4" />
               Contacte
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-primary">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-primary">
               Let&apos;s make something awesome together!
             </h2>
           </div>

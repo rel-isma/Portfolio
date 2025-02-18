@@ -8,7 +8,7 @@ export function Sidebar() {
   return (
     <aside
       id="topHome"
-      className="w-full md:w-[400px] md:h-screen  p-8 bg-white  bg-gradient-radial dark:bg-secondary md:rounded-r-3xl shadow-lg"
+      className="w-full md:w-[400px] md:h-screen  p-8 md:bg-white  bg-gradient-radial md:dark:bg-secondary md:rounded-r-3xl md:shadow-lg"
     >
       <div className="flex flex-col h-full">
         <div className="flex items-center space-x-3 mb-8">
@@ -55,7 +55,14 @@ export function Sidebar() {
           </Button>
           <Button variant="outline" className="w-full">
             <Download className="mr-2 h-4 w-4" />
-            Download cv
+            <Link
+              href="/Rachid_El_ismaiyly_Full-Stack.pdf"
+              target="_blank"
+              download
+            >
+              {" "}
+              Download Resume{" "}
+            </Link>
           </Button>
         </div>
       </div>

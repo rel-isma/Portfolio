@@ -107,7 +107,7 @@ export default function ProjectPage() {
         initial="initial"
         animate={inView ? "animate" : "initial"}
         variants={staggerContainer}
-        className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12"
+        className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12"
       >
         <Breadcrumb items={breadcrumbItems} />
 
