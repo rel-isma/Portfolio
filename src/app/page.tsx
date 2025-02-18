@@ -132,7 +132,14 @@ export default function Home() {
           </Button>
           <Button className="text-lg sm:text-base px-8 py-6" variant="outline">
             <Download className="mr-2 h-5 w-5" />
-            Download Resume
+            <Link
+              href="/Rachid_El_ismaiyly_Full-Stack.pdf"
+              target="_blank"
+              download
+            >
+              {" "}
+              Download Resume{" "}
+            </Link>
           </Button>
         </motion.div>
       </motion.section>

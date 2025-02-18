@@ -101,7 +101,7 @@ export default function ProjectPage() {
   };
 
   return (
-    <div className="min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
+    <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <motion.div
         ref={ref}
         initial="initial"

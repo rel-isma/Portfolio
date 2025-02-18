@@ -52,7 +52,7 @@ export function Navbar() {
               <ThemeToggle />
               <Button className="bg-primary text-white hover:bg-primary/90">
                 <MessageSquare className="mr-2 h-4 w-4" />
-                <Link href="#contact">Let&apos;s Talk</Link>
+                <Link href="#contact">Hire Me</Link>
               </Button>
             </div>
           </div>
