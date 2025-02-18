@@ -21,11 +21,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const router = useRouter();
-
   const [projectsRef, projectsInView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
