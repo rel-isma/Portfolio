@@ -20,7 +20,6 @@ import { Button } from "@/components/ui/button";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { format } from "date-fns";
 import { Breadcrumb } from "@/components/breadcrumb";
-import Link from "next/link";
 
 export default function ProjectPage() {
   const params = useParams();
@@ -378,7 +377,7 @@ export default function ProjectPage() {
               Let&apos;s create something amazing together!
             </p>
             <Button
-            href="/#contact"
+              href="/#contact"
               size="lg"
               className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 transition-colors duration-300"
             >
