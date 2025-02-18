@@ -378,10 +378,11 @@ export default function ProjectPage() {
               Let&apos;s create something amazing together!
             </p>
             <Button
+            href="/#contact"
               size="lg"
               className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 transition-colors duration-300"
             >
-              <Link href="/#contact">Let&apos;s Talk</Link>
+              Let&apos;s Talk
             </Button>
           </div>
         </motion.div>
