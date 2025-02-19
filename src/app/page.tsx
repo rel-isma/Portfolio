@@ -12,7 +12,9 @@ import {
   Mail,
   Phone,
   MapPin,
+  Send,
 } from "lucide-react";
+import { FaDiscord, FaTelegram, FaWhatsapp } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -407,7 +409,10 @@ export default function Home() {
                     Skills And A Collaborative Mindset. I&apos;m Committed To
                     Delivering Quality Solutions That Exceed Your Expectations.
                   </p>
-                  <Button href="/#contact" className="text-lg px-8 py-6 text-white">
+                  <Button
+                    href="/#contact"
+                    className="text-lg px-8 py-6 text-white"
+                  >
                     Hire Me
                   </Button>
                 </div>
@@ -517,7 +522,10 @@ export default function Home() {
                     A Profession; It&apos;s An Ongoing Journey Of Innovation And
                     Discovery.
                   </p>
-                  <Button href="/#contact" className="mt-8 text-lg px-8 py-6 text-white">
+                  <Button
+                    href="/#contact"
+                    className="mt-8 text-lg px-8 py-6 text-white"
+                  >
                     Hire Me
                   </Button>
                 </motion.div>
@@ -604,11 +612,11 @@ export default function Home() {
                     {[
                       {
                         name: "JavaScript",
-                        icon: "js.svg",
+                        icon: "JavaScript.svg",
                       },
                       {
                         name: "TypeScript",
-                        icon: "ts.svg",
+                        icon: "TypeScript.svg",
                       },
                       {
                         name: "HTML5",
@@ -680,7 +688,7 @@ export default function Home() {
                       },
                       {
                         name: "JavaScript",
-                        icon: "js.svg",
+                        icon: "JavaScript.svg",
                       },
                     ].map((tech) => (
                       <motion.div
@@ -833,6 +841,14 @@ export default function Home() {
                   className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
+              <div className="space-y-2">
+                <Input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -844,20 +860,21 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex flex-col items-center gap-4 pt-4">
+            <div className="flex flex-col md:items-start lg:items-center gap-4 pt-4">
               <Button
                 type="submit"
                 size="lg"
-                className="w-full sm:w-auto text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white rounded-full"
+                className="w-fit text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white rounded-full"
               >
                 Send Message
+                <Send className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </motion.form>
 
           <motion.div
             variants={fadeInUp}
-            className="mt-16 text-center space-y-8"
+            className=" mt-16 text-center space-y-8"
           >
             <div className="flex justify-center gap-8">
               <Link
@@ -866,7 +883,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
-                <Instagram className="h-6 w-6" />
+                <Instagram className="h-10 w-10" />
               </Link>
               <Link
                 href="https://www.linkedin.com/in/rachid-el-isamiyly/"
@@ -874,7 +891,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
-                <Linkedin className="h-6 w-6" />
+                <Linkedin className="h-10 w-10" />
               </Link>
               <Link
                 href="https://github.com/rel-isma"
@@ -882,7 +899,23 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
-                <Github className="h-6 w-6" />
+                <FaDiscord className="h-10 w-10" />
+              </Link>
+              <Link
+                href="https://github.com/rel-isma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <FaTelegram className="h-10 w-10" />
+              </Link>
+              <Link
+                href="https://github.com/rel-isma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <FaWhatsapp className="h-10 w-10" />
               </Link>
             </div>
           </motion.div>
