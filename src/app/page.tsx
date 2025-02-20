@@ -21,35 +21,49 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { useEffect, useState } from "react";
 
+const AnimatedSection = ({ children, className, id }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.section
+      id={id}
+      ref={ref}
+      initial="initial"
+      animate={inView ? "animate" : "initial"}
+      variants={staggerContainer}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  );
+};
+
+const AnimatedElement = ({ children, className }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={scrollAnimation}
+      initial="initial"
+      animate={inView ? "animate" : "initial"}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 export default function Home() {
-  const [projectsRef, projectsInView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const [serviceRef, serviceInView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const [homeRef, homeInView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const [aboutRef, aboutInView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const [contactRef, contactInView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
   const [typedText, setTypedText] = useState("");
   const fullText = "Full-Stack Web Developer";
 
@@ -83,80 +97,55 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
-      <motion.section
-        id="home"
-        className="py-16 lg:py-24"
-        ref={homeRef}
-        initial="initial"
-        animate={homeInView ? "animate" : "initial"}
-        variants={staggerContainer}
-      >
-        <motion.h1
-          className="text-4xl lg:text-6xl font-bold space-y-4"
-          variants={fadeInUp}
-        >
-          <span className="text-foreground/60 dark:text-foreground-dark/60">
-            Hi! I&apos;m
-          </span>
-          <br />
-          <span className="text-primary">Rachid</span> El-Ismailyly
-        </motion.h1>
-        <motion.h2
-          className="text-2xl lg:text-4xl font-bold mt-6 flex items-center"
-          variants={fadeInUp}
-        >
-          <span className="text-primary mr-2">&gt;</span> {typedText}
-        </motion.h2>
+      <AnimatedSection id="home" className="py-16 lg:py-24">
+        <AnimatedElement>
+          <h1 className="text-4xl lg:text-6xl font-bold space-y-4">
+            <span className="text-foreground/60 dark:text-foreground-dark/60">
+              Hi! I&apos;m
+            </span>
+            <br />
+            <span className="text-primary">Rachid</span> El-Ismailyly
+          </h1>
+        </AnimatedElement>
+        <AnimatedElement>
+          <h2 className="text-2xl lg:text-4xl font-bold mt-6 flex items-center">
+            <span className="text-primary mr-2">&gt;</span> {typedText}
+          </h2>
+        </AnimatedElement>
+        <AnimatedElement>
+          <p className="mt-8 text-lg lg:text-xl leading-relaxed max-w-3xl">
+            I Build All Kinds Of <span className="text-primary">Websites</span>{" "}
+            And <span className="text-primary">Web Applications</span> That Help
+            Businesses Grow And Meet Their Needs. From Interactive User
+            Interfaces To Powerful Backend Systems, I Focus On Delivering{" "}
+            <span className="text-primary">High-Quality</span>, Scalable, And{" "}
+            <span className="text-primary">User-Friendly</span> Solutions.
+          </p>
+        </AnimatedElement>
+        <AnimatedElement>
+          <div className="flex flex-col sm:flex-row gap-4 mt-12">
+            <Button
+              className="text-lg sm:text-base px-8 py-6 text-white"
+              href="/projects"
+            >
+              <LayoutGrid className="mr-2 h-5 w-5" />
+              My works
+            </Button>
+            <Button
+              href="/Rachid_El_ismaiyly_Full-Stack.pdf"
+              target="_blank"
+              className="text-lg sm:text-base px-8 py-6"
+              variant="outline"
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Download Resume
+            </Button>
+          </div>
+        </AnimatedElement>
+      </AnimatedSection>
 
-        <motion.p
-          className="mt-8 text-lg lg:text-xl leading-relaxed max-w-3xl"
-          variants={fadeInUp}
-        >
-          I Build All Kinds Of <span className="text-primary">Websites</span>{" "}
-          And <span className="text-primary">Web Applications</span> That Help
-          Businesses Grow And Meet Their Needs. From Interactive User Interfaces
-          To Powerful Backend Systems, I Focus On Delivering{" "}
-          <span className="text-primary">High-Quality</span>, Scalable, And{" "}
-          <span className="text-primary">User-Friendly</span> Solutions.
-        </motion.p>
-
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 mt-12"
-          variants={fadeInUp}
-        >
-          <Button
-            className="text-lg sm:text-base px-8 py-6 text-white"
-            href="/projects"
-            // onClick={handleMyWorksClick}
-          >
-            <LayoutGrid className="mr-2 h-5 w-5" />
-            My works
-            {/* My works */}
-          </Button>
-          <Button
-            href="/Rachid_El_ismaiyly_Full-Stack.pdf"
-            target="_blank"
-            className="text-lg sm:text-base px-8 py-6"
-            variant="outline"
-          >
-            <Download className="mr-2 h-5 w-5" />
-            Download Resume
-          </Button>
-        </motion.div>
-      </motion.section>
-
-      <motion.section
-        id="portfolio"
-        className="pb-16 lg:py-24 scroll-mt-16"
-        ref={projectsRef}
-        initial="initial"
-        animate={projectsInView ? "animate" : "initial"}
-        variants={staggerContainer}
-      >
-        <motion.div
-          variants={fadeInUp}
-          className="grid lg:grid-cols-2 gap-12 mb-12"
-        >
+      <AnimatedSection id="portfolio" className="pb-16 lg:py-24 scroll-mt-16">
+        <AnimatedElement className="grid lg:grid-cols-2 gap-12 mb-12">
           <div className="space-y-4">
             <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
               <Star className="mr-1.5 h-4 w-4" />
@@ -168,11 +157,7 @@ export default function Home() {
               awesome <span className="text-primary">Projects</span>
             </h2>
           </div>
-
-          <motion.div
-            variants={fadeInUp}
-            className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
-          >
+          <AnimatedElement className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg">
             <Link href={`/projects/project-one`}>
               <div className="aspect-[4/3] relative">
                 <Image
@@ -195,24 +180,20 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-          </motion.div>
-        </motion.div>
+          </AnimatedElement>
+        </AnimatedElement>
 
-        <motion.div
-          variants={fadeInUp}
-          className="grid lg:grid-cols-2 gap-12 mb-12"
-        >
+        <AnimatedElement className="grid lg:grid-cols-2 gap-12 mb-12">
           {[2, 3].map((project) => (
-            <motion.div
+            <AnimatedElement
               key={project}
-              variants={fadeInUp}
               className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
             >
-              <Link href={`/projects/project-one`}>
+              <Link href={`/projects/project-${project}`}>
                 <div className="aspect-[4/3] relative">
                   <Image
                     src="/a7.jpg"
-                    alt="Project One"
+                    alt={`Project ${project}`}
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                     fill
                   />
@@ -220,9 +201,11 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="absolute bottom-0 p-6 text-white">
                     <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
-                      Food Delivery
+                      Project Category
                     </span>
-                    <h3 className="text-2xl font-bold mt-2">Project one</h3>
+                    <h3 className="text-2xl font-bold mt-2">
+                      Project {project}
+                    </h3>
                     <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                       View Project
                       <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -230,23 +213,17 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
-            </motion.div>
+            </AnimatedElement>
           ))}
-        </motion.div>
+        </AnimatedElement>
 
-        <motion.div
-          variants={fadeInUp}
-          className="grid lg:grid-cols-2 gap-12 items-center"
-        >
-          <motion.div
-            variants={fadeInUp}
-            className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
-          >
-            <Link href={`/projects/project-one`}>
+        <AnimatedElement className="grid lg:grid-cols-2 gap-12 items-center">
+          <AnimatedElement className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg">
+            <Link href={`/projects/project-four`}>
               <div className="aspect-[4/3] relative">
                 <Image
                   src="/a7.jpg"
-                  alt="Project One"
+                  alt="Project Four"
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                   fill
                 />
@@ -254,9 +231,9 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 p-6 text-white">
                   <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
-                    Food Delivery
+                    Project Category
                   </span>
-                  <h3 className="text-2xl font-bold mt-2">Project one</h3>
+                  <h3 className="text-2xl font-bold mt-2">Project Four</h3>
                   <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                     View Project
                     <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -264,140 +241,121 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-          </motion.div>
+          </AnimatedElement>
 
-          <div className="flex justify-center">
+          <AnimatedElement className="flex justify-center">
             <Link
-              href="projects"
+              href="/projects"
               className="inline-flex items-center text-2xl font-semibold hover:text-primary transition-colors group"
             >
               View all projects
               <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </Link>
-          </div>
-        </motion.div>
-      </motion.section>
+          </AnimatedElement>
+        </AnimatedElement>
+      </AnimatedSection>
 
-      <motion.section
-        id="service"
-        className="pb-16 lg:py-24 scroll-mt-16"
-        ref={serviceRef}
-        initial="initial"
-        animate={serviceInView ? "animate" : "initial"}
-        variants={staggerContainer}
-      >
-        <div className="relative">
-          <motion.div variants={fadeInUp}>
-            <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
-              <Star className="mr-1.5 h-4 w-4" />
-              Service
+      <AnimatedSection id="service" className="pb-16 lg:py-24 scroll-mt-16">
+        <AnimatedElement>
+          <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
+            <Star className="mr-1.5 h-4 w-4" />
+            Service
+          </div>
+        </AnimatedElement>
+
+        <AnimatedElement className="flex justify-between items-start mt-4">
+          <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+            I&apos;m great in what I do
+            <br />
+            and <span className="text-primary">I&apos;m loving it</span>
+          </h2>
+          <Link
+            href="/#contact"
+            className="inline-flex items-center text-xl font-semibold text-primary hover:text-primary/90 transition-colors group"
+          >
+            Hire Me
+            <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </Link>
+        </AnimatedElement>
+
+        <AnimatedElement className="grid lg:grid-cols-2 gap-8 mt-12">
+          {/* Frontend Card */}
+          <motion.div
+            variants={cardHoverEffect}
+            initial="initial"
+            whileHover="hover"
+            className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
+          >
+            <h3 className="text-3xl font-bold mb-4">Frontend Development</h3>
+            <div className="flex gap-3 mb-4">
+              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
+                UI/UX Design
+              </span>
+              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
+                Design to Code
+              </span>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-8">
+              Building modern, responsive web interfaces with React, Next.js,
+              and TypeScript.
+            </p>
+            <div className="relative w-full aspect-[2/1]">
+              <Image
+                src="frontend.svg"
+                alt="Frontend Development"
+                fill
+                className="object-contain"
+              />
             </div>
           </motion.div>
 
+          {/* Backend Card */}
           <motion.div
-            variants={fadeInUp}
-            className="flex justify-between items-start mt-4"
+            variants={cardHoverEffect}
+            initial="initial"
+            whileHover="hover"
+            className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-              I&apos;m great in what I do
-              <br />
-              and <span className="text-primary">I&apos;m loving it</span>
-            </h2>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center text-xl font-semibold text-primary hover:text-primary/90 transition-colors group"
-            >
-              Hire Me
-              <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </Link>
+            <h3 className="text-3xl font-bold mb-4">Backend Development</h3>
+            <div className="flex gap-3 mb-4">
+              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
+                Idea to Code
+              </span>
+              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
+                API Integration
+              </span>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-8">
+              Building secure and scalable systems with Django REST Framework.
+            </p>
+            <div className="relative w-full aspect-[2/1]">
+              <Image
+                src="backend.svg"
+                alt="Backend Development"
+                fill
+                className="object-contain"
+              />
+            </div>
           </motion.div>
+        </AnimatedElement>
+      </AnimatedSection>
 
-          <div className="grid lg:grid-cols-2 gap-8 mt-12">
-            {/* Frontend Card */}
-            <motion.div
-              variants={cardHoverEffect}
-              initial="initial"
-              whileHover="hover"
-              className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
-            >
-              <h3 className="text-3xl font-bold mb-4">Frontend Development</h3>
-              <div className="flex gap-3 mb-4">
-                <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                  UI/UX Design
-                </span>
-                <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                  Design to Code
-                </span>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Building modern, responsive web interfaces with React, Next.js,
-                and TypeScript.
-              </p>
-              <div className="relative w-full aspect-[2/1]">
-                <Image
-                  src="frontend.svg"
-                  alt="Frontend Development"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </motion.div>
-
-            {/* Backend Card */}
-            <motion.div
-              variants={cardHoverEffect}
-              initial="initial"
-              whileHover="hover"
-              className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
-            >
-              <h3 className="text-3xl font-bold mb-4">Backend Development</h3>
-              <div className="flex gap-3 mb-4">
-                <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                  Idea to Code
-                </span>
-                <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                  API Integration
-                </span>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Building secure and scalable systems with Django REST Framework.
-              </p>
-              <div className="relative w-full aspect-[2/1]">
-                <Image
-                  src="backend.svg"
-                  alt="Backend Development"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="about"
-        className="pb-16 lg:py-24 scroll-mt-16"
-        ref={aboutRef}
-        initial="initial"
-        animate={aboutInView ? "animate" : "initial"}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeInUp} className="space-y-8">
+      <AnimatedSection id="about" className="pb-16 lg:py-24 scroll-mt-16">
+        <AnimatedElement className="space-y-8">
           <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
             <Star className="mr-1.5 h-4 w-4" />
             about
           </div>
 
           <div className="space-y-12">
-            <motion.div variants={fadeInUp} className="max-w-4xl">
+            <AnimatedElement className="max-w-4xl">
               <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-8">
                 Why you <span className="text-primary">hire me</span> for your
                 next <span className="text-primary">project</span>?
               </h2>
 
               <div className="grid lg:grid-cols-2 gap-12">
-                <div className="space-y-6">
+                <AnimatedElement className="space-y-6">
                   <p className="text-lg leading-relaxed">
                     I&apos;m A Full-Stack Developer Specializing In Modern Web
                     Applications. With Expertise In React, Django, And Software
@@ -415,12 +373,9 @@ export default function Home() {
                   >
                     Hire Me
                   </Button>
-                </div>
+                </AnimatedElement>
 
-                <motion.div
-                  variants={fadeInUp}
-                  className="space-y-4 bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
-                >
+                <AnimatedElement className="space-y-4 bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
                   <Link
                     href={`mailto:relismailyly@gmail.com`}
                     className="block space-y-2 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
@@ -496,11 +451,11 @@ export default function Home() {
                       </p>
                     </motion.div>
                   </Link>
-                </motion.div>
+                </AnimatedElement>
               </div>
-            </motion.div>
+            </AnimatedElement>
 
-            <motion.div variants={fadeInUp} className="space-y-8 mt-20">
+            <AnimatedElement className="space-y-8 mt-20">
               <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
                 My Passion for Programming:{" "}
                 <span className="text-primary">Creating</span>,{" "}
@@ -509,7 +464,7 @@ export default function Home() {
               </h2>
 
               <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <motion.div variants={fadeInUp}>
+                <AnimatedElement>
                   <p className="text-lg leading-relaxed">
                     Ever Since I Wrote My First Lines Of Code, I Knew
                     Programming Was More Than Just A Skill—It Was A Way To
@@ -528,24 +483,20 @@ export default function Home() {
                   >
                     Hire Me
                   </Button>
-                </motion.div>
+                </AnimatedElement>
 
-                <motion.div
-                  variants={fadeInUp}
-                  className="relative h-[600px] w-full"
-                >
+                <AnimatedElement className="relative h-[600px] w-full">
                   <Image
                     src="/relisma.png"
                     alt="Developer Portrait"
                     fill
                     className="object-contain"
                   />
-                  {/* <ThreeDModel /> */}
-                </motion.div>
+                </AnimatedElement>
               </div>
-            </motion.div>
+            </AnimatedElement>
 
-            <motion.div variants={fadeInUp} className="space-y-8">
+            <AnimatedElement className="space-y-8">
               <h3 className="text-3xl font-bold">
                 Turning <span className="text-primary">Ideas</span> into Reality
                 with <span className="text-primary">My Tech Skills</span>
@@ -553,10 +504,7 @@ export default function Home() {
 
               <div className="grid gap-8">
                 {/* Backend Section */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
-                >
+                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
                   <h4 className="text-2xl font-semibold mb-6">backend</h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                     {[
@@ -600,13 +548,10 @@ export default function Home() {
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </AnimatedElement>
 
                 {/* Frontend Section */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
-                >
+                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
                   <h4 className="text-2xl font-semibold mb-6">Frontend</h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                     {[
@@ -662,13 +607,10 @@ export default function Home() {
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </AnimatedElement>
 
                 {/* Programming Languages Section */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
-                >
+                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
                   <h4 className="text-2xl font-semibold mb-6">
                     Programming Lngs
                   </h4>
@@ -714,13 +656,10 @@ export default function Home() {
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </AnimatedElement>
 
                 {/* Tools Section */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg"
-                >
+                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
                   <h4 className="text-2xl font-semibold mb-6">Tools</h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                     {[
@@ -768,114 +707,95 @@ export default function Home() {
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </AnimatedElement>
               </div>
-            </motion.div>
+            </AnimatedElement>
 
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl text-center max-w-3xl mx-auto"
-            >
-              I am always <span className="text-primary">learning</span> and
-              evolving. Technology never stops, and{" "}
-              <span className="text-primary">neither do I</span>.
-            </motion.p>
+            <AnimatedElement>
+              <p className="text-xl text-center max-w-3xl mx-auto">
+                I am always <span className="text-primary">learning</span> and
+                evolving. Technology never stops, and{" "}
+                <span className="text-primary">neither do I</span>.
+              </p>
+            </AnimatedElement>
           </div>
-        </motion.div>
-      </motion.section>
-      <motion.section
-        id="contact"
-        className="pb-16 lg:py-24 scroll-mt-16"
-        ref={contactRef}
-        initial="initial"
-        animate={contactInView ? "animate" : "initial"}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeInUp} className=" mx-auto px-4">
+        </AnimatedElement>
+      </AnimatedSection>
+
+      <AnimatedSection id="contact" className="pb-16 lg:py-24 scroll-mt-16">
+        <AnimatedElement className="mx-auto px-4">
           <div className="space-y-4 text-start mb-12">
             <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
               <Star className="mr-1.5 h-4 w-4" />
-              Contacte
+              Contact
             </div>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-primary">
               Let&apos;s make something awesome together!
             </h2>
           </div>
 
-          <motion.form
-            // action={async (formData) => {
-            //   "use server";
-            //   // TODO: Implement email sending logic
-            //   // 1. Validate form data
-            //   // 2. Send to your backend API
-            //   // 3. Handle success/error states
-            //   console.log("Form submitted:", Object.fromEntries(formData));
-            // }}
-            className="space-y-8 mx-auto"
-            variants={fadeInUp}
-          >
-            <div className="grid sm:grid-cols-2 gap-8">
+          <AnimatedElement>
+            <form className="space-y-8 mx-auto">
+              <div className="grid sm:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Name*"
+                    required
+                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Input
+                    type="text"
+                    name="company"
+                    placeholder="Company Name"
+                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email*"
+                    required
+                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  />
+                </div>
+              </div>
+
               <div className="space-y-2">
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Name*"
+                <Textarea
+                  name="message"
+                  placeholder="A Few Words*"
                   required
-                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="text-lg min-h-[150px] border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
-              <div className="space-y-2">
-                <Input
-                  type="text"
-                  name="company"
-                  placeholder="Company Name"
-                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                />
-              </div>
-              <div className="space-y-2">
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Email*"
-                  required
-                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                />
-              </div>
-              <div className="space-y-2">
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                />
-              </div>
-            </div>
 
-            <div className="space-y-2">
-              <Textarea
-                name="message"
-                placeholder="A Few Words*"
-                required
-                className="text-lg min-h-[150px] border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
-              />
-            </div>
+              <div className="flex flex-col md:items-start lg:items-center gap-4 pt-4">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-fit text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white rounded-full"
+                >
+                  Send Message
+                  <Send className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </form>
+          </AnimatedElement>
 
-            <div className="flex flex-col md:items-start lg:items-center gap-4 pt-4">
-              <Button
-                type="submit"
-                size="lg"
-                className="w-fit text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white rounded-full"
-              >
-                Send Message
-                <Send className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-          </motion.form>
-
-          <motion.div
-            variants={fadeInUp}
-            className=" mt-16 text-center space-y-8"
-          >
+          <AnimatedElement className="mt-16 text-center space-y-8">
             <div className="flex justify-center gap-8">
               <Link
                 href="https://www.instagram.com/rel_ismaa/"
@@ -918,19 +838,17 @@ export default function Home() {
                 <FaWhatsapp className="h-10 w-10" />
               </Link>
             </div>
-          </motion.div>
-        </motion.div>
-      </motion.section>
+          </AnimatedElement>
+        </AnimatedElement>
+      </AnimatedSection>
+
       <motion.footer
         variants={staggerContainer}
         initial="initial"
         animate="animate"
         className="mt-auto py-16 bg-white dark:bg-secondary"
       >
-        <motion.div
-          variants={fadeInUp}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-        >
+        <AnimatedElement className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
@@ -1061,7 +979,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </AnimatedElement>
       </motion.footer>
     </div>
   );

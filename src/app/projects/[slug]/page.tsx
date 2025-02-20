@@ -17,16 +17,51 @@ import {
   Users2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { format } from "date-fns";
 import { Breadcrumb } from "@/components/breadcrumb";
 
+const AnimatedSection = ({ children, className, id }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.section
+      id={id}
+      ref={ref}
+      initial="initial"
+      animate={inView ? "animate" : "initial"}
+      variants={staggerContainer}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  );
+};
+
+const AnimatedElement = ({ children, className }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={scrollAnimation}
+      initial="initial"
+      animate={inView ? "animate" : "initial"}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 export default function ProjectPage() {
   const params = useParams();
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
 
   // This would be fetched from your API/database using the GitHub integration
   const project = {
@@ -101,41 +136,37 @@ export default function ProjectPage() {
 
   return (
     <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
-      <motion.div
-        ref={ref}
-        initial="initial"
-        animate={inView ? "animate" : "initial"}
-        variants={staggerContainer}
-        className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12"
-      >
+      <AnimatedSection className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12">
         <Breadcrumb items={breadcrumbItems} />
 
         {/* Title and Buttons */}
-        <motion.div
-          variants={fadeInUp}
-          className="flex flex-col lg:flex-row justify-between items-start mb-6 sm:mb-8 gap-4"
-        >
+        <AnimatedElement className="flex flex-col lg:flex-row justify-between items-start mb-6 sm:mb-8 gap-4">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
             {project.title}
           </h1>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-            <Button                 href="https://github.com/rel-isma"
-                target="_blank" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8">
+            <Button
+              href="https://github.com/rel-isma"
+              target="_blank"
+              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8"
+            >
               <Github className="mr-2 h-5 w-5" />
-                Source Code
+              Source Code
             </Button>
             <Button
-            href="/#home" target="_blank"
+              href="/#home"
+              target="_blank"
               className="w-full sm:w-auto border-primary text-primary hover:bg-primary/10 px-8 "
               variant="outline"
             >
-              <ExternalLink className="mr-2 h-5 w-5" />Live Demo
+              <ExternalLink className="mr-2 h-5 w-5" />
+              Live Demo
             </Button>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* Project Image */}
-        <motion.div variants={fadeInUp} className="mb-12">
+        <AnimatedElement className="mb-12">
           <div className="aspect-[21/9] relative rounded-3xl overflow-hidden group">
             <Image
               src={project.image || "/placeholder.svg"}
@@ -147,13 +178,10 @@ export default function ProjectPage() {
               <p className="text-white text-2xl font-bold">View Project</p>
             </div>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* Project Info Cards */}
-        <motion.div
-          variants={fadeInUp}
-          className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12"
-        >
+        <AnimatedElement className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
           <div className="bg-white dark:bg-secondary rounded-xl p-4 sm:p-6 space-y-1 sm:space-y-2 shadow-lg transition-transform duration-300 hover:scale-105">
             <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
             <h3 className="text-xs sm:text-sm font-medium text-muted-foreground">
@@ -186,23 +214,20 @@ export default function ProjectPage() {
             </h3>
             <p className="text-sm sm:text-lg font-semibold">{project.role}</p>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* Overview */}
-        <motion.div variants={fadeInUp} className="mb-12">
+        <AnimatedElement className="mb-12">
           <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
             <h2 className="text-2xl font-bold mb-4">Overview</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               {project.description}
             </p>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* GitHub Stats */}
-        <motion.div
-          variants={fadeInUp}
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-12"
-        >
+        <AnimatedElement className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
           <div className="bg-white dark:bg-secondary rounded-2xl p-6 flex items-center gap-4 shadow-lg transition-transform duration-300 hover:scale-105">
             <GitCommit className="h-10 w-10 text-primary" />
             <div>
@@ -233,10 +258,10 @@ export default function ProjectPage() {
               <div className="text-sm text-muted-foreground">Contributors</div>
             </div>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* Languages Used */}
-        <motion.div variants={fadeInUp} className="mb-8 sm:mb-12">
+        <AnimatedElement className="mb-8 sm:mb-12">
           <div className="bg-white dark:bg-secondary rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-8">
               Languages Used
@@ -296,10 +321,10 @@ export default function ProjectPage() {
               })}
             </div>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* Timeline */}
-        <motion.div variants={fadeInUp} className="mb-12">
+        <AnimatedElement className="mb-12">
           <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
             <h2 className="text-2xl font-bold mb-6">Development Timeline</h2>
             <div className="relative">
@@ -328,10 +353,10 @@ export default function ProjectPage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* Key Features */}
-        <motion.div variants={fadeInUp} className="mb-8 sm:mb-12">
+        <AnimatedElement className="mb-8 sm:mb-12">
           <div className="bg-white dark:bg-secondary rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
               Key Features
@@ -352,10 +377,10 @@ export default function ProjectPage() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* WakaTime Stats */}
-        <motion.div variants={fadeInUp} className="mb-12">
+        <AnimatedElement className="mb-12">
           <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
             <h2 className="text-2xl font-bold mb-6">Development Stats</h2>
             <div className="aspect-[21/9] bg-muted rounded-xl flex items-center justify-center">
@@ -364,10 +389,10 @@ export default function ProjectPage() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </AnimatedElement>
 
         {/* Call to Action */}
-        <motion.div variants={fadeInUp} className="text-center">
+        <AnimatedElement className="text-center">
           <div className="bg-white dark:bg-secondary rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 shadow-lg">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
               Interested in working together?
@@ -384,8 +409,8 @@ export default function ProjectPage() {
               Let&apos;s Talk
             </Button>
           </div>
-        </motion.div>
-      </motion.div>
+        </AnimatedElement>
+      </AnimatedSection>
     </div>
   );
 }
