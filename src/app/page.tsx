@@ -23,12 +23,37 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { useEffect, useState } from "react";
+import { fadeInUp, fadeInDown } from "@/lib/animations";
 
+// 🔹 Scroll Direction Hook (Reused for Both Components)
+const useScrollDirection = () => {
+  const [scrollDir, setScrollDir] = useState("down");
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (Math.abs(currentScrollY - lastScrollY) > 10) { // Prevents frequent triggering
+        setScrollDir(currentScrollY > lastScrollY ? "down" : "up");
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  return scrollDir;
+};
+
+// 🔹 Animated Section (With Scroll Tracking)
 const AnimatedSection = ({ children, className, id }) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
+
+  const scrollDir = useScrollDirection();
 
   return (
     <motion.section
@@ -39,29 +64,36 @@ const AnimatedSection = ({ children, className, id }) => {
       variants={staggerContainer}
       className={className}
     >
-      {children}
+      <motion.div variants={scrollDir === "down" ? fadeInDown : fadeInUp}>
+        {children}
+      </motion.div>
     </motion.section>
   );
 };
 
+// 🔹 Animated Element (Now Works Like AnimatedSection)
 const AnimatedElement = ({ children, className }) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
 
+  const scrollDir = useScrollDirection();
+
   return (
     <motion.div
       ref={ref}
-      variants={scrollAnimation}
       initial="initial"
       animate={inView ? "animate" : "initial"}
+      variants={scrollDir === "down" ? fadeInDown : fadeInUp} // Same behavior as AnimatedSection
       className={className}
     >
       {children}
     </motion.div>
   );
 };
+
+export { AnimatedSection, AnimatedElement };
 
 export default function Home() {
   const [typedText, setTypedText] = useState("");

@@ -21,7 +21,15 @@ import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { format } from "date-fns";
 import { Breadcrumb } from "@/components/breadcrumb";
 
-const AnimatedSection = ({ children, className, id }) => {
+const AnimatedSection = ({
+  children,
+  className,
+  id,
+}: {
+  children: React.ReactNode;
+  className: string;
+  id: string;
+}) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -41,7 +49,13 @@ const AnimatedSection = ({ children, className, id }) => {
   );
 };
 
-const AnimatedElement = ({ children, className }) => {
+const AnimatedElement = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: string;
+}) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
