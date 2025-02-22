@@ -5,65 +5,39 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Star } from "lucide-react";
 import { useInView } from "react-intersection-observer";
-import { staggerContainer, scrollAnimation } from "@/lib/animations";
+import { useEffect, useState } from "react";
+import { staggerContainer, fadeInUp, fadeInDown } from "@/lib/animations";
 import { Breadcrumb } from "@/components/breadcrumb";
 
-const projects = [
-  {
-    id: 1,
-    title: "Project One",
-    description: "A modern web application built with Next.js and TypeScript",
-    image: "/a7.jpg",
-    category: "Web Development",
-    slug: "project-one",
-  },
-  {
-    id: 2,
-    title: "Project Two",
-    description: "Full-stack application with real-time features",
-    image: "/a7.jpg",
-    category: "Full Stack",
-    slug: "project-two",
-  },
-  {
-    id: 3,
-    title: "Project Three",
-    description: "Mobile-first responsive design implementation",
-    image: "/a7.jpg",
-    category: "UI/UX Design",
-    slug: "project-three",
-  },
-  {
-    id: 4,
-    title: "Project Four",
-    description: "E-commerce platform with advanced features",
-    image: "/a7.jpg",
-    category: "E-commerce",
-    slug: "project-four",
-  },
-  {
-    id: 5,
-    title: "Project Five",
-    description: "Content management system with modern architecture",
-    image: "/a7.jpg",
-    category: "CMS",
-    slug: "project-five",
-  },
-  {
-    id: 6,
-    title: "Project Six",
-    description: "Social media platform with real-time messaging",
-    image: "/a7.jpg",
-    category: "Social Media",
-    slug: "project-six",
-  },
-];
+// 🔹 Scroll Direction Hook (Reused for Both Components)
+const useScrollDirection = () => {
+  const [scrollDir, setScrollDir] = useState("down");
+  const [lastScrollY, setLastScrollY] = useState(0);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (Math.abs(currentScrollY - lastScrollY) > 10) { // Prevents excessive toggling
+        setScrollDir(currentScrollY > lastScrollY ? "down" : "up");
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  return scrollDir;
+};
+
+// 🔹 Animated Section (With Scroll Tracking)
 const AnimatedSection = ({ children, className, id }) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
+
+  const scrollDir = useScrollDirection();
 
   return (
     <motion.section
@@ -74,29 +48,43 @@ const AnimatedSection = ({ children, className, id }) => {
       variants={staggerContainer}
       className={className}
     >
-      {children}
+      <motion.div variants={scrollDir === "down" ? fadeInDown : fadeInUp}>
+        {children}
+      </motion.div>
     </motion.section>
   );
 };
 
+// 🔹 Animated Element (Now Works Like AnimatedSection)
 const AnimatedElement = ({ children, className }) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
 
+  const scrollDir = useScrollDirection();
+
   return (
     <motion.div
       ref={ref}
-      variants={scrollAnimation}
       initial="initial"
       animate={inView ? "animate" : "initial"}
+      variants={scrollDir === "down" ? fadeInDown : fadeInUp} // Now follows scroll direction
       className={className}
     >
       {children}
     </motion.div>
   );
 };
+
+const projects = [
+  { id: 1, title: "Project One", description: "A modern web application built with Next.js and TypeScript", image: "/a7.jpg", category: "Web Development", slug: "project-one" },
+  { id: 2, title: "Project Two", description: "Full-stack application with real-time features", image: "/a7.jpg", category: "Full Stack", slug: "project-two" },
+  { id: 3, title: "Project Three", description: "Mobile-first responsive design implementation", image: "/a7.jpg", category: "UI/UX Design", slug: "project-three" },
+  { id: 4, title: "Project Four", description: "E-commerce platform with advanced features", image: "/a7.jpg", category: "E-commerce", slug: "project-four" },
+  { id: 5, title: "Project Five", description: "Content management system with modern architecture", image: "/a7.jpg", category: "CMS", slug: "project-five" },
+  { id: 6, title: "Project Six", description: "Social media platform with real-time messaging", image: "/a7.jpg", category: "Social Media", slug: "project-six" },
+];
 
 export default function ProjectsPage() {
   const breadcrumbItems = [{ label: "Projects", href: "/projects" }];

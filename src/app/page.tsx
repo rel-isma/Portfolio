@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { staggerContainer, scrollAnimation } from "@/lib/animations";
+import { staggerContainer } from "@/lib/animations";
 import { useEffect, useState } from "react";
 import { fadeInUp, fadeInDown } from "@/lib/animations";
 
