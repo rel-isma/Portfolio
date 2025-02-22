@@ -9,7 +9,7 @@ export function Sidebar() {
       id="topHome"
       className="w-full md:w-[400px] md:h-screen  p-8 md:bg-white  bg-gradient-radial md:dark:bg-secondary md:rounded-r-3xl md:shadow-lg"
     >
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full w-full">
         <div className="flex items-center space-x-3 mb-8">
           <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
             <span className="text-white text-2xl">R</span>

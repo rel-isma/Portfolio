@@ -31,7 +31,7 @@ const AnimatedSection = ({
   id: string;
 }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.1,
   });
 
@@ -57,7 +57,7 @@ const AnimatedElement = ({
   className: string;
 }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.1,
   });
 
@@ -150,7 +150,7 @@ export default function ProjectPage() {
 
   return (
     <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
-      <AnimatedSection className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12">
+      <AnimatedSection className="max-w-6xl mx-auto py-4 sm:py-8 lg:py-12" id="">
         <Breadcrumb items={breadcrumbItems} />
 
         {/* Title and Buttons */}

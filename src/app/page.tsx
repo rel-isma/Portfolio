@@ -13,47 +13,33 @@ import {
   Phone,
   MapPin,
   Send,
+  GraduationCap,
 } from "lucide-react";
-import { FaDiscord, FaTelegram, FaWhatsapp } from "react-icons/fa6";
+import { FaDiscord, FaWhatsapp } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { staggerContainer } from "@/lib/animations";
+import { staggerContainer,  } from "@/lib/animations";
 import { useEffect, useState } from "react";
-import { fadeInUp, fadeInDown } from "@/lib/animations";
+import { scrollAnimation } from "@/lib/animations";
+import React from "react";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "@/components/ui/text-reveal-card";
 
-// 🔹 Scroll Direction Hook (Reused for Both Components)
-const useScrollDirection = () => {
-  const [scrollDir, setScrollDir] = useState("down");
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (Math.abs(currentScrollY - lastScrollY) > 10) { // Prevents frequent triggering
-        setScrollDir(currentScrollY > lastScrollY ? "down" : "up");
-        setLastScrollY(currentScrollY);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  return scrollDir;
-};
 
 // 🔹 Animated Section (With Scroll Tracking)
-const AnimatedSection = ({ children, className, id }) => {
+const AnimatedSection = ({ children, className, id }: { children: React.ReactNode, className: string, id: string }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.1,
   });
 
-  const scrollDir = useScrollDirection();
 
   return (
     <motion.section
@@ -64,28 +50,24 @@ const AnimatedSection = ({ children, className, id }) => {
       variants={staggerContainer}
       className={className}
     >
-      <motion.div variants={scrollDir === "down" ? fadeInDown : fadeInUp}>
         {children}
-      </motion.div>
     </motion.section>
   );
 };
 
 // 🔹 Animated Element (Now Works Like AnimatedSection)
-const AnimatedElement = ({ children, className }) => {
+const AnimatedElement = ({ children, className }: { children: React.ReactNode, className: string }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.1,
   });
-
-  const scrollDir = useScrollDirection();
 
   return (
     <motion.div
       ref={ref}
       initial="initial"
       animate={inView ? "animate" : "initial"}
-      variants={scrollDir === "down" ? fadeInDown : fadeInUp} // Same behavior as AnimatedSection
+      variants={scrollAnimation}
       className={className}
     >
       {children}
@@ -130,7 +112,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <AnimatedSection id="home" className="py-16 lg:py-24">
-        <AnimatedElement>
+        <AnimatedElement  className={""}>
           <h1 className="text-4xl lg:text-6xl font-bold space-y-4">
             <span className="text-foreground/60 dark:text-foreground-dark/60">
               Hi! I&apos;m
@@ -139,12 +121,12 @@ export default function Home() {
             <span className="text-primary">Rachid</span> El-Ismailyly
           </h1>
         </AnimatedElement>
-        <AnimatedElement>
+        <AnimatedElement className={""}>
           <h2 className="text-2xl lg:text-4xl font-bold mt-6 flex items-center">
             <span className="text-primary mr-2">&gt;</span> {typedText}
           </h2>
         </AnimatedElement>
-        <AnimatedElement>
+        <AnimatedElement  className={""}>
           <p className="mt-8 text-lg lg:text-xl leading-relaxed max-w-3xl">
             I Build All Kinds Of <span className="text-primary">Websites</span>{" "}
             And <span className="text-primary">Web Applications</span> That Help
@@ -154,7 +136,7 @@ export default function Home() {
             <span className="text-primary">User-Friendly</span> Solutions.
           </p>
         </AnimatedElement>
-        <AnimatedElement>
+        <AnimatedElement className={""}>
           <div className="flex flex-col sm:flex-row gap-4 mt-12">
             <Button
               className="text-lg sm:text-base px-8 py-6 text-white"
@@ -288,19 +270,11 @@ export default function Home() {
       </AnimatedSection>
 
       <AnimatedSection id="service" className="pb-16 lg:py-24 scroll-mt-16">
-        <AnimatedElement>
+        <AnimatedElement  className={"flex justify-between items-start mt-4"}>
           <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
             <Star className="mr-1.5 h-4 w-4" />
             Service
           </div>
-        </AnimatedElement>
-
-        <AnimatedElement className="flex justify-between items-start mt-4">
-          <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-            I&apos;m great in what I do
-            <br />
-            and <span className="text-primary">I&apos;m loving it</span>
-          </h2>
           <Link
             href="/#contact"
             className="inline-flex items-center text-xl font-semibold text-primary hover:text-primary/90 transition-colors group"
@@ -308,6 +282,14 @@ export default function Home() {
             Hire Me
             <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
+        </AnimatedElement>
+
+        <AnimatedElement className="mt-4">
+          <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+            I&apos;m great in what I do
+            <br />
+            and <span className="text-primary">I&apos;m loving it</span>
+          </h2>
         </AnimatedElement>
 
         <AnimatedElement className="grid lg:grid-cols-2 gap-8 mt-12">
@@ -376,17 +358,17 @@ export default function Home() {
         <AnimatedElement className="space-y-8">
           <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
             <Star className="mr-1.5 h-4 w-4" />
-            about
+            about Me
           </div>
 
           <div className="space-y-12">
             <AnimatedElement className="max-w-4xl">
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-8">
+              <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-10">
                 Why you <span className="text-primary">hire me</span> for your
                 next <span className="text-primary">project</span>?
               </h2>
 
-              <div className="grid lg:grid-cols-2 gap-12">
+              <div className="grid lg:grid-cols-2 gap-20">
                 <AnimatedElement className="space-y-6">
                   <p className="text-lg leading-relaxed">
                     I&apos;m A Full-Stack Developer Specializing In Modern Web
@@ -407,83 +389,79 @@ export default function Home() {
                   </Button>
                 </AnimatedElement>
 
-                <AnimatedElement className="space-y-4 bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
-                  <Link
-                    href={`mailto:relismailyly@gmail.com`}
-                    className="block space-y-2 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
-                  >
-                    <motion.div
-                      initial={{ scale: 1 }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <h3 className="text-sm text-muted-foreground">Email</h3>
-                      <p className="font-semibold text-lg group-hover:text-primary transition-colors flex items-center">
-                        relismailyly@gmail.com
-                        <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </p>
-                    </motion.div>
-                  </Link>
+                <AnimatedElement className="relative">
+                      {/* Vertical line */}
+                      <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary/20" />
 
-                  <Link
-                    href="tel:+21211563140"
-                    className="block space-y-2 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
-                  >
-                    <motion.div
-                      initial={{ scale: 1 }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <h3 className="text-sm text-muted-foreground">Phone</h3>
-                      <p className="font-semibold text-lg group-hover:text-primary transition-colors flex items-center">
-                        +21211563140
-                        <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </p>
-                    </motion.div>
-                  </Link>
+                      {/* Timeline items */}
+                      <div className="space-y-12">
+                        {/* Email */}
+                        <div className="relative pl-12">
+                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Mail className="h-4 w-4 text-primary" />
+                          </div>
+                          <Link href={`mailto:relismailyly@gmail.com`} className="block space-y-1 group">
+                            <h3 className="text-sm text-primary font-medium">Email</h3>
+                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                              relismailyly@gmail.com
+                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </p>
+                          </Link>
+                        </div>
 
-                  <Link
-                    href="https://1337.ma"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block space-y-2 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
-                  >
-                    <motion.div
-                      initial={{ scale: 1 }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <h3 className="text-sm text-muted-foreground">
-                        Education
-                      </h3>
-                      <p className="font-semibold text-lg group-hover:text-primary transition-colors flex items-center">
-                        1337 School - Computer Science Engineering
-                        <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </p>
-                    </motion.div>
-                  </Link>
+                        {/* Phone */}
+                        <div className="relative pl-12">
+                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Phone className="h-4 w-4 text-primary" />
+                          </div>
+                          <Link href="tel:+21211563140" className="block space-y-1 group">
+                            <h3 className="text-sm text-primary font-medium">Phone</h3>
+                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                              +21211563140
+                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </p>
+                          </Link>
+                        </div>
 
-                  <Link
-                    href="https://maps.google.com/?q=Taounate,Morocco"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block space-y-2 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
-                  >
-                    <motion.div
-                      initial={{ scale: 1 }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <h3 className="text-sm text-muted-foreground">
-                        Location
-                      </h3>
-                      <p className="font-semibold text-lg group-hover:text-primary transition-colors flex items-center">
-                        Taounate, Morocco
-                        <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </p>
-                    </motion.div>
-                  </Link>
-                </AnimatedElement>
+                        {/* Education */}
+                        <div className="relative pl-12">
+                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <GraduationCap className="h-4 w-4 text-primary" />
+                          </div>
+                          <Link
+                            href="https://1337.ma"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block space-y-1 group"
+                          >
+                            <h3 className="text-sm text-primary font-medium">Education</h3>
+                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                              1337 School - Computer Science Engineering
+                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </p>
+                          </Link>
+                        </div>
+
+                        {/* Location */}
+                        <div className="relative pl-12">
+                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <MapPin className="h-4 w-4 text-primary" />
+                          </div>
+                          <Link
+                            href="https://maps.google.com/?q=Taounate,Morocco"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block space-y-1 group"
+                          >
+                            <h3 className="text-sm text-primary font-medium">Location</h3>
+                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                              Taounate, Morocco
+                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </p>
+                          </Link>
+                        </div>
+                      </div>
+                    </AnimatedElement>
               </div>
             </AnimatedElement>
 
@@ -496,7 +474,7 @@ export default function Home() {
               </h2>
 
               <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <AnimatedElement>
+                <AnimatedElement className={""}>
                   <p className="text-lg leading-relaxed">
                     Ever Since I Wrote My First Lines Of Code, I Knew
                     Programming Was More Than Just A Skill—It Was A Way To
@@ -743,7 +721,7 @@ export default function Home() {
               </div>
             </AnimatedElement>
 
-            <AnimatedElement>
+            <AnimatedElement className={""}>
               <p className="text-xl text-center max-w-3xl mx-auto">
                 I am always <span className="text-primary">learning</span> and
                 evolving. Technology never stops, and{" "}
@@ -766,7 +744,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <AnimatedElement>
+          <AnimatedElement className={""}>
             <form className="space-y-8 mx-auto">
               <div className="grid sm:grid-cols-2 gap-8">
                 <div className="space-y-2">
@@ -828,48 +806,43 @@ export default function Home() {
           </AnimatedElement>
 
           <AnimatedElement className="mt-16 text-center space-y-8">
-            <div className="flex justify-center gap-8">
-              <Link
-                href="https://www.instagram.com/rel_ismaa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <Instagram className="h-10 w-10" />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/rachid-el-isamiyly/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <Linkedin className="h-10 w-10" />
-              </Link>
-              <Link
-                href="https://github.com/rel-isma"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <FaDiscord className="h-10 w-10" />
-              </Link>
-              <Link
-                href="https://github.com/rel-isma"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <FaTelegram className="h-10 w-10" />
-              </Link>
-              <Link
-                href="https://github.com/rel-isma"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <FaWhatsapp className="h-10 w-10" />
-              </Link>
-            </div>
+          <div className="flex justify-center">
+  <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
+    <Link
+      href="https://www.instagram.com/rel_ismaa/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+    >
+      <Instagram className="h-8 w-8" />
+    </Link>
+    <Link
+      href="https://www.linkedin.com/in/rachid-el-isamiyly/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+    >
+      <Linkedin className="h-8 w-8" />
+    </Link>
+    <Link
+      href="https://discord.com/users/YOUR_DISCORD_ID"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+    >
+      <FaDiscord className="h-8 w-8" />
+    </Link>
+    <Link
+      href="https://wa.me/YOUR_WHATSAPP_NUMBER"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+    >
+      <FaWhatsapp className="h-8 w-8" />
+    </Link>
+  </div>
+</div>
+
           </AnimatedElement>
         </AnimatedElement>
       </AnimatedSection>
