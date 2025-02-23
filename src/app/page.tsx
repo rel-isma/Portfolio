@@ -14,6 +14,7 @@ import {
   MapPin,
   Send,
   GraduationCap,
+  Loader2,
 } from "lucide-react";
 import { FaDiscord, FaWhatsapp } from "react-icons/fa6";
 import Image from "next/image";
@@ -26,12 +27,6 @@ import { staggerContainer,  } from "@/lib/animations";
 import { useEffect, useState } from "react";
 import { scrollAnimation } from "@/lib/animations";
 import React from "react";
-import {
-  TextRevealCard,
-  TextRevealCardDescription,
-  TextRevealCardTitle,
-} from "@/components/ui/text-reveal-card";
-
 
 // 🔹 Animated Section (With Scroll Tracking)
 const AnimatedSection = ({ children, className, id }: { children: React.ReactNode, className: string, id: string }) => {
@@ -95,20 +90,54 @@ export default function Home() {
     return () => clearInterval(typingInterval);
   }, []);
 
-  const cardHoverEffect = {
-    initial: {
-      scale: 1,
-      rotate: 0,
-      boxShadow: "0px 10px 30px rgba(0,0,0,0.1)",
-    },
-    hover: {
-      scale: 1.02,
-      rotate: 1,
-      boxShadow: "0px 20px 40px rgba(0,0,0,0.2)",
-      transition: { duration: 0.3, ease: "easeInOut" },
-    },
-  };
+  const [formState, setFormState] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormState((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormState({
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          message: "",
+        })
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      setSubmitStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
   return (
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <AnimatedSection id="home" className="py-16 lg:py-24">
@@ -294,12 +323,7 @@ export default function Home() {
 
         <AnimatedElement className="grid lg:grid-cols-2 gap-8 mt-12">
           {/* Frontend Card */}
-          <motion.div
-            variants={cardHoverEffect}
-            initial="initial"
-            whileHover="hover"
-            className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
-          >
+          <div className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group hover:scale-105">
             <h3 className="text-3xl font-bold mb-4">Frontend Development</h3>
             <div className="flex gap-3 mb-4">
               <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
@@ -310,26 +334,15 @@ export default function Home() {
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Building modern, responsive web interfaces with React, Next.js,
-              and TypeScript.
+              Building modern, responsive web interfaces with React, Next.js, and TypeScript.
             </p>
             <div className="relative w-full aspect-[2/1]">
-              <Image
-                src="frontend.svg"
-                alt="Frontend Development"
-                fill
-                className="object-contain"
-              />
+              <Image src="frontend.svg" alt="Frontend Development" fill className="object-contain" />
             </div>
-          </motion.div>
+          </div>
 
           {/* Backend Card */}
-          <motion.div
-            variants={cardHoverEffect}
-            initial="initial"
-            whileHover="hover"
-            className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group cursor-pointer"
-          >
+          <div className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group hover:scale-105">
             <h3 className="text-3xl font-bold mb-4">Backend Development</h3>
             <div className="flex gap-3 mb-4">
               <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
@@ -343,14 +356,9 @@ export default function Home() {
               Building secure and scalable systems with Django REST Framework.
             </p>
             <div className="relative w-full aspect-[2/1]">
-              <Image
-                src="backend.svg"
-                alt="Backend Development"
-                fill
-                className="object-contain"
-              />
+              <Image src="backend.svg" alt="Backend Development" fill className="object-contain" />
             </div>
-          </motion.div>
+          </div>
         </AnimatedElement>
       </AnimatedSection>
 
@@ -744,8 +752,8 @@ export default function Home() {
             </h2>
           </div>
 
-          <AnimatedElement className={""}>
-            <form className="space-y-8 mx-auto">
+          <AnimatedElement className="">
+            <form className="space-y-8 mx-auto" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <Input
@@ -753,6 +761,8 @@ export default function Home() {
                     name="name"
                     placeholder="Name*"
                     required
+                    value={formState.name}
+                    onChange={handleInputChange}
                     className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   />
                 </div>
@@ -761,6 +771,8 @@ export default function Home() {
                     type="text"
                     name="company"
                     placeholder="Company Name"
+                    value={formState.company}
+                    onChange={handleInputChange}
                     className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   />
                 </div>
@@ -770,6 +782,8 @@ export default function Home() {
                     name="email"
                     placeholder="Email*"
                     required
+                    value={formState.email}
+                    onChange={handleInputChange}
                     className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   />
                 </div>
@@ -778,6 +792,8 @@ export default function Home() {
                     type="tel"
                     name="phone"
                     placeholder="Phone Number"
+                    value={formState.phone}
+                    onChange={handleInputChange}
                     className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   />
                 </div>
@@ -788,6 +804,8 @@ export default function Home() {
                   name="message"
                   placeholder="A Few Words*"
                   required
+                  value={formState.message}
+                  onChange={handleInputChange}
                   className="text-lg min-h-[150px] border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-2 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
               </div>
@@ -797,10 +815,27 @@ export default function Home() {
                   type="submit"
                   size="lg"
                   className="w-fit text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white rounded-full"
+                  disabled={isSubmitting}
                 >
-                  Send Message
-                  <Send className="ml-2 h-5 w-5" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </Button>
+                {submitStatus && (
+                  <p className={submitStatus === "success" ? "text-green-500" : "text-red-500"}>
+                    {submitStatus === "success"
+                      ? "Message sent successfully!"
+                      : "Failed to send message. Please try again."}
+                  </p>
+                )}
               </div>
             </form>
           </AnimatedElement>
