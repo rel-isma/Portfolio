@@ -5,6 +5,11 @@ export async function POST(req: Request) {
   const { name, company, email, phone, message } = await req.json()
 
   // Create a transporter using SMTP
+  console.log("Email Host:", process.env.EMAIL_HOST);
+console.log("Email Port:", process.env.EMAIL_PORT);
+console.log("Email User:", process.env.EMAIL_USER);
+console.log("Email Pass:", process.env.EMAIL_PASS ? "***" : "Not Set");
+console.log("Recipient Email:", process.env.RECIPIENT_EMAIL);
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: Number.parseInt(process.env.EMAIL_PORT || "587"),

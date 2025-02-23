@@ -110,6 +110,8 @@ export default function Home() {
     setIsSubmitting(true)
     setSubmitStatus(null)
 
+    console.log("formt: ",formState);
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
