@@ -9,8 +9,15 @@ import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { projects } from "@/lib/projects";
 
-
-const AnimatedSection = ({ children, className, id }: { children: React.ReactNode, className: string, id: string }) => {
+const AnimatedSection = ({
+  children,
+  className,
+  id,
+}: {
+  children: React.ReactNode;
+  className: string;
+  id: string;
+}) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -30,7 +37,13 @@ const AnimatedSection = ({ children, className, id }: { children: React.ReactNod
   );
 };
 
-const AnimatedElement = ({ children, className }: { children: React.ReactNode, className: string }) => {
+const AnimatedElement = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: string;
+}) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

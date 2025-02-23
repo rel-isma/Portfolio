@@ -23,18 +23,26 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { staggerContainer,  } from "@/lib/animations";
+import { staggerContainer } from "@/lib/animations";
 import { useEffect, useState } from "react";
 import { scrollAnimation } from "@/lib/animations";
 import React from "react";
+import toast from "react-hot-toast";
 
 // 🔹 Animated Section (With Scroll Tracking)
-const AnimatedSection = ({ children, className, id }: { children: React.ReactNode, className: string, id: string }) => {
+const AnimatedSection = ({
+  children,
+  className,
+  id,
+}: {
+  children: React.ReactNode;
+  className: string;
+  id: string;
+}) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-
 
   return (
     <motion.section
@@ -45,13 +53,19 @@ const AnimatedSection = ({ children, className, id }: { children: React.ReactNod
       variants={staggerContainer}
       className={className}
     >
-        {children}
+      {children}
     </motion.section>
   );
 };
 
 // 🔹 Animated Element (Now Works Like AnimatedSection)
-const AnimatedElement = ({ children, className }: { children: React.ReactNode, className: string }) => {
+const AnimatedElement = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: string;
+}) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -96,21 +110,25 @@ export default function Home() {
     email: "",
     phone: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormState((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus(null)
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-    console.log("formt: ",formState);
+    console.log("formt: ", formState);
 
     try {
       const response = await fetch("/api/contact", {
@@ -119,31 +137,36 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formState),
-      })
+      });
 
       if (response.ok) {
-        setSubmitStatus("success")
+        toast.success("Message sent successfully!");
+        setSubmitStatus("success");
         setFormState({
           name: "",
           company: "",
           email: "",
           phone: "",
           message: "",
-        })
+        });
       } else {
-        setSubmitStatus("error")
+        toast.error(
+          result.error || "Failed to send message. Please try again."
+        );
+        setSubmitStatus("error");
       }
     } catch (error) {
-      console.error("Error submitting form:", error)
-      setSubmitStatus("error")
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred. Please try again.");
+      setSubmitStatus("error");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
   return (
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <AnimatedSection id="home" className="py-16 lg:py-24">
-        <AnimatedElement  className={""}>
+        <AnimatedElement className={""}>
           <h1 className="text-4xl lg:text-6xl font-bold space-y-4">
             <span className="text-foreground/60 dark:text-foreground-dark/60">
               Hi! I&apos;m
@@ -157,7 +180,7 @@ export default function Home() {
             <span className="text-primary mr-2">&gt;</span> {typedText}
           </h2>
         </AnimatedElement>
-        <AnimatedElement  className={""}>
+        <AnimatedElement className={""}>
           <p className="mt-8 text-lg lg:text-xl leading-relaxed max-w-3xl">
             I Build All Kinds Of <span className="text-primary">Websites</span>{" "}
             And <span className="text-primary">Web Applications</span> That Help
@@ -301,7 +324,7 @@ export default function Home() {
       </AnimatedSection>
 
       <AnimatedSection id="service" className="pb-16 lg:py-24 scroll-mt-16">
-        <AnimatedElement  className={"flex justify-between items-start mt-4"}>
+        <AnimatedElement className={"flex justify-between items-start mt-4"}>
           <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
             <Star className="mr-1.5 h-4 w-4" />
             Service
@@ -336,10 +359,16 @@ export default function Home() {
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Building modern, responsive web interfaces with React, Next.js, and TypeScript.
+              Building modern, responsive web interfaces with React, Next.js,
+              and TypeScript.
             </p>
             <div className="relative w-full aspect-[2/1]">
-              <Image src="frontend.svg" alt="Frontend Development" fill className="object-contain" />
+              <Image
+                src="frontend.svg"
+                alt="Frontend Development"
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
 
@@ -358,7 +387,12 @@ export default function Home() {
               Building secure and scalable systems with Django REST Framework.
             </p>
             <div className="relative w-full aspect-[2/1]">
-              <Image src="backend.svg" alt="Backend Development" fill className="object-contain" />
+              <Image
+                src="backend.svg"
+                alt="Backend Development"
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
         </AnimatedElement>
@@ -400,78 +434,92 @@ export default function Home() {
                 </AnimatedElement>
 
                 <AnimatedElement className="relative">
-                      {/* Vertical line */}
-                      <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary/20" />
+                  {/* Vertical line */}
+                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary/20" />
 
-                      {/* Timeline items */}
-                      <div className="space-y-12">
-                        {/* Email */}
-                        <div className="relative pl-12">
-                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Mail className="h-4 w-4 text-primary" />
-                          </div>
-                          <Link href={`mailto:relismailyly@gmail.com`} className="block space-y-1 group">
-                            <h3 className="text-sm text-primary font-medium">Email</h3>
-                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                              relismailyly@gmail.com
-                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </p>
-                          </Link>
-                        </div>
-
-                        {/* Phone */}
-                        <div className="relative pl-12">
-                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Phone className="h-4 w-4 text-primary" />
-                          </div>
-                          <Link href="tel:+21211563140" className="block space-y-1 group">
-                            <h3 className="text-sm text-primary font-medium">Phone</h3>
-                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                              +21211563140
-                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </p>
-                          </Link>
-                        </div>
-
-                        {/* Education */}
-                        <div className="relative pl-12">
-                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                            <GraduationCap className="h-4 w-4 text-primary" />
-                          </div>
-                          <Link
-                            href="https://1337.ma"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block space-y-1 group"
-                          >
-                            <h3 className="text-sm text-primary font-medium">Education</h3>
-                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                              1337 School - Computer Science Engineering
-                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </p>
-                          </Link>
-                        </div>
-
-                        {/* Location */}
-                        <div className="relative pl-12">
-                          <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                            <MapPin className="h-4 w-4 text-primary" />
-                          </div>
-                          <Link
-                            href="https://maps.google.com/?q=Taounate,Morocco"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block space-y-1 group"
-                          >
-                            <h3 className="text-sm text-primary font-medium">Location</h3>
-                            <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                              Taounate, Morocco
-                              <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </p>
-                          </Link>
-                        </div>
+                  {/* Timeline items */}
+                  <div className="space-y-12">
+                    {/* Email */}
+                    <div className="relative pl-12">
+                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Mail className="h-4 w-4 text-primary" />
                       </div>
-                    </AnimatedElement>
+                      <Link
+                        href={`mailto:relismailyly@gmail.com`}
+                        className="block space-y-1 group"
+                      >
+                        <h3 className="text-sm text-primary font-medium">
+                          Email
+                        </h3>
+                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                          relismailyly@gmail.com
+                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </p>
+                      </Link>
+                    </div>
+
+                    {/* Phone */}
+                    <div className="relative pl-12">
+                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Phone className="h-4 w-4 text-primary" />
+                      </div>
+                      <Link
+                        href="tel:+21211563140"
+                        className="block space-y-1 group"
+                      >
+                        <h3 className="text-sm text-primary font-medium">
+                          Phone
+                        </h3>
+                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                          +21211563140
+                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </p>
+                      </Link>
+                    </div>
+
+                    {/* Education */}
+                    <div className="relative pl-12">
+                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <GraduationCap className="h-4 w-4 text-primary" />
+                      </div>
+                      <Link
+                        href="https://1337.ma"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block space-y-1 group"
+                      >
+                        <h3 className="text-sm text-primary font-medium">
+                          Education
+                        </h3>
+                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                          1337 School - Computer Science Engineering
+                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </p>
+                      </Link>
+                    </div>
+
+                    {/* Location */}
+                    <div className="relative pl-12">
+                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <MapPin className="h-4 w-4 text-primary" />
+                      </div>
+                      <Link
+                        href="https://maps.google.com/?q=Taounate,Morocco"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block space-y-1 group"
+                      >
+                        <h3 className="text-sm text-primary font-medium">
+                          Location
+                        </h3>
+                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
+                          Taounate, Morocco
+                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </p>
+                      </Link>
+                    </div>
+                  </div>
+                </AnimatedElement>
               </div>
             </AnimatedElement>
 
@@ -831,55 +879,47 @@ export default function Home() {
                     </>
                   )}
                 </Button>
-                {submitStatus && (
-                  <p className={submitStatus === "success" ? "text-green-500" : "text-red-500"}>
-                    {submitStatus === "success"
-                      ? "Message sent successfully!"
-                      : "Failed to send message. Please try again."}
-                  </p>
-                )}
               </div>
             </form>
           </AnimatedElement>
 
           <AnimatedElement className="mt-16 text-center space-y-8">
-          <div className="flex justify-center">
-  <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
-    <Link
-      href="https://www.instagram.com/rel_ismaa/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
-    >
-      <Instagram className="h-8 w-8" />
-    </Link>
-    <Link
-      href="https://www.linkedin.com/in/rachid-el-isamiyly/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
-    >
-      <Linkedin className="h-8 w-8" />
-    </Link>
-    <Link
-      href="https://discord.com/users/YOUR_DISCORD_ID"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
-    >
-      <FaDiscord className="h-8 w-8" />
-    </Link>
-    <Link
-      href="https://wa.me/YOUR_WHATSAPP_NUMBER"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
-    >
-      <FaWhatsapp className="h-8 w-8" />
-    </Link>
-  </div>
-</div>
-
+            <div className="flex justify-center">
+              <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
+                <Link
+                  href="https://www.instagram.com/rel_ismaa/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+                >
+                  <Instagram className="h-8 w-8" />
+                </Link>
+                <Link
+                  href="https://www.linkedin.com/in/rachid-el-isamiyly/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+                >
+                  <Linkedin className="h-8 w-8" />
+                </Link>
+                <Link
+                  href="https://discord.com/users/YOUR_DISCORD_ID"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+                >
+                  <FaDiscord className="h-8 w-8" />
+                </Link>
+                <Link
+                  href="https://wa.me/+212611563140"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
+                >
+                  <FaWhatsapp className="h-8 w-8" />
+                </Link>
+              </div>
+            </div>
           </AnimatedElement>
         </AnimatedElement>
       </AnimatedSection>

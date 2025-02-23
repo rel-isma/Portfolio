@@ -6,6 +6,8 @@ import { Sidebar } from "@/components/sidebar";
 import { Navbar } from "@/components/navbar";
 import type React from "react";
 import { ProgressBar } from "@/components/ProgressBar";
+import { Toaster } from "react-hot-toast";
+import FloatingChatbot from "@/components/FloatingChatbot";
 
 // const inter = Inter({ subsets: ["latin"] });
 const syne = Syne({ subsets: ["latin"] });
@@ -26,6 +28,22 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Add Toaster here */}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 5000, // 3 seconds
+              style: {
+                background: "hsl(var(--background))",
+                color: "hsl(var(--foreground))",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "8px",
+                padding: "12px",
+              },
+            }}
+          />
+          {/* Add FloatingChatbot here */}
+
           <div className="flex flex-col md:flex-row w-full max-w-[1440px] overflow-hidden mx-auto">
             <Sidebar />
             <div className="flex flex-col flex-grow overflow-hidden w-full">
