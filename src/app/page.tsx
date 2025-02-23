@@ -28,6 +28,7 @@ import { useEffect, useState } from "react";
 import { scrollAnimation } from "@/lib/animations";
 import React from "react";
 import toast from "react-hot-toast";
+import Avatar3D from "@/components/Avatar3D";
 
 // 🔹 Animated Section (With Scroll Tracking)
 const AnimatedSection = ({
@@ -554,12 +555,7 @@ export default function Home() {
                 </AnimatedElement>
 
                 <AnimatedElement className="relative h-[600px] w-full">
-                  <Image
-                    src="/relisma.png"
-                    alt="Developer Portrait"
-                    fill
-                    className="object-contain"
-                  />
+                  <Avatar3D />
                 </AnimatedElement>
               </div>
             </AnimatedElement>
