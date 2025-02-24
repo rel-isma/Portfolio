@@ -15,6 +15,8 @@ import {
   Send,
   GraduationCap,
   Loader2,
+  Briefcase,
+  Heart,
 } from "lucide-react";
 import { FaDiscord, FaWhatsapp } from "react-icons/fa6";
 import Image from "next/image";
@@ -399,390 +401,360 @@ export default function Home() {
         </AnimatedElement>
       </AnimatedSection>
 
-      <AnimatedSection id="about" className="pb-16 lg:py-24 scroll-mt-16">
-        <AnimatedElement className="space-y-8">
-          <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
-            <Star className="mr-1.5 h-4 w-4" />
-            about Me
-          </div>
-
-          <div className="space-y-12">
-            <AnimatedElement className="max-w-4xl">
+      <AnimatedSection id="about" className="py-16 lg:py-24 scroll-mt-16">
+        <AnimatedElement className="space-y-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
+                <Star className="mr-1.5 h-4 w-4" />
+                About Me
+              </div>
               <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-10">
                 Why you <span className="text-primary">hire me</span> for your
                 next <span className="text-primary">project</span>?
               </h2>
-
-              <div className="grid lg:grid-cols-2 gap-20">
-                <AnimatedElement className="space-y-6">
-                  <p className="text-lg leading-relaxed">
-                    I&apos;m A Full-Stack Developer Specializing In Modern Web
-                    Applications. With Expertise In React, Django, And Software
-                    Development, I Deliver Clean, Efficient Solutions That Work.
-                    Let Me Turn Your Ideas Into Reality.
-                  </p>
-                  <p className="text-lg leading-relaxed">
-                    As A Graduate Of 1337 School, I Bring Strong Problem-Solving
-                    Skills And A Collaborative Mindset. I&apos;m Committed To
-                    Delivering Quality Solutions That Exceed Your Expectations.
-                  </p>
-                  <Button
-                    href="/#contact"
-                    className="text-lg px-8 py-6 text-white"
-                  >
-                    Hire Me
-                  </Button>
-                </AnimatedElement>
-
-                <AnimatedElement className="relative">
-                  {/* Vertical line */}
-                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary/20" />
-
-                  {/* Timeline items */}
-                  <div className="space-y-12">
-                    {/* Email */}
-                    <div className="relative pl-12">
-                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Mail className="h-4 w-4 text-primary" />
-                      </div>
-                      <Link
-                        href={`mailto:relismailyly@gmail.com`}
-                        className="block space-y-1 group"
-                      >
-                        <h3 className="text-sm text-primary font-medium">
-                          Email
-                        </h3>
-                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                          relismailyly@gmail.com
-                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </p>
-                      </Link>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="relative pl-12">
-                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Phone className="h-4 w-4 text-primary" />
-                      </div>
-                      <Link
-                        href="tel:+21211563140"
-                        className="block space-y-1 group"
-                      >
-                        <h3 className="text-sm text-primary font-medium">
-                          Phone
-                        </h3>
-                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                          +21211563140
-                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </p>
-                      </Link>
-                    </div>
-
-                    {/* Education */}
-                    <div className="relative pl-12">
-                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <GraduationCap className="h-4 w-4 text-primary" />
-                      </div>
-                      <Link
-                        href="https://1337.ma"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block space-y-1 group"
-                      >
-                        <h3 className="text-sm text-primary font-medium">
-                          Education
-                        </h3>
-                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                          1337 School - Computer Science Engineering
-                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </p>
-                      </Link>
-                    </div>
-
-                    {/* Location */}
-                    <div className="relative pl-12">
-                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <MapPin className="h-4 w-4 text-primary" />
-                      </div>
-                      <Link
-                        href="https://maps.google.com/?q=Taounate,Morocco"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block space-y-1 group"
-                      >
-                        <h3 className="text-sm text-primary font-medium">
-                          Location
-                        </h3>
-                        <p className="font-semibold text-lg  group-hover:text-primary transition-colors flex items-center">
-                          Taounate, Morocco
-                          <ArrowUpRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </p>
-                      </Link>
-                    </div>
-                  </div>
-                </AnimatedElement>
+              <AnimatedElement className="space-y-6">
+                <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+                  I&apos;m A Full-Stack Developer Specializing In Modern Web
+                  Applications. With Expertise In React, Django, And Software
+                  Development, I Deliver Clean, Efficient Solutions That Work.
+                  Let Me Turn Your Ideas Into Reality.
+                </p>
+                <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+                  As A Graduate Of 1337 School, I Bring Strong Problem-Solving
+                  Skills And A Collaborative Mindset. I&apos;m Committed To
+                  Delivering Quality Solutions That Exceed Your Expectations.
+                </p>
+                <Button
+                  href="/#contact"
+                  className="text-lg px-8 py-6 text-white"
+                >
+                  Hire Me
+                </Button>
+              </AnimatedElement>
+            </div>
+            <AnimatedElement className="relative h-[400px] md:h-[600px] w-full">
+              {/* Placeholder for future 3D avatar */}
+              <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl flex items-center justify-center">
+                <p className="text-lg font-semibold text-gray-500 dark:text-gray-400">
+                  3D Avatar Coming Soon
+                </p>
               </div>
-            </AnimatedElement>
-
-            <AnimatedElement className="space-y-8 mt-20">
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                My Passion for Programming:{" "}
-                <span className="text-primary">Creating</span>,{" "}
-                <span className="text-primary">Solving</span>, and{" "}
-                <span className="text-primary">Innovating</span>
-              </h2>
-
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <AnimatedElement className={""}>
-                  <p className="text-lg leading-relaxed">
-                    Ever Since I Wrote My First Lines Of Code, I Knew
-                    Programming Was More Than Just A Skill—It Was A Way To
-                    Create, Solve Problems, And Build Something Meaningful. I
-                    Love The Challenge Of Breaking Down Complex Problems And
-                    Turning Ideas Into Real Applications. Whether It&apos;s
-                    Developing Efficient Algorithms, Crafting Intuitive User
-                    Interfaces, Or Optimizing Performance, I&apos;m Always Eager
-                    To Learn And Push My Limits. For Me, Coding Isn&apos;t Just
-                    A Profession; It&apos;s An Ongoing Journey Of Innovation And
-                    Discovery.
-                  </p>
-                  <Button
-                    href="/#contact"
-                    className="mt-8 text-lg px-8 py-6 text-white"
-                  >
-                    Hire Me
-                  </Button>
-                </AnimatedElement>
-
-                <AnimatedElement className="relative h-[600px] w-full">
-                  <Avatar3D />
-                </AnimatedElement>
-              </div>
-            </AnimatedElement>
-
-            <AnimatedElement className="space-y-8">
-              <h3 className="text-3xl font-bold">
-                Turning <span className="text-primary">Ideas</span> into Reality
-                with <span className="text-primary">My Tech Skills</span>
-              </h3>
-
-              <div className="grid gap-8">
-                {/* Backend Section */}
-                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
-                  <h4 className="text-2xl font-semibold mb-6">backend</h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    {[
-                      {
-                        name: "Django",
-                        icon: "django.svg",
-                      },
-                      {
-                        name: "PostgreSQL",
-                        icon: "postgresql.svg",
-                      },
-                      {
-                        name: "DRF",
-                        icon: "drf.svg",
-                      },
-                      {
-                        name: "WebSocket",
-                        icon: "web.svg",
-                      },
-                    ].map((tech) => (
-                      <motion.div
-                        key={tech.name}
-                        className="flex flex-col items-center gap-2 group"
-                        whileHover={{ y: -5 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 17,
-                        }}
-                      >
-                        <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
-                          <Image
-                            src={tech.icon || "/placeholder.svg"}
-                            alt={tech.name}
-                            width={60}
-                            height={60}
-                            className="rounded-lg"
-                          />
-                        </div>
-                        <span className="text-sm font-medium">{tech.name}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </AnimatedElement>
-
-                {/* Frontend Section */}
-                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
-                  <h4 className="text-2xl font-semibold mb-6">Frontend</h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    {[
-                      {
-                        name: "JavaScript",
-                        icon: "JavaScript.svg",
-                      },
-                      {
-                        name: "TypeScript",
-                        icon: "TypeScript.svg",
-                      },
-                      {
-                        name: "HTML5",
-                        icon: "html.svg",
-                      },
-                      {
-                        name: "CSS3",
-                        icon: "css.svg",
-                      },
-                      {
-                        name: "Tailwind",
-                        icon: "tailwinds.svg",
-                      },
-                      {
-                        name: "React",
-                        icon: "react.svg",
-                      },
-                      {
-                        name: "Next.js",
-                        icon: "nextjs.svg",
-                      },
-                    ].map((tech) => (
-                      <motion.div
-                        key={tech.name}
-                        className="flex flex-col items-center gap-2 group"
-                        whileHover={{ y: -5 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 17,
-                        }}
-                      >
-                        <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
-                          <Image
-                            src={tech.icon || "/placeholder.svg"}
-                            alt={tech.name}
-                            width={60}
-                            height={60}
-                            className="rounded-lg"
-                          />
-                        </div>
-                        <span className="text-sm font-medium">{tech.name}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </AnimatedElement>
-
-                {/* Programming Languages Section */}
-                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
-                  <h4 className="text-2xl font-semibold mb-6">
-                    Programming Lngs
-                  </h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    {[
-                      {
-                        name: "Python",
-                        icon: "python.svg",
-                      },
-                      {
-                        name: "C++",
-                        icon: "cpp.svg",
-                      },
-                      {
-                        name: "C",
-                        icon: "c.svg",
-                      },
-                      {
-                        name: "JavaScript",
-                        icon: "JavaScript.svg",
-                      },
-                    ].map((tech) => (
-                      <motion.div
-                        key={tech.name}
-                        className="flex flex-col items-center gap-2 group"
-                        whileHover={{ y: -5 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 17,
-                        }}
-                      >
-                        <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
-                          <Image
-                            src={tech.icon || "/placeholder.svg"}
-                            alt={tech.name}
-                            width={60}
-                            height={60}
-                            className="rounded-lg"
-                          />
-                        </div>
-                        <span className="text-sm font-medium">{tech.name}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </AnimatedElement>
-
-                {/* Tools Section */}
-                <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
-                  <h4 className="text-2xl font-semibold mb-6">Tools</h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    {[
-                      {
-                        name: "Docker",
-                        icon: "docker.svg",
-                      },
-                      {
-                        name: "Bash",
-                        icon: "bash.svg",
-                      },
-                      {
-                        name: "Figma",
-                        icon: "figma.svg",
-                      },
-                      {
-                        name: "VSCode",
-                        icon: "vscode.svg",
-                      },
-                      {
-                        name: "Notion",
-                        icon: "notion.svg",
-                      },
-                    ].map((tech) => (
-                      <motion.div
-                        key={tech.name}
-                        className="flex flex-col items-center gap-2 group"
-                        whileHover={{ y: -5 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 17,
-                        }}
-                      >
-                        <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
-                          <Image
-                            src={tech.icon || "/placeholder.svg"}
-                            alt={tech.name}
-                            width={60}
-                            height={60}
-                            className="rounded-lg"
-                          />
-                        </div>
-                        <span className="text-sm font-medium">{tech.name}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </AnimatedElement>
-              </div>
-            </AnimatedElement>
-
-            <AnimatedElement className={""}>
-              <p className="text-xl text-center max-w-3xl mx-auto">
-                I am always <span className="text-primary">learning</span> and
-                evolving. Technology never stops, and{" "}
-                <span className="text-primary">neither do I</span>.
-              </p>
             </AnimatedElement>
           </div>
+
+          <div className="space-y-8">
+            <h3 className="text-3xl font-bold">Quick Info</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: Mail,
+                  label: "Email",
+                  value: "relismailyly@gmail.com",
+                  href: "mailto:relismailyly@gmail.com",
+                },
+                {
+                  icon: Phone,
+                  label: "Phone",
+                  value: "+21211563140",
+                  href: "tel:+21211563140",
+                },
+                {
+                  icon: GraduationCap,
+                  label: "Education",
+                  value: "1337 School",
+                  subtext: "Computer Science Engineering",
+                  href: "https://1337.ma",
+                },
+                {
+                  icon: MapPin,
+                  label: "Location",
+                  value: "Taounate, Morocco",
+                  href: "https://maps.google.com/?q=Taounate,Morocco",
+                },
+                {
+                  icon: Briefcase,
+                  label: "Work Preference",
+                  value: "Remote, Flexible Hours",
+                  subtext: "Open to night shifts",
+                },
+                {
+                  icon: Heart,
+                  label: "Interests",
+                  value:
+                    "Traveling, Football, Design, Reading, Cooking, Ra3i ghnam, Exercise",
+                },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="group relative overflow-hidden rounded-xl bg-white dark:bg-secondary p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                >
+                  <div className="relative z-10 space-y-3">
+                    <div className="inline-flex p-3 rounded-lg bg-primary/10 text-primary mb-4">
+                      <item.icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        {item.label}
+                      </h3>
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          className="font-semibold text-lg mt-1 group-hover:text-primary transition-colors"
+                        >
+                          {item.value}
+                        </Link>
+                      ) : (
+                        <p className="font-semibold text-lg mt-1 group-hover:text-primary transition-colors">
+                          {item.value}
+                        </p>
+                      )}
+                      {item.subtext && (
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                          {item.subtext}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <AnimatedElement className="space-y-8">
+            <h3 className="text-3xl font-bold">
+              Turning <span className="text-primary">Ideas</span> into Reality
+              with <span className="text-primary">My Tech Skills</span>
+            </h3>
+
+            <div className="grid gap-8">
+              {/* Backend Section */}
+              <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
+                <h4 className="text-2xl font-semibold mb-6">backend</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {[
+                    {
+                      name: "Django",
+                      icon: "django.svg",
+                    },
+                    {
+                      name: "PostgreSQL",
+                      icon: "postgresql.svg",
+                    },
+                    {
+                      name: "DRF",
+                      icon: "drf.svg",
+                    },
+                    {
+                      name: "WebSocket",
+                      icon: "web.svg",
+                    },
+                  ].map((tech) => (
+                    <motion.div
+                      key={tech.name}
+                      className="flex flex-col items-center gap-2 group"
+                      whileHover={{ y: -5 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                    >
+                      <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
+                        <Image
+                          src={tech.icon || "/placeholder.svg"}
+                          alt={tech.name}
+                          width={60}
+                          height={60}
+                          className="rounded-lg"
+                        />
+                      </div>
+                      <span className="text-sm font-medium">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedElement>
+
+              {/* Frontend Section */}
+              <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
+                <h4 className="text-2xl font-semibold mb-6">Frontend</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {[
+                    {
+                      name: "JavaScript",
+                      icon: "JavaScript.svg",
+                    },
+                    {
+                      name: "TypeScript",
+                      icon: "TypeScript.svg",
+                    },
+                    {
+                      name: "HTML5",
+                      icon: "html.svg",
+                    },
+                    {
+                      name: "CSS3",
+                      icon: "css.svg",
+                    },
+                    {
+                      name: "Tailwind",
+                      icon: "tailwinds.svg",
+                    },
+                    {
+                      name: "React",
+                      icon: "react.svg",
+                    },
+                    {
+                      name: "Next.js",
+                      icon: "nextjs.svg",
+                    },
+                  ].map((tech) => (
+                    <motion.div
+                      key={tech.name}
+                      className="flex flex-col items-center gap-2 group"
+                      whileHover={{ y: -5 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                    >
+                      <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
+                        <Image
+                          src={tech.icon || "/placeholder.svg"}
+                          alt={tech.name}
+                          width={60}
+                          height={60}
+                          className="rounded-lg"
+                        />
+                      </div>
+                      <span className="text-sm font-medium">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedElement>
+
+              {/* Programming Languages Section */}
+              <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
+                <h4 className="text-2xl font-semibold mb-6">
+                  Programming Lngs
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {[
+                    {
+                      name: "Python",
+                      icon: "python.svg",
+                    },
+                    {
+                      name: "C++",
+                      icon: "cpp.svg",
+                    },
+                    {
+                      name: "C",
+                      icon: "c.svg",
+                    },
+                    {
+                      name: "JavaScript",
+                      icon: "JavaScript.svg",
+                    },
+                  ].map((tech) => (
+                    <motion.div
+                      key={tech.name}
+                      className="flex flex-col items-center gap-2 group"
+                      whileHover={{ y: -5 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                    >
+                      <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
+                        <Image
+                          src={tech.icon || "/placeholder.svg"}
+                          alt={tech.name}
+                          width={60}
+                          height={60}
+                          className="rounded-lg"
+                        />
+                      </div>
+                      <span className="text-sm font-medium">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedElement>
+
+              {/* Tools Section */}
+              <AnimatedElement className="bg-white dark:bg-secondary p-8 rounded-3xl shadow-lg">
+                <h4 className="text-2xl font-semibold mb-6">Tools</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {[
+                    {
+                      name: "Docker",
+                      icon: "docker.svg",
+                    },
+                    {
+                      name: "Bash",
+                      icon: "bash.svg",
+                    },
+                    {
+                      name: "Figma",
+                      icon: "figma.svg",
+                    },
+                    {
+                      name: "VSCode",
+                      icon: "vscode.svg",
+                    },
+                    {
+                      name: "Notion",
+                      icon: "notion.svg",
+                    },
+                  ].map((tech) => (
+                    <motion.div
+                      key={tech.name}
+                      className="flex flex-col items-center gap-2 group"
+                      whileHover={{ y: -5 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                    >
+                      <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
+                        <Image
+                          src={tech.icon || "/placeholder.svg"}
+                          alt={tech.name}
+                          width={60}
+                          height={60}
+                          className="rounded-lg"
+                        />
+                      </div>
+                      <span className="text-sm font-medium">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedElement>
+              <AnimatedElement className="space-y-8">
+                <h3 className="text-3xl font-bold">
+                  My Passion for Programming:{" "}
+                  <span className="text-primary">Creating</span>,{" "}
+                  <span className="text-primary">Solving</span>, and{" "}
+                  <span className="text-primary">Innovating</span>
+                </h3>
+                <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+                  Ever Since I Wrote My First Lines Of Code, I Knew Programming
+                  Was More Than Just A Skill—It Was A Way To Create, Solve
+                  Problems, And Build Something Meaningful. I Love The Challenge
+                  Of Breaking Down Complex Problems And Turning Ideas Into Real
+                  Applications. Whether It&apos;s Developing Efficient
+                  Algorithms, Crafting Intuitive User Interfaces, Or Optimizing
+                  Performance, I&apos;m Always Eager To Learn And Push My
+                  Limits. For Me, Coding Isn&apos;t Just A Profession; It&apos;s
+                  An Ongoing Journey Of Innovation And Discovery.
+                </p>
+              </AnimatedElement>
+            </div>
+          </AnimatedElement>
         </AnimatedElement>
       </AnimatedSection>
 
