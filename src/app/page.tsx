@@ -17,6 +17,9 @@ import {
   Loader2,
   Briefcase,
   Heart,
+  Lightbulb,
+  Check,
+  Globe,
 } from "lucide-react";
 import { FaDiscord, FaWhatsapp } from "react-icons/fa6";
 import Image from "next/image";
@@ -326,77 +329,72 @@ export default function Home() {
         </AnimatedElement>
       </AnimatedSection>
 
-      <AnimatedSection id="service" className="pb-16 lg:py-24 scroll-mt-16">
-        <AnimatedElement className={"flex justify-between items-start mt-4"}>
-          <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
-            <Star className="mr-1.5 h-4 w-4" />
-            Service
-          </div>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center text-xl font-semibold text-primary hover:text-primary/90 transition-colors group"
-          >
-            Hire Me
-            <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </Link>
-        </AnimatedElement>
-
-        <AnimatedElement className="mt-4">
-          <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-            I&apos;m great in what I do
-            <br />
-            and <span className="text-primary">I&apos;m loving it</span>
-          </h2>
-        </AnimatedElement>
-
-        <AnimatedElement className="grid lg:grid-cols-2 gap-8 mt-12">
-          {/* Frontend Card */}
-          <div className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group hover:scale-105">
-            <h3 className="text-3xl font-bold mb-4">Frontend Development</h3>
-            <div className="flex gap-3 mb-4">
-              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                UI/UX Design
-              </span>
-              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                Design to Code
-              </span>
+      <AnimatedSection id="service" className="py-16 lg:py-24 scroll-mt-16">
+        <AnimatedElement className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold mb-4">
+              <Star className="mr-1.5 h-4 w-4" />
+              Services
             </div>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Building modern, responsive web interfaces with React, Next.js,
-              and TypeScript.
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-4">
+              Transforming <span className="text-primary">Ideas</span> into{" "}
+              <span className="text-primary">Digital Reality</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Explore my range of full-stack development services tailored to your needs
             </p>
-            <div className="relative w-full aspect-[2/1]">
-              <Image
-                src="frontend.svg"
-                alt="Frontend Development"
-                fill
-                className="object-contain"
-              />
-            </div>
           </div>
 
-          {/* Backend Card */}
-          <div className="relative p-8 rounded-3xl bg-white dark:bg-secondary shadow-lg overflow-hidden group hover:scale-105">
-            <h3 className="text-3xl font-bold mb-4">Backend Development</h3>
-            <div className="flex gap-3 mb-4">
-              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                Idea to Code
-              </span>
-              <span className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
-                API Integration
-              </span>
-            </div>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Building secure and scalable systems with Django REST Framework.
-            </p>
-            <div className="relative w-full aspect-[2/1]">
-              <Image
-                src="backend.svg"
-                alt="Backend Development"
-                fill
-                className="object-contain"
-              />
-            </div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {[
+              {
+                title: "Static Website Development",
+                description:
+                  "Fast, responsive, and SEO-friendly static websites perfect for showcasing your brand or portfolio.",
+                features: ["Blazing fast load times", "Responsive design", "SEO optimization", "Easy maintenance"],
+                icon: <Globe className="h-8 w-8" />,
+              },
+              {
+                title: "Dynamic Website Creation",
+                description:
+                  "Powerful, interactive websites with database integration for complex functionalities and user engagement.",
+                features: ["User authentication", "Database integration", "Real-time updates", "Scalable architecture"],
+                icon: <LayoutGrid className="h-8 w-8" />,
+              },
+              {
+                title: "Idea to Code Conversion",
+                description: "Transform your startup or company ideas into fully functional web applications.",
+                features: [
+                  "Concept refinement",
+                  "Prototype development",
+                  "Full-stack implementation",
+                  "Iterative development",
+                ],
+                icon: <Lightbulb className="h-8 w-8" />,
+              },
+            ].map((service, index) => (
+              <AnimatedElement key={index} className="group">
+                <div className="h-full bg-white dark:bg-secondary rounded-3xl p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 rounded-2xl bg-primary/10 text-primary">{service.icon}</div>
+                    <ArrowUpRight className="h-5 w-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">{service.description}</p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, fIndex) => (
+                      <li key={fIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                        <Check className="h-5 w-5 text-primary mr-2" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full mt-6" variant="outline">
+                    Order Service
+                  </Button>
+                </div>
+              </AnimatedElement>
+            ))}
           </div>
         </AnimatedElement>
       </AnimatedSection>
