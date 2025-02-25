@@ -34,6 +34,7 @@ import { scrollAnimation } from "@/lib/animations";
 import React from "react";
 import toast from "react-hot-toast";
 import Avatar3D from "@/components/Avatar3D";
+import { OrderServiceModal } from "@/components/order-service-modal";
 
 // 🔹 Animated Section (With Scroll Tracking)
 const AnimatedSection = ({
@@ -169,6 +170,15 @@ export default function Home() {
       setIsSubmitting(false);
     }
   };
+
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState("")
+
+  const handleOrderService = (serviceTitle: string) => {
+    setSelectedService(serviceTitle)
+    setIsOrderModalOpen(true)
+  }
+
   return (
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       <AnimatedSection id="home" className="py-16 lg:py-24">
@@ -389,13 +399,18 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full mt-6" variant="outline">
+                  <Button className="w-full mt-6" variant="outline" onClick={() => handleOrderService(service.title)}>
                     Order Service
                   </Button>
                 </div>
               </AnimatedElement>
             ))}
           </div>
+          <OrderServiceModal
+            isOpen={isOrderModalOpen}
+            onClose={() => setIsOrderModalOpen(false)}
+            selectedService={selectedService}
+          />
         </AnimatedElement>
       </AnimatedSection>
 
