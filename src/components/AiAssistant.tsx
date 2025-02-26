@@ -42,55 +42,49 @@ export function AiAssistant() {
   }, [scrollToBottom]);
 
   const handleBotResponse = async (text: string) => {
-	setIsTyping(true);
+    setIsTyping(true);
   
-	try {
-	  // Call the Next.js API route to get the AI response
-	  const response = await fetch("/api/AiAssistant", {
-		method: "POST",
-		headers: {
-		  "Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-		  messages: [
-			{
-			  role: "user",
-			  content: text,
-			},
-		  ],
-		}),
-	  });
+    try {
+      // Call the Next.js API route to get the AI response
+      const response = await fetch("/api/AiAssistant", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "user",
+              content: text,
+            },
+          ],
+        }),
+      });
   
-	  const data = await response.json();
-	  console.log("API Response:", data); // Log the response
+      const data = await response.json();
+      const aiResponse = data.content; // Cohere response structure
   
-	  // Check if the response structure matches your expectations
-	  if (data.choices && data.choices.length > 0) {
-		const aiResponse = data.choices[0].message.content;
-		setMessages((prev) => [
-		  ...prev,
-		  {
-			id: Date.now().toString(),
-			type: "bot",
-			text: aiResponse,
-		  },
-		]);
-	  } else {
-		throw new Error("Invalid response structure from the API");
-	  }
-	} catch (error) {
-	  console.error("Error fetching AI response:", error);
-	  setMessages((prev) => [
-		...prev,
-		{
-		  id: Date.now().toString(),
-		  type: "bot",
-		  text: "Sorry, I couldn't process your request. Please try again.",
-		},
-	  ]);
-	} finally {
-	  setIsTyping(false);
-	}
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          type: "bot",
+          text: aiResponse,
+        },
+      ]);
+    } catch (error) {
+      console.error("Error fetching AI response:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          type: "bot",
+          text: "Sorry, I couldn't process your request. Please try again.",
+        },
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const handleSendMessage = (text: string) => {

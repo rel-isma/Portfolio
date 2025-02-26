@@ -1,47 +1,27 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
+import { CohereClient } from "cohere-ai";
+
+const cohere = new CohereClient({
+  token: process.env.COHERE_API_KEY,
+});
 
 export async function POST(request: Request) {
   try {
     const { messages } = await request.json();
 
-    // Validate environment variables
-    const apiUrl = process.env.DEEPSEEK_API_URL;
-    const apiKey = process.env.DEEPSEEK_API_KEY;
-    console.log("API URL:", apiUrl);
-    console.log("API Key:", apiKey);
+    // Get the last user message
+    const lastMessage = messages[messages.length - 1].content;
 
-    if (!apiUrl || !apiKey) {
-      console.error("Missing environment variables");
-      return NextResponse.json(
-        { message: "Internal server error" },
-        { status: 500 }
-      );
-    }
-
-    // Call the DeepSeek API
-    const response = await axios.post(
-      apiUrl,
-      {
-        model: "deepseek-chat", // Replace with the correct model name
-        messages: messages,
-        max_tokens: 150,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    // Log the API response for debugging
-    console.log("DeepSeek API Response:", response.data);
+    // Call the Cohere API
+    const response = await cohere.generate({
+      prompt: lastMessage,
+      maxTokens: 150,
+    });
 
     // Return the AI response
-    return NextResponse.json(response.data);
+    return NextResponse.json({ content: response.generations[0].text });
   } catch (error) {
-    console.error("Error calling DeepSeek API:", error);
+    console.error("Error calling Cohere API:", error);
     return NextResponse.json(
       { message: "Internal server error" },
       { status: 500 }
