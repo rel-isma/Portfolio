@@ -92,7 +92,7 @@ export default function ProjectPage() {
 
   return (
     <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
-      <AnimatedSection className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12">
+      <AnimatedSection className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12" id="">
         <Breadcrumb items={breadcrumbItems} />
 
         {/* Title and Buttons */}
@@ -128,9 +128,6 @@ export default function ProjectPage() {
               fill
               className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-              <p className="text-white text-2xl font-bold">View Project</p>
-            </div>
           </div>
         </AnimatedElement>
 

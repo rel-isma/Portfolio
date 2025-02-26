@@ -37,10 +37,11 @@ export interface Project {
       slug: "ft-transcendence",
       description:
         "A full-stack web application featuring a real-time multiplayer ping pong game with a responsive and intuitive UI/UX design. The project includes a real-time chat system with private messaging, notifications, and friend management features using WebSocket. It also features an interactive dashboard displaying user statistics, match history, and a leaderboard for competitive tracking.",
-      image: "/ft-transcendence.jpg",
+      image: "/ft-pong.jpeg",
       category: "Full Stack",
       technologies: ["React", "TypeScript", "Django", "WebSocket"],
       duration: "4 months",
+      client: "1337 coding school",
       role: "Full Stack Developer",
       created_at: "2024-10-01",
       pushed_at: "2025-01-31",
@@ -86,53 +87,9 @@ export interface Project {
       languages: {
         TypeScript: 50000,
         Python: 30000,
+        REACT: 20000,
         HTML: 10000,
         CSS: 10000,
-      },
-    },
-    {
-      id: 2,
-      title: "Prayer Times Web App",
-      slug: "prayer-times-web-app",
-      description:
-        "A responsive web application using React.js to display prayer times based on geolocation. The app integrates external APIs for accurate prayer time calculations and location services.",
-      image: "/prayer-times-app.jpg",
-      category: "Frontend",
-      technologies: ["React.js", "RESTful APIs"],
-      duration: "2 months",
-      role: "Frontend Developer",
-      created_at: "2024-07-01",
-      pushed_at: "2024-08-31",
-      sourceCode: "https://github.com/yourusername/prayer-times-app",
-      liveDemo: "https://prayer-times-app-demo.vercel.app",
-      features: [
-        "Geolocation-based prayer times",
-        "Integration with external APIs",
-        "Responsive design for various devices",
-        "User-friendly interface",
-      ],
-      timeline: [
-        {
-          date: "July 2024",
-          title: "Project Start",
-          description: "Initial setup and API integration",
-        },
-        {
-          date: "August 2024",
-          title: "UI Development and Testing",
-          description: "Implementing the user interface and conducting thorough testing",
-        },
-      ],
-      stats: {
-        commits: 120,
-        contributors: 1,
-        stars: 25,
-        forks: 5,
-      },
-      languages: {
-        JavaScript: 15000,
-        HTML: 3000,
-        CSS: 2000,
       },
     },
     {
@@ -141,10 +98,11 @@ export interface Project {
       slug: "inception",
       description:
         "A scalable web infrastructure using Docker containers, including NGINX, WordPress, and MariaDB. The project implements secure web server configuration with TLSv1.2/TLSv1.3 encryption.",
-      image: "/inception.jpg",
+      image: "/inception.jpeg",
       category: "DevOps",
       technologies: ["Docker", "Docker Compose", "NGINX", "WordPress", "MariaDB"],
       duration: "2 months",
+      client: "1337 coding school",
       role: "DevOps Engineer",
       created_at: "2024-05-01",
       pushed_at: "2024-06-30",
@@ -174,9 +132,9 @@ export interface Project {
         forks: 3,
       },
       languages: {
-        Dockerfile: 5000,
+        Docker: 5000,
         YAML: 3000,
-        Shell: 2000,
+        bash: 2000,
       },
     },
     {
@@ -185,10 +143,11 @@ export interface Project {
       slug: "irc-server",
       description:
         "A fully functional IRC server handling multiple client connections with non-blocking I/O. The project implements robust error handling and connection management systems.",
-      image: "/irc-server.jpg",
+      image: "/irc-server.jpeg",
       category: "Network Programming",
       technologies: ["C++98", "Network Programming"],
       duration: "2 months",
+      client: "1337 coding school",
       role: "Backend Developer",
       created_at: "2024-03-01",
       pushed_at: "2024-04-30",
@@ -218,7 +177,7 @@ export interface Project {
         forks: 4,
       },
       languages: {
-        "C++": 10000,
+        Cpp: 10000,
       },
     },
     {
@@ -227,10 +186,11 @@ export interface Project {
       slug: "net-practice",
       description:
         "A project focused on configuring and troubleshooting complex network topologies using TCP/IP protocols. It involves implementing efficient subnetting solutions for optimized network performance.",
-      image: "/net-practice.jpg",
+      image: "/net-practice.jpeg",
       category: "Networking",
       technologies: ["TCP/IP", "Network Configuration"],
       duration: "1 month",
+      client: "1337 coding school",
       role: "Network Engineer",
       created_at: "2023-09-01",
       pushed_at: "2023-09-30",
@@ -255,7 +215,7 @@ export interface Project {
         forks: 2,
       },
       languages: {
-        "Network Configuration": 5000,
+        Cpp: 5000,
       },
     },
     {
@@ -264,10 +224,11 @@ export interface Project {
       slug: "minishell",
       description:
         "A mini shell built using C, capable of handling user commands, signals, and processes. The project overcame challenges related to memory management and process synchronization.",
-      image: "/minishell.jpg",
+      image: "/minishell.jpeg",
       category: "System Programming",
       technologies: ["C", "Shell Scripting"],
       duration: "2 months",
+      client: "1337 coding school",
       role: "System Programmer",
       created_at: "2023-07-01",
       pushed_at: "2023-08-31",
@@ -299,7 +260,7 @@ export interface Project {
       },
       languages: {
         C: 8000,
-        Shell: 1000,
+        bash: 1000,
       },
     },
   ]

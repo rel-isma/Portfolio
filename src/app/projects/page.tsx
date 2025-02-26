@@ -7,7 +7,7 @@ import { ArrowUpRight, Star } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { Breadcrumb } from "@/components/breadcrumb";
-import { projects } from "@/lib/projects";
+import { projects } from "@/lib/projectData"
 
 const AnimatedSection = ({
   children,

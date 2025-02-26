@@ -35,6 +35,7 @@ import React from "react";
 import toast from "react-hot-toast";
 import Avatar3D from "@/components/Avatar3D";
 import { OrderServiceModal } from "@/components/order-service-modal";
+import { projects } from "@/lib/projectData";
 
 // 🔹 Animated Section (With Scroll Tracking)
 const AnimatedSection = ({
@@ -242,11 +243,11 @@ export default function Home() {
             </h2>
           </div>
           <AnimatedElement className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg">
-            <Link href={`/projects/project-one`}>
+            <Link href={`/projects/${projects[0].slug}`}>
               <div className="aspect-[4/3] relative">
                 <Image
-                  src="/a7.jpg"
-                  alt="Project One"
+                  src={projects[0].image || "/placeholder.svg"}
+                  alt={projects[0].title}
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                   fill
                 />
@@ -254,9 +255,9 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 p-6 text-white">
                   <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
-                    Food Delivery
+                    {projects[0].category}
                   </span>
-                  <h3 className="text-2xl font-bold mt-2">Project one</h3>
+                  <h3 className="text-2xl font-bold mt-2">{projects[0].title}</h3>
                   <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                     View Project
                     <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -268,16 +269,16 @@ export default function Home() {
         </AnimatedElement>
 
         <AnimatedElement className="grid lg:grid-cols-2 gap-12 mb-12">
-          {[2, 3].map((project) => (
+          {projects.slice(1, 3).map((project) => (
             <AnimatedElement
-              key={project}
+              key={project.id}
               className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg"
             >
-              <Link href={`/projects/project-${project}`}>
+              <Link href={`/projects/${project.slug}`}>
                 <div className="aspect-[4/3] relative">
                   <Image
-                    src="/a7.jpg"
-                    alt={`Project ${project}`}
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                     fill
                   />
@@ -285,11 +286,9 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="absolute bottom-0 p-6 text-white">
                     <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
-                      Project Category
+                      {project.category}
                     </span>
-                    <h3 className="text-2xl font-bold mt-2">
-                      Project {project}
-                    </h3>
+                    <h3 className="text-2xl font-bold mt-2">{project.title}</h3>
                     <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                       View Project
                       <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -303,11 +302,11 @@ export default function Home() {
 
         <AnimatedElement className="grid lg:grid-cols-2 gap-12 items-center">
           <AnimatedElement className="group relative overflow-hidden rounded-3xl bg-white dark:bg-secondary shadow-lg">
-            <Link href={`/projects/project-four`}>
+            <Link href={`/projects/${projects[3].slug}`}>
               <div className="aspect-[4/3] relative">
                 <Image
-                  src="/a7.jpg"
-                  alt="Project Four"
+                  src={projects[3].image || "/placeholder.svg"}
+                  alt={projects[3].title}
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                   fill
                 />
@@ -315,9 +314,9 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 p-6 text-white">
                   <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
-                    Project Category
+                    {projects[3].category}
                   </span>
-                  <h3 className="text-2xl font-bold mt-2">Project Four</h3>
+                  <h3 className="text-2xl font-bold mt-2">{projects[3].title}</h3>
                   <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                     View Project
                     <ArrowUpRight className="ml-2 h-4 w-4" />
