@@ -7,7 +7,7 @@ import { Navbar } from "@/components/navbar";
 import type React from "react";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Toaster } from "react-hot-toast";
-import FloatingChatbot from "@/components/FloatingChatbot";
+import { AiAssistant } from "@/components/AiAssistant";
 
 // const inter = Inter({ subsets: ["latin"] });
 const syne = Syne({ subsets: ["latin"] });
@@ -42,7 +42,7 @@ export default function RootLayout({
               },
             }}
           />
-          {/* Add FloatingChatbot here */}
+          <AiAssistant />
 
           <div className="flex flex-col md:flex-row w-full max-w-[1440px] overflow-hidden mx-auto">
             <Sidebar />
@@ -52,8 +52,8 @@ export default function RootLayout({
                 className="flex-grow overflow-auto no-scrollbar p-8  relative w-full"
                 id="main-content"
               >
-                <ProgressBar />
                 {children}
+                <ProgressBar />
               </main>
             </div>
           </div>

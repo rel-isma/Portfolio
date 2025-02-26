@@ -87,7 +87,7 @@ export function OrderServiceModal({ isOpen, onClose, selectedService }: OrderSer
               <Input
                 type="text"
                 name="name"
-                placeholder="Your Name"
+                placeholder="Your Name*"
                 required
                 value={formState.name}
                 onChange={handleInputChange}
@@ -95,7 +95,7 @@ export function OrderServiceModal({ isOpen, onClose, selectedService }: OrderSer
               <Input
                 type="email"
                 name="email"
-                placeholder="Your Email"
+                placeholder="Your Email*"
                 required
                 value={formState.email}
                 onChange={handleInputChange}
