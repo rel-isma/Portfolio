@@ -47,11 +47,11 @@ export default function RootLayout({
           <div className="flex flex-col md:flex-row w-full max-w-[1440px] overflow-hidden mx-auto">
             <Sidebar />
             <div className="flex flex-col flex-grow overflow-hidden w-full">
-              <Navbar />
               <main
                 className="flex-grow overflow-auto no-scrollbar p-8  relative w-full"
                 id="main-content"
               >
+                <Navbar />
                 {children}
                 <ProgressBar />
               </main>

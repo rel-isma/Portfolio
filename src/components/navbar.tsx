@@ -11,7 +11,7 @@ import {
   Info,
   Mail,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Add useEffect
 
 export function Navbar() {
   const [selectedItem, setSelectedItem] = useState("home");
@@ -24,10 +24,38 @@ export function Navbar() {
     { id: "contact", icon: Mail, label: "Contact" },
   ];
 
+  // Add Intersection Observer to detect visible section
+  useEffect(() => {
+    const sections = document.querySelectorAll("section"); // Select all sections
+    const options = {
+      root: null, // Use the viewport as the root
+      rootMargin: "0px",
+      threshold: 0.5, // Trigger when 50% of the section is visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setSelectedItem(entry.target.id); // Update selected item based on section ID
+        }
+      });
+    }, options);
+
+    sections.forEach((section) => {
+      observer.observe(section); // Observe each section
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section); // Cleanup observer on unmount
+      });
+    };
+  }, []);
+
   return (
     <>
       {/* Desktop Navbar (Only visible on screens > lg) */}
-      <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm dark:bg-background-dark/80 border-b border-gray-200 dark:border-gray-700 hidden lg:flex">
+      <nav className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm hidden lg:flex">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -36,10 +64,10 @@ export function Navbar() {
                   <Link
                     key={item.id}
                     href={`/#${item.id}`}
-                    className={`px-3 py-2 rounded-md text-ms lg:text-lg font-medium ${
+                    className={`px-3 py-2 rounded-full text-ms lg:text-lg font-medium transition-all duration-200 ${
                       selectedItem === item.id
-                        ? "text-primary"
-                        : "text-foreground/80 hover:text-foreground dark:text-foreground-dark/80 dark:hover:text-foreground-dark"
+                        ? "text-primary bg-primary/10 border border-primary/20"
+                        : "text-foreground/80 hover:text-foreground dark:text-foreground-dark/80 dark:hover:text-foreground-dark bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
                     }`}
                     onClick={() => setSelectedItem(item.id)}
                   >
@@ -118,4 +146,3 @@ export function Navbar() {
     </>
   );
 }
-
