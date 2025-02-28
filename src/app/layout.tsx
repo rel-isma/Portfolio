@@ -48,7 +48,7 @@ export default function RootLayout({
             <Sidebar />
             <div className="flex flex-col flex-grow overflow-hidden w-full">
               <main
-                className="flex-grow overflow-auto no-scrollbar p-8  relative w-full"
+                className="flex-grow overflow-auto no-scrollbar p-8 !pt-0  relative w-full"
                 id="main-content"
               >
                 <Navbar />

@@ -12,7 +12,13 @@ export function Sidebar() {
       <div className="flex flex-col h-full w-full">
         <div className="flex items-center space-x-3 mb-8">
           <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-white text-2xl">R</span>
+            <Image
+              src="/relismalogo.svg" 
+              alt="Logo" 
+              width={24} 
+              height={24} 
+              className="text-white" 
+            />
           </div>
           <h2 className="text-xl font-semibold">Rachid El-ismailyly</h2>
         </div>

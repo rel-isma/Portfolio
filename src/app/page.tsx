@@ -448,9 +448,10 @@ export default function Home() {
             <AnimatedElement className="relative h-[400px] md:h-[600px] w-full">
               {/* Placeholder for future 3D avatar */}
               <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl flex items-center justify-center">
-                <p className="text-lg font-semibold text-gray-500 dark:text-gray-400">
+                {/* <p className="text-lg font-semibold text-gray-500 dark:text-gray-400">
                   3D Avatar Coming Soon
-                </p>
+                </p> */}
+                <Avatar3D />
               </div>
             </AnimatedElement>
           </div>

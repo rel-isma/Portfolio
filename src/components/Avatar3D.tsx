@@ -62,7 +62,7 @@ export default function Avatar3D() {
       <OrbitControls
         enableZoom={true} // Allow zooming
         enablePan={false} // Disable panning
-        minDistance={isMobile ? 3 : 2} // Adjust zoom for mobile
+        minDistance={isMobile ? 3 : 3} // Adjust zoom for mobile
         maxDistance={isMobile ? 10 : 7} // Adjust zoom for mobile
         minPolarAngle={Math.PI / 4} // Limit vertical rotation
         maxPolarAngle={Math.PI / 2} // Limit vertical rotation

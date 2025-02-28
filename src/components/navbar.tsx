@@ -11,7 +11,7 @@ import {
   Info,
   Mail,
 } from "lucide-react";
-import { useState, useEffect } from "react"; // Add useEffect
+import { useState, useEffect } from "react";
 
 export function Navbar() {
   const [selectedItem, setSelectedItem] = useState("home");
@@ -24,30 +24,30 @@ export function Navbar() {
     { id: "contact", icon: Mail, label: "Contact" },
   ];
 
-  // Add Intersection Observer to detect visible section
   useEffect(() => {
-    const sections = document.querySelectorAll("section"); // Select all sections
+    const sections = document.querySelectorAll("section");
     const options = {
-      root: null, // Use the viewport as the root
+      root: null,
       rootMargin: "0px",
-      threshold: 0.5, // Trigger when 50% of the section is visible
+      threshold: 0.3,
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setSelectedItem(entry.target.id); // Update selected item based on section ID
+          console.log("Visible section:", entry.target.id);
+          setSelectedItem(entry.target.id);
         }
       });
     }, options);
 
     sections.forEach((section) => {
-      observer.observe(section); // Observe each section
+      observer.observe(section);
     });
 
     return () => {
       sections.forEach((section) => {
-        observer.unobserve(section); // Cleanup observer on unmount
+        observer.unobserve(section);
       });
     };
   }, []);
@@ -64,14 +64,21 @@ export function Navbar() {
                   <Link
                     key={item.id}
                     href={`/#${item.id}`}
-                    className={`px-3 py-2 rounded-full text-ms lg:text-lg font-medium transition-all duration-200 ${
+                    className={`px-3 py-2 text-ms lg:text-lg font-medium transition-all duration-200 relative group ${
                       selectedItem === item.id
-                        ? "text-primary bg-primary/10 border border-primary/20"
-                        : "text-foreground/80 hover:text-foreground dark:text-foreground-dark/80 dark:hover:text-foreground-dark bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+                        ? "text-primary"
+                        : "text-foreground/80 hover:text-foreground dark:text-foreground-dark/80 dark:hover:text-foreground-dark"
                     }`}
                     onClick={() => setSelectedItem(item.id)}
                   >
                     {item.label}
+                    <span
+                      className={`absolute left-0 bottom-0 h-0.5 bg-primary transition-all duration-300 ${
+                        selectedItem === item.id
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"
+                      }`}
+                    ></span>
                   </Link>
                 ))}
               </div>
