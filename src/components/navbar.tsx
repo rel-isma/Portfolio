@@ -20,8 +20,8 @@ export function Navbar() {
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
     { id: "portfolio", icon: LayoutGrid, label: "Portfolio" },
-    { id: "service", icon: Server, label: "service" },
-    { id: "about", icon: Info, label: "about" },
+    { id: "service", icon: Server, label: "Service" },
+    { id: "about", icon: Info, label: "About" },
     { id: "contact", icon: Mail, label: "Contact" },
   ];
 
@@ -56,9 +56,9 @@ export function Navbar() {
   return (
     <>
       {/* Desktop Navbar (Only visible on screens > lg) */}
-      <nav className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-sm hidden lg:flex">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex items-center justify-between h-16">
+      <nav className="sticky  top-0 z-50 w-full bg-transparent backdrop-blur-sm hidden lg:flex">
+        <div className="max-w-7xl mx-auto px-2 w-full">
+          <div className="flex items-center justify-between h-16 w-full">
             <div className="flex items-center">
               <div className="flex items-baseline space-x-4 relative">
                 {navItems.map((item) => (

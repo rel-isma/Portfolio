@@ -41,7 +41,7 @@ export default function Avatar3D() {
     <Canvas
       camera={{
         position: isMobile ? [0, 0, 7] : [0, 0, 5], // Adjust camera for mobile
-        fov: isMobile ? 40 : 50, // Adjust field of view for mobile
+        fov: isMobile ? 30 : 40, // Adjust field of view for mobile
       }}
       style={{ width: "100%", height: isMobile ? "400px" : "600px" }} // Adjust height for mobile
     >
@@ -62,8 +62,8 @@ export default function Avatar3D() {
       <OrbitControls
         enableZoom={true} // Allow zooming
         enablePan={false} // Disable panning
-        minDistance={isMobile ? 3 : 3} // Adjust zoom for mobile
-        maxDistance={isMobile ? 10 : 7} // Adjust zoom for mobile
+        minDistance={isMobile ? 3 : 4} // Adjust zoom for mobile
+        maxDistance={isMobile ? 10 : 9} // Adjust zoom for mobile
         minPolarAngle={Math.PI / 4} // Limit vertical rotation
         maxPolarAngle={Math.PI / 2} // Limit vertical rotation
         autoRotate={true} // Enable auto-rotation
