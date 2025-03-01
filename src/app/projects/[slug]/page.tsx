@@ -83,12 +83,6 @@ export default function ProjectPage() {
 
   const totalLines = Object.values(project.languages).reduce((a, b) => a + b, 0)
 
-  const languageColors: { [key: string]: string } = {
-    TypeScript: "bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400",
-    JavaScript: "bg-yellow-100 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400",
-    CSS: "bg-pink-100 text-pink-600 dark:bg-pink-900/20 dark:text-pink-400",
-    HTML: "bg-orange-100 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400",
-  }
 
   return (
     <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
@@ -201,8 +195,6 @@ export default function ProjectPage() {
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-8">Languages Used</h2>
             <div className="space-y-4 sm:space-y-6">
               {Object.entries(project.languages).map(([language, lines]) => {
-                const colorClass =
-                  languageColors[language] || "bg-gray-100 text-gray-600 dark:bg-gray-900/20 dark:text-gray-400"
                 const percentage = ((lines / totalLines) * 100).toFixed(1)
 
                 return (
@@ -231,9 +223,7 @@ export default function ProjectPage() {
                       </div>
                       <div className="h-1.5 sm:h-2 rounded-full bg-muted overflow-hidden">
                         <motion.div
-                          className={`h-full ${
-                            colorClass.includes("bg-") ? colorClass.split(" ")[0].replace("bg-", "bg-") : "bg-primary"
-                          }`}
+                          className={`h-full bg-primary `}
                           initial={{ width: 0 }}
                           animate={{ width: `${percentage}%` }}
                           transition={{ duration: 1, ease: "easeOut" }}

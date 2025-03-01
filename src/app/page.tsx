@@ -254,13 +254,13 @@ export default function Home() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 p-6 text-white">
-                  <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
+                  <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary backdrop-blur-sm">
                     {projects[0].category}
                   </span>
                   <h3 className="text-2xl font-bold mt-2">
                     {projects[0].title}
                   </h3>
-                  <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
+                  <div className="mt-4 inline-flex items-center text-sm font-semibold border-b-2 border-white/50 hover:border-primary transition-colors">
                     View Project
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </div>
@@ -287,11 +287,11 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="absolute bottom-0 p-6 text-white">
-                    <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
+                    <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary backdrop-blur-sm">
                       {project.category}
                     </span>
                     <h3 className="text-2xl font-bold mt-2">{project.title}</h3>
-                    <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
+                    <div className="mt-4 inline-flex items-center text-sm font-semibold border-b-2 border-white/50 hover:border-primary transition-colors">
                       View Project
                       <ArrowUpRight className="ml-2 h-4 w-4" />
                     </div>
@@ -315,13 +315,13 @@ export default function Home() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 p-6 text-white">
-                  <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
+                  <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary backdrop-blur-sm">
                     {projects[3].category}
                   </span>
                   <h3 className="text-2xl font-bold mt-2">
                     {projects[3].title}
                   </h3>
-                  <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
+                  <div className="mt-4 inline-flex items-center text-sm font-semibold border-b-2 border-white/50 hover:border-primary transition-colors">
                     View Project
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </div>
@@ -1005,16 +1005,13 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-4">Services</h3>
               <ul className="space-y-2">
                 <li className="text-gray-600 dark:text-gray-300">
-                  Frontend Development
+                  Static Website Development
                 </li>
                 <li className="text-gray-600 dark:text-gray-300">
-                  Backend Development
+                  Dynamic Website Creation
                 </li>
                 <li className="text-gray-600 dark:text-gray-300">
-                  UI/UX Design
-                </li>
-                <li className="text-gray-600 dark:text-gray-300">
-                  API Integration
+                  Idea to Code Conversion
                 </li>
               </ul>
             </div>
@@ -1052,22 +1049,36 @@ export default function Home() {
               </p>
               <div className="flex space-x-6">
                 <Link
-                  href="#"
+                  href="https://www.instagram.com/rel_ismaa/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-300 hover:text-primary"
                 >
                   <Instagram className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="#"
+                  href="https://www.linkedin.com/in/rachid-el-isamiyly/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-300 hover:text-primary"
                 >
                   <Linkedin className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="#"
+                  href="https://github.com/rel-isma"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-300 hover:text-primary"
                 >
                   <Github className="h-5 w-5" />
+                </Link>
+                <Link
+                  href="https://wa.me/+212611563140"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary"
+                >
+                  <FaWhatsapp className="h-5 w-5" />
                 </Link>
               </div>
             </div>

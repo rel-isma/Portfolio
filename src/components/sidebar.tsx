@@ -11,7 +11,7 @@ export function Sidebar() {
     >
       <div className="flex flex-col h-full w-full">
         <div className="flex items-center space-x-3 mb-8">
-          <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center cursor-pointer">
             <Image
               src="/relismalogo.svg" 
               alt="Logo" 

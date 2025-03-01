@@ -100,13 +100,13 @@ export default function ProjectsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="absolute bottom-0 p-6 text-white">
-                      <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
+                      <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary backdrop-blur-sm">
                         {project.category}
                       </span>
                       <h3 className="text-2xl font-bold mt-2">
                         {project.title}
                       </h3>
-                      <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
+                      <div className="mt-4 inline-flex items-center text-sm font-semibold border-b-2 border-white/50 hover:border-primary transition-colors">
                         View Project
                         <ArrowUpRight className="ml-2 h-4 w-4" />
                       </div>
