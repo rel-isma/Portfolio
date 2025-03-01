@@ -172,13 +172,13 @@ export default function Home() {
     }
   };
 
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
-  const [selectedService, setSelectedService] = useState("")
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
 
   const handleOrderService = (serviceTitle: string) => {
-    setSelectedService(serviceTitle)
-    setIsOrderModalOpen(true)
-  }
+    setSelectedService(serviceTitle);
+    setIsOrderModalOpen(true);
+  };
 
   return (
     <div className="flex flex-col min-h-full bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
@@ -257,7 +257,9 @@ export default function Home() {
                   <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
                     {projects[0].category}
                   </span>
-                  <h3 className="text-2xl font-bold mt-2">{projects[0].title}</h3>
+                  <h3 className="text-2xl font-bold mt-2">
+                    {projects[0].title}
+                  </h3>
                   <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                     View Project
                     <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -316,7 +318,9 @@ export default function Home() {
                   <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm">
                     {projects[3].category}
                   </span>
-                  <h3 className="text-2xl font-bold mt-2">{projects[3].title}</h3>
+                  <h3 className="text-2xl font-bold mt-2">
+                    {projects[3].title}
+                  </h3>
                   <div className="mt-4 inline-flex items-center text-sm font-semibold border-b border-white/30 hover:border-white transition-colors">
                     View Project
                     <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -350,7 +354,8 @@ export default function Home() {
               <span className="text-primary">Digital Reality</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Explore my range of full-stack development services tailored to your needs
+              Explore my range of full-stack development services tailored to
+              your needs
             </p>
           </div>
 
@@ -360,19 +365,30 @@ export default function Home() {
                 title: "Static Website Development",
                 description:
                   "Fast, responsive, and SEO-friendly static websites perfect for showcasing your brand or portfolio.",
-                features: ["Blazing fast load times", "Responsive design", "SEO optimization", "Easy maintenance"],
+                features: [
+                  "Blazing fast load times",
+                  "Responsive design",
+                  "SEO optimization",
+                  "Easy maintenance",
+                ],
                 icon: <Globe className="h-8 w-8" />,
               },
               {
                 title: "Dynamic Website Creation",
                 description:
                   "Powerful, interactive websites with database integration for complex functionalities and user engagement.",
-                features: ["User authentication", "Database integration", "Real-time updates", "Scalable architecture"],
+                features: [
+                  "User authentication",
+                  "Database integration",
+                  "Real-time updates",
+                  "Scalable architecture",
+                ],
                 icon: <LayoutGrid className="h-8 w-8" />,
               },
               {
                 title: "Idea to Code Conversion",
-                description: "Transform your startup or company ideas into fully functional web applications.",
+                description:
+                  "Transform your startup or company ideas into fully functional web applications.",
                 features: [
                   "Concept refinement",
                   "Prototype development",
@@ -385,20 +401,31 @@ export default function Home() {
               <AnimatedElement key={index} className="group">
                 <div className="h-full bg-white dark:bg-secondary rounded-3xl p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-2xl bg-primary/10 text-primary">{service.icon}</div>
+                    <div className="p-3 rounded-2xl bg-primary/10 text-primary">
+                      {service.icon}
+                    </div>
                     <ArrowUpRight className="h-5 w-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">{service.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                    {service.description}
+                  </p>
                   <ul className="space-y-2">
                     {service.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <li
+                        key={fIndex}
+                        className="flex items-center text-sm text-gray-600 dark:text-gray-300"
+                      >
                         <Check className="h-5 w-5 text-primary mr-2" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full mt-6" variant="outline" onClick={() => handleOrderService(service.title)}>
+                  <Button
+                    className="w-full mt-6"
+                    variant="outline"
+                    onClick={() => handleOrderService(service.title)}
+                  >
                     Order Service
                   </Button>
                 </div>
@@ -916,7 +943,13 @@ export default function Home() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white text-2xl">R</span>
+                  <Image
+                    src="/relismalogo.svg"
+                    alt="Logo"
+                    width={28}
+                    height={28}
+                    className="text-white"
+                  />
                 </div>
                 <h2 className="text-xl font-semibold">Rachid El-ismailyly</h2>
               </div>
