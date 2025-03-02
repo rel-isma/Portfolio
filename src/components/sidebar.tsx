@@ -30,7 +30,7 @@ export function Sidebar() {
                       rounded-2xl mb-6 relative"
       >
         <Image
-          src="/relisma1.jpg"
+          src="/relisma_pic.jpg"
           alt="Profile"
           fill
           className="object-cover object-top rounded-2xl"
