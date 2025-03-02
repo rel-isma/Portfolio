@@ -20,9 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head> 
-        <title>protfolio</title>
-      </head>
       <body
         className={`${syne.className} flex flex-col md:flex-row md:h-screen`}
       >
