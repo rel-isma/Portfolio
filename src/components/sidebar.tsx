@@ -7,8 +7,7 @@ export function Sidebar() {
   return (
     <aside
       id="topHome"
-      className="w-full md:w-[400px] flex flex-col md:h-screen min-h-[500px] p-8 bg-gradient-radial 
-                 md:bg-white md:dark:bg-secondary md:rounded-r-3xl md:shadow-lg"
+      className="w-full md:w-[400px] flex flex-col md:h-screen p-8 bg-gradient-radial md:bg-white md:dark:bg-secondary md:rounded-r-3xl md:shadow-lg"
     >
       {/* Top Section */}
       <div className="flex items-center space-x-3 mb-6">
@@ -27,12 +26,13 @@ export function Sidebar() {
       {/* Profile Image */}
       <div
         className="w-full max-w-[350px] mx-auto aspect-square bg-gradient-to-b from-primary/10 to-primary/5 
-                      rounded-2xl mb-6 relative"
+                      rounded-2xl mb-6 relative overflow-hidden"
       >
         <Image
           src="/relisma1.jpg"
           alt="Profile"
-          fill
+          width={350}
+          height={300}
           className="object-cover object-top rounded-2xl"
         />
       </div>
