@@ -69,7 +69,7 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
   title: 'Relisma',
-  description: '',
+  description: 'I Build All Kinds Of Websites And Web Applications That Help Businesses Grow And Meet Their Needs. From Interactive User Interfaces To Powerful Backend Systems, I Focus On Delivering High-Quality, Scalable, And User-Friendly Solutions.',
   icons: {
     icon: [
       {
