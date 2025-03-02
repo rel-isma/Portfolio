@@ -79,8 +79,8 @@ export const metadata: Metadata = {
       },
       {
         media: '(prefers-color-scheme: dark)',
-        url: '/relismalogo.svg',
-        href: '/relismalogo.svg',
+        url: '/relismaDark.svg',
+        href: '/relismaDark.svg',
       },
     ],
   },

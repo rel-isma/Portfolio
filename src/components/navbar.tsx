@@ -91,6 +91,7 @@ export function Navbar() {
               <Button
                 href="/#contact"
                 className="bg-primary text-white hover:bg-primary/90"
+                onClick={() => setSelectedItem("contact")}
               >
                 <MessageSquare className="mr-2 h-4 w-4" />
                 Hire Me

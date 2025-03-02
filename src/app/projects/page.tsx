@@ -62,6 +62,7 @@ const AnimatedElement = ({
   );
 };
 
+
 export default function ProjectsPage() {
   const breadcrumbItems = [{ label: "Projects", href: "/projects" }];
 

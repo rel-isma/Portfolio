@@ -14,6 +14,7 @@ export interface Project {
     sourceCode?: string
     liveDemo?: string
     demo?: boolean
+    sCode?: boolean
     features: string[]
     timeline: {
       date: string
@@ -49,6 +50,7 @@ export interface Project {
       sourceCode: "https://github.com/0x00-A/ft_transcendence_42",
       liveDemo: "https://ft-pong.me",
       demo: true,
+      sCode: true,
       features: [
         "Real-time multiplayer ping pong game",
         "Responsive and intuitive UI/UX design",
@@ -110,6 +112,7 @@ export interface Project {
       pushed_at: "2024-06-30",
       sourceCode: "https://github.com/rel-isma/INCEPTION",
       demo: false,
+      sCode: true,
       features: [
         "Scalable web infrastructure",
         "Docker containerization",
@@ -156,6 +159,7 @@ export interface Project {
       pushed_at: "2024-04-30",
       sourceCode: "https://github.com/0x00-A/ircserv_42",
       demo: false,
+      sCode: true,
       features: [
         "Multiple client connections",
         "Non-blocking I/O",
@@ -200,6 +204,7 @@ export interface Project {
       pushed_at: "2023-09-30",
       sourceCode: "https://github.com/yourusername/net-practice",
       demo: false,
+      sCode: false,
       features: [
         "Complex network topology configuration",
         "TCP/IP protocol implementation",
@@ -239,6 +244,7 @@ export interface Project {
       pushed_at: "2023-08-31",
       sourceCode: "https://github.com/rel-isma/minishell",
       demo: false,
+      sCode: true,
       features: [
         "User command handling",
         "Signal management",

@@ -23,6 +23,7 @@ import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { format } from "date-fns";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { projects } from "@/lib/projectData";
+import NotFound from "@/components/notFound";
 
 const AnimatedSection = ({
   children,
@@ -84,8 +85,9 @@ export default function ProjectPage() {
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
-    return <div>Project not found</div>;
+    return <NotFound />;
   }
+
 
   const breadcrumbItems = [
     { label: "Projects", href: "/projects" },
@@ -111,15 +113,19 @@ export default function ProjectPage() {
             {project.title}
           </h1>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-            <Button
-              href={project.sourceCode}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8"
-            >
-              <Github className="mr-2 h-5 w-5" />
-              Source Code
-            </Button>
+
+            {project.sCode && (
+              <Button
+                href={project.sourceCode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8"
+              >
+                <Github className="mr-2 h-5 w-5" />
+                Source Code
+              </Button>
+            )
+            }
 
             {project.demo && (
               <Button
