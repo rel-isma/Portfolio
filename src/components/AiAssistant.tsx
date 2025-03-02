@@ -47,7 +47,7 @@ export function AiAssistant() {
         ...prev,
         { id: Date.now().toString(), type: "bot", text: data.content },
       ]);
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
@@ -72,7 +72,7 @@ export function AiAssistant() {
   };
 
   return (
-    <div className="fixed bottom-24 right-4 z-50">
+    <div className="fixed bottom-40 md:bottom-24 right-4 z-50">
       <AnimatePresence>
         {isOpen && !isMinimized && (
           <motion.div
@@ -159,7 +159,7 @@ export function AiAssistant() {
           setIsOpen(!isOpen);
           setIsMinimized(false);
         }}
-        className={`fixed bottom-24 right-4 rounded-full w-12 h-12 bg-primary text-white hover:bg-primary/90 ${isOpen && !isMinimized ? "hidden" : ""}`}
+        className={`fixed bottom-40 md:bottom-24 right-4 rounded-full w-12 h-12 bg-primary text-white hover:bg-primary/90 ${isOpen && !isMinimized ? "hidden" : ""}`}
       >
         <MessageSquare className="h-6 w-6" />
       </Button>

@@ -120,9 +120,6 @@ export default function Home() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
-    null
-  );
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -134,7 +131,6 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus(null);
 
     console.log("formt: ", formState);
 
@@ -149,7 +145,7 @@ export default function Home() {
 
       if (response.ok) {
         toast.success("Message sent successfully!");
-        setSubmitStatus("success");
+
         setFormState({
           name: "",
           company: "",
@@ -161,12 +157,10 @@ export default function Home() {
         toast.error(
           result.error || "Failed to send message. Please try again."
         );
-        setSubmitStatus("error");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("An error occurred. Please try again.");
-      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }

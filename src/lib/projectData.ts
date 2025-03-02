@@ -13,6 +13,7 @@ export interface Project {
     pushed_at: string
     sourceCode?: string
     liveDemo?: string
+    demo?: boolean
     features: string[]
     timeline: {
       date: string
@@ -45,8 +46,9 @@ export interface Project {
       role: "Full Stack Developer",
       created_at: "2024-10-01",
       pushed_at: "2025-01-31",
-      sourceCode: "https://github.com/yourusername/ft-transcendence",
-      liveDemo: "https://ft-transcendence-demo.vercel.app",
+      sourceCode: "https://github.com/0x00-A/ft_transcendence_42",
+      liveDemo: "https://ft-pong.me",
+      demo: true,
       features: [
         "Real-time multiplayer ping pong game",
         "Responsive and intuitive UI/UX design",
@@ -106,7 +108,8 @@ export interface Project {
       role: "DevOps Engineer",
       created_at: "2024-05-01",
       pushed_at: "2024-06-30",
-      sourceCode: "https://github.com/yourusername/inception",
+      sourceCode: "https://github.com/rel-isma/INCEPTION",
+      demo: false,
       features: [
         "Scalable web infrastructure",
         "Docker containerization",
@@ -151,7 +154,8 @@ export interface Project {
       role: "Backend Developer",
       created_at: "2024-03-01",
       pushed_at: "2024-04-30",
-      sourceCode: "https://github.com/yourusername/irc-server",
+      sourceCode: "https://github.com/0x00-A/ircserv_42",
+      demo: false,
       features: [
         "Multiple client connections",
         "Non-blocking I/O",
@@ -195,6 +199,7 @@ export interface Project {
       created_at: "2023-09-01",
       pushed_at: "2023-09-30",
       sourceCode: "https://github.com/yourusername/net-practice",
+      demo: false,
       features: [
         "Complex network topology configuration",
         "TCP/IP protocol implementation",
@@ -232,7 +237,8 @@ export interface Project {
       role: "System Programmer",
       created_at: "2023-07-01",
       pushed_at: "2023-08-31",
-      sourceCode: "https://github.com/yourusername/minishell",
+      sourceCode: "https://github.com/rel-isma/minishell",
+      demo: false,
       features: [
         "User command handling",
         "Signal management",

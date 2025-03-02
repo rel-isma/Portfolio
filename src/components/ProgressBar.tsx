@@ -57,7 +57,7 @@ export function ProgressBar() {
         />
       </div>
 
-      <div className="fixed bottom-40 md:bottom-8 right-4 h-12 w-12 rounded-full bg-background/90 dark:bg-background-dark/90 backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg z-50 overflow-hidden">
+      <div className="fixed bottom-24 md:bottom-8 right-4 h-12 w-12 rounded-full bg-background/90 dark:bg-background-dark/90 backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg z-50 overflow-hidden">
         <svg className="w-full h-full" viewBox="0 0 32 32">
           <circle
             className="text-gray-300/30"
