@@ -5,14 +5,15 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, useAnimations, Environment } from "@react-three/drei";
 
 function Model({ url }: { url: string }) {
-  const group = useRef(); // Reference to the model group
+  const group = useRef(null); // Reference to the model group
   const { scene, animations } = useGLTF(url); // Load the model and animations
   const { actions } = useAnimations(animations, group); // Get animation actions
 
   // Play the first animation
   useEffect(() => {
     if (actions && actions[animations[0].name]) {
-      actions[animations[0].name].play();
+      const animation = actions[animations[0].name]
+      if (animation) animation.play();
     }
   }, [actions, animations]);
 

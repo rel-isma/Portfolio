@@ -92,7 +92,7 @@ const AnimatedElement = ({
   );
 };
 
-export { AnimatedSection, AnimatedElement };
+// export { AnimatedSection, AnimatedElement };
 
 export default function Home() {
   const [typedText, setTypedText] = useState("");
@@ -154,9 +154,7 @@ export default function Home() {
           message: "",
         });
       } else {
-        toast.error(
-          result.error || "Failed to send message. Please try again."
-        );
+        toast.error("Failed to send message. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);

@@ -8,6 +8,7 @@ import type React from "react";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Toaster } from "react-hot-toast";
 import { AiAssistant } from "@/components/AiAssistant";
+import { Metadata } from "next";
 
 // const inter = Inter({ subsets: ["latin"] });
 const syne = Syne({ subsets: ["latin"] });
@@ -19,6 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head> 
+        <title>protfolio</title>
+      </head>
       <body
         className={`${syne.className} flex flex-col md:flex-row md:h-screen`}
       >
@@ -62,3 +66,22 @@ export default function RootLayout({
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Relisma',
+  description: '',
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/relismalogo.svg',
+        href: '/relismalogo.svg',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/relismalogo.svg',
+        href: '/relismalogo.svg',
+      },
+    ],
+  },
+};
