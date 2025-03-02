@@ -15,7 +15,6 @@ export async function POST(req: Request) {
   });
 
   try {
-    // Send email
     await transporter.sendMail({
       from: `"Contact Form" <${process.env.EMAIL_USER}>`,
       to: process.env.RECIPIENT_EMAIL,
