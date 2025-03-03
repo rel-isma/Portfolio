@@ -84,7 +84,7 @@ export interface Project {
       ],
       stats: {
         commits: 450,
-        contributors: 4,
+        contributors: 3,
         stars: 75,
         forks: 15,
       },
