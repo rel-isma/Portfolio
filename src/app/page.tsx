@@ -181,7 +181,7 @@ export default function Home() {
               Hi! I&apos;m
             </span>
             <br />
-            <span className="text-primary">Rachid</span> El-Ismailyly
+            <span className="text-primary">Rachid</span> El-Ismaiyly
           </h1>
         </AnimatedElement>
         <AnimatedElement className={""}>
