@@ -612,11 +612,11 @@ export default function Home() {
                   {[
                     {
                       name: "JavaScript",
-                      icon: "JavaScript.svg",
+                      icon: "javascript.svg",
                     },
                     {
                       name: "TypeScript",
-                      icon: "TypeScript.svg",
+                      icon: "typescript.svg",
                     },
                     {
                       name: "HTML5",
@@ -685,7 +685,7 @@ export default function Home() {
                     },
                     {
                       name: "JavaScript",
-                      icon: "JavaScript.svg",
+                      icon: "javascript.svg",
                     },
                   ].map((tech) => (
                     <motion.div
