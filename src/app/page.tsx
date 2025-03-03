@@ -511,7 +511,7 @@ export default function Home() {
                   icon: Heart,
                   label: "Interests",
                   value:
-                    "Traveling, Football, Design, Reading, Cooking, Ra3i ghnam, Exercise",
+                    "Traveling, Football, Design, Cooking, coding",
                 },
               ].map((item, index) => (
                 <div
@@ -685,7 +685,7 @@ export default function Home() {
                     },
                     {
                       name: "JavaScript",
-                      icon: "javascript.svg",
+                      icon: "typescript.svg",
                     },
                   ].map((tech) => (
                     <motion.div
