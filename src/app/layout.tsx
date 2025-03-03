@@ -31,7 +31,7 @@ export default function RootLayout({
         >
           {/* Add Toaster here */}
           <Toaster
-            position="top-right"
+            position="top-center"
             toastOptions={{
               duration: 5000,
               style: {

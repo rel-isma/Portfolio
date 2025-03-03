@@ -9,9 +9,9 @@ import {
   Home,
   LayoutGrid,
   Server,
-  Info,
   Mail,
 } from "lucide-react";
+import { BsInfoSquare } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -23,7 +23,7 @@ export function Navbar() {
     { id: "home", icon: Home, label: "Home" },
     { id: "portfolio", icon: LayoutGrid, label: "Portfolio" },
     { id: "service", icon: Server, label: "Service" },
-    { id: "about", icon: Info, label: "About" },
+    { id: "about", icon: BsInfoSquare, label: "About" },
     { id: "contact", icon: Mail, label: "Contact" },
   ];
 
