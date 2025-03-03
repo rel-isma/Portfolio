@@ -58,7 +58,7 @@ export function OrderServiceModal({
       } else {
         throw new Error("Failed to submit order");
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error("Failed to submit order. Please try again.", {
         duration: 3000,
@@ -75,22 +75,24 @@ export function OrderServiceModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md"
+            className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 w-full max-w-sm sm:max-w-md"
           >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold">Order Service</h2>
+            <div className="flex justify-between items-center mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl font-bold">Order Service</h2>
               <Button variant="ghost" size="icon" onClick={onClose}>
-                <X className="h-6 w-6" />
+                <X className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
             </div>
-            <p className="mb-4">You are ordering: {selectedService}</p>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base">
+              You are ordering: {selectedService}
+            </p>
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               <Input
                 type="text"
                 name="name"
@@ -98,6 +100,7 @@ export function OrderServiceModal({
                 required
                 value={formState.name}
                 onChange={handleInputChange}
+                className="text-sm sm:text-base"
               />
               <Input
                 type="email"
@@ -106,6 +109,7 @@ export function OrderServiceModal({
                 required
                 value={formState.email}
                 onChange={handleInputChange}
+                className="text-sm sm:text-base"
               />
               <Input
                 type="tel"
@@ -113,22 +117,24 @@ export function OrderServiceModal({
                 placeholder="Your Phone Number"
                 value={formState.phone}
                 onChange={handleInputChange}
+                className="text-sm sm:text-base"
               />
               <Textarea
                 name="message"
                 placeholder="Additional Details"
                 value={formState.message}
                 onChange={handleInputChange}
+                className="text-sm sm:text-base"
               />
               <Button
                 type="submit"
-                className="w-full text-white"
+                className="w-full text-white py-3 sm:py-4 text-sm sm:text-base"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Submiting...
+                    Submitting...
                   </>
                 ) : (
                   "Submit Order"

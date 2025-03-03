@@ -335,7 +335,7 @@ export default function Home() {
       </AnimatedSection>
 
       <AnimatedSection id="service" className="py-16 lg:py-24 scroll-mt-16">
-        <AnimatedElement className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedElement className="max-w-6xl mx-auto ">
           <div className="mb-12">
             <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold mb-4">
               <Star className="mr-1.5 h-4 w-4" />
@@ -433,7 +433,7 @@ export default function Home() {
       </AnimatedSection>
 
       <AnimatedSection id="about" className="py-16 lg:py-24 scroll-mt-16">
-        <AnimatedElement className="space-y-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedElement className="space-y-16 max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
@@ -788,7 +788,7 @@ export default function Home() {
       </AnimatedSection>
 
       <AnimatedSection id="contact" className="pb-16 lg:py-24 scroll-mt-16">
-        <AnimatedElement className="mx-auto px-4">
+        <AnimatedElement className="mx-auto">
           <div className="space-y-4 text-start mb-12">
             <div className="inline-flex items-center rounded-full border bg-white dark:bg-secondary shadow-sm px-3 py-1 text-sm font-semibold">
               <Star className="mr-1.5 h-4 w-4" />

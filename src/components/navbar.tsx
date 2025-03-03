@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { usePathname } from "next/navigation";
 import {
   MessageSquare,
   Home,
@@ -16,6 +17,7 @@ import { motion } from "framer-motion";
 
 export function Navbar() {
   const [selectedItem, setSelectedItem] = useState("home");
+  const pathname = usePathname(); 
 
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
@@ -26,6 +28,15 @@ export function Navbar() {
   ];
 
   useEffect(() => {
+    if (pathname === "/projects") {
+      setSelectedItem("portfolio");
+    } else if (pathname === "/") {
+      setSelectedItem("home");
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
     const sections = document.querySelectorAll("section");
     const options = {
       root: null,
@@ -51,7 +62,7 @@ export function Navbar() {
         observer.unobserve(section);
       });
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <>

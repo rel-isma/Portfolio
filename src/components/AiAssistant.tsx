@@ -121,7 +121,7 @@ export function AiAssistant() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-96 max-h-[500px] flex flex-col overflow-hidden relative"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-80 md:w-96 max-h-[500px] flex flex-col overflow-hidden relative"
           >
             <div className="p-4 border-b bg-primary text-white flex justify-between items-center">
               <h3 className="text-lg font-semibold">Ask Me</h3>
