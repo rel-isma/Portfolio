@@ -30,7 +30,7 @@ export function SocialLinks() {
         <Github className="h-6 w-6" />
       </Link>
       <Link
-        href="#"
+        href="https://discord.com/users/el_ismaiyly"
         target="_blank"
         rel="noopener noreferrer"
         className="p-2 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -38,7 +38,7 @@ export function SocialLinks() {
         <FaDiscord className="h-6 w-6" />
       </Link>
       <Link
-        href="#"
+        href="https://wa.me/+212611563140"
         target="_blank"
         rel="noopener noreferrer"
         className="p-2 rounded-2xl border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
