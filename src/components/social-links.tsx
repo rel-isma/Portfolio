@@ -4,7 +4,7 @@ import { FaDiscord, FaWhatsapp } from "react-icons/fa6";
 
 export function SocialLinks() {
   return (
-    <div className="flex justify-center gap-2">
+    <div className="flex justify-between gap-2 w-full">
       <Link
         href="https://www.instagram.com/rel_ismaa/"
         target="_blank"

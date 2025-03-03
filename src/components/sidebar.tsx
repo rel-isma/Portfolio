@@ -58,7 +58,7 @@ export function Sidebar() {
       </div>
 
       {/* Buttons */}
-      <div className="mt-auto space-y-4">
+      <div className="mt-4 space-y-4">
         <SocialLinks />
         <Button
           href="/#contact"
