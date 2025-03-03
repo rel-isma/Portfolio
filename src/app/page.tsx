@@ -700,7 +700,7 @@ export default function Home() {
                     >
                       <div className="relative p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 group-hover:bg-primary/10 transition-colors">
                         <Image
-                          src={tech.icon || "/placeholder.svg"}
+                          src={`/${tech.icon}` || "/placeholder.svg"}
                           alt={tech.name}
                           width={60}
                           height={60}
