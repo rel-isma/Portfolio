@@ -204,7 +204,7 @@ export function AiAssistant() {
               <div className="flex items-center justify-between p-4 border-b bg-primary text-white">
                 <div className="flex items-center space-x-2">
                   <h2 className="text-lg font-semibold">
-                    Ask M
+                    Ask Me
                   </h2>
                   <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
                     built-in
