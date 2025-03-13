@@ -24,6 +24,7 @@ import { format } from "date-fns";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { projects } from "@/lib/projectData";
 import NotFound from "@/components/notFound";
+import { useState } from "react";
 
 const AnimatedSection = ({
   children,
@@ -81,13 +82,13 @@ const AnimatedElement = ({
 export default function ProjectPage() {
   const params = useParams();
   const slug = params.slug as string;
+  const [showPopup, setShowPopup] = useState(true);
 
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     return <NotFound />;
   }
-
 
   const breadcrumbItems = [
     { label: "Projects", href: "/projects" },
@@ -101,6 +102,21 @@ export default function ProjectPage() {
 
   return (
     <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
+      {/* Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-white dark:bg-secondary p-6 rounded-xl shadow-lg text-center max-w-md w-full">
+            <h2 className="text-xl font-bold mb-2">🚀 Heads up!</h2>
+            <p className="text-muted-foreground mb-4">
+              This page is fully set up, but the data shown here is not current. 😅
+              I’ll update it when I get a chance. In the meantime, feel free to ask my assistant anything about me!
+            </p>
+            <Button className="w-full bg-primary text-white hover:bg-primary/90" onClick={() => setShowPopup(false)}>
+              Okay, got it!
+            </Button>
+          </div>
+        </div>
+      )}
       <AnimatedSection
         className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12"
         id=""
@@ -113,7 +129,6 @@ export default function ProjectPage() {
             {project.title}
           </h1>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-
             {project.sCode && (
               <Button
                 href={project.sourceCode}
@@ -124,8 +139,7 @@ export default function ProjectPage() {
                 <Github className="mr-2 h-5 w-5" />
                 Source Code
               </Button>
-            )
-            }
+            )}
 
             {project.demo && (
               <Button
