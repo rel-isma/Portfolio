@@ -83,10 +83,10 @@ export interface Project {
         },
       ],
       stats: {
-        commits: 450,
+        commits: 600,
         contributors: 3,
-        stars: 1,
-        forks: 1,
+        stars: 12,
+        forks: 11,
       },
       languages: {
         TypeScript: 50000,
@@ -132,10 +132,10 @@ export interface Project {
         },
       ],
       stats: {
-        commits: 90,
+        commits: 190,
         contributors: 1,
-        stars: 1,
-        forks: 1,
+        stars: 11,
+        forks: 12,
       },
       languages: {
         Docker: 5000,
@@ -268,7 +268,7 @@ export interface Project {
         commits: 100,
         contributors: 2,
         stars: 1,
-        forks: 0,
+        forks: 12,
       },
       languages: {
         C: 8000,

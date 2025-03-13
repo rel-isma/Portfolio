@@ -104,10 +104,10 @@ export default function ProjectPage() {
     <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
       {/* Popup Modal */}
       {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="bg-white dark:bg-secondary p-6 rounded-xl shadow-lg text-center max-w-md w-full">
-            <h2 className="text-xl font-bold mb-2">🚀 Heads up!</h2>
-            <p className="text-muted-foreground mb-4">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 p-4 sm:p-0">
+          <div className="bg-white dark:bg-secondary p-4 sm:p-6 rounded-lg sm:rounded-xl shadow-lg text-center max-w-md w-full sm:w-auto">
+            <h2 className="text-lg sm:text-xl font-bold mb-2">🚀 Heads up!</h2>
+            <p className="text-sm sm:text-base text-muted-foreground mb-4">
               This page is fully set up, but the data shown here is not current. 😅
               I’ll update it when I get a chance. In the meantime, feel free to ask my assistant anything about me!
             </p>
