@@ -46,7 +46,7 @@ export interface Project {
       client: "1337 coding school",
       role: "Full Stack Developer",
       created_at: "2024-10-01",
-      pushed_at: "2025-01-31",
+      pushed_at: "2025-01-15",
       sourceCode: "https://github.com/0x00-A/ft_transcendence_42",
       liveDemo: "https://ft-pong.me",
       demo: true,
@@ -85,8 +85,8 @@ export interface Project {
       stats: {
         commits: 450,
         contributors: 3,
-        stars: 75,
-        forks: 15,
+        stars: 1,
+        forks: 1,
       },
       languages: {
         TypeScript: 50000,
@@ -132,10 +132,10 @@ export interface Project {
         },
       ],
       stats: {
-        commits: 80,
+        commits: 90,
         contributors: 1,
-        stars: 15,
-        forks: 3,
+        stars: 1,
+        forks: 1,
       },
       languages: {
         Docker: 5000,
@@ -180,9 +180,9 @@ export interface Project {
       ],
       stats: {
         commits: 150,
-        contributors: 1,
-        stars: 20,
-        forks: 4,
+        contributors: 3,
+        stars: 0,
+        forks: 0,
       },
       languages: {
         Cpp: 10000,
@@ -219,10 +219,10 @@ export interface Project {
         },
       ],
       stats: {
-        commits: 50,
+        commits: 0,
         contributors: 1,
-        stars: 10,
-        forks: 2,
+        stars: 0,
+        forks: 0,
       },
       languages: {
         Cpp: 5000,
@@ -266,13 +266,13 @@ export interface Project {
       ],
       stats: {
         commits: 100,
-        contributors: 1,
-        stars: 15,
-        forks: 3,
+        contributors: 2,
+        stars: 1,
+        forks: 0,
       },
       languages: {
         C: 8000,
-        bash: 1000,
+        bash: 50,
       },
     },
   ]

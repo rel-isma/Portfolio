@@ -56,40 +56,6 @@ export function ProgressBar() {
           style={{ width: `${progress}%` }}
         />
       </div>
-
-      <div className="fixed bottom-24 md:bottom-8 right-4 h-12 w-12 rounded-full bg-background/90 dark:bg-background-dark/90 backdrop-blur-lg border border-gray-200 dark:border-gray-800 shadow-lg z-50 overflow-hidden">
-        <svg className="w-full h-full" viewBox="0 0 32 32">
-          <circle
-            className="text-gray-300/30"
-            strokeWidth="4"
-            stroke="currentColor"
-            fill="transparent"
-            r="14"
-            cx="16"
-            cy="16"
-          />
-          <circle
-            className="text-primary"
-            strokeWidth="4"
-            strokeDasharray={88}
-            strokeDashoffset={88 - (88 * progress || 0) / 100}
-            strokeLinecap="round"
-            stroke="currentColor"
-            fill="transparent"
-            r="14"
-            cx="16"
-            cy="16"
-            style={{
-              transition: "stroke-dashoffset 0.35s",
-              transform: "rotate(-90deg)",
-              transformOrigin: "50% 50%",
-            }}
-          />
-        </svg>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-semibold text-primary">
-          {progress}%
-        </div>
-      </div>
     </>
   );
 }
