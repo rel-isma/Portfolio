@@ -41,18 +41,21 @@ export default function Avatar3D() {
   return (
     <Canvas
       camera={{
-        position: isMobile ? [0, 0, 7] : [0, 0, 5], // Adjust camera for mobile
+        position: isMobile ? [0, 6, 7] : [0.1, 4, 1], // Adjust camera for mobile
         fov: isMobile ? 30 : 40, // Adjust field of view for mobile
       }}
       style={{ width: "100%", height: isMobile ? "400px" : "600px" }} // Adjust height for mobile
     >
       {/* Lighting */}
       <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={0.8} />
-      <directionalLight position={[5, 5, 5]} intensity={0.5} />
+      {/* <pointLight position={[10, 10, 10]} intensity={0.8} />
+      <directionalLight position={[5, 5, 5]} intensity={0.5} /> */}
+        {/* <directionalLight position={[0, 2, 0]} intensity={1} />
+      <directionalLight position={[0, 5, -8]} intensity={1} />
+      <directionalLight position={[0, 5, 8]} intensity={1} /> */}
 
       {/* Environment (optional) */}
-      <Environment preset="city" />
+      <Environment preset="warehouse"/>
 
       {/* 3D Model */}
       <Suspense fallback={null}>
@@ -63,7 +66,7 @@ export default function Avatar3D() {
       <OrbitControls
         enableZoom={true} // Allow zooming
         enablePan={false} // Disable panning
-        minDistance={isMobile ? 3 : 4} // Adjust zoom for mobile
+        minDistance={isMobile ? 5 : 4} // Adjust zoom for mobile
         maxDistance={isMobile ? 10 : 9} // Adjust zoom for mobile
         minPolarAngle={Math.PI / 4} // Limit vertical rotation
         maxPolarAngle={Math.PI / 2} // Limit vertical rotation

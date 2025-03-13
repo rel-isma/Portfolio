@@ -900,7 +900,7 @@ export default function Home() {
                   <Linkedin className="h-8 w-8" />
                 </Link>
                 <Link
-                  href="https://discord.com/users/YOUR_DISCORD_ID"
+                  href="https://discord.com/users/957577009599496192"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center text-gray-600 dark:text-gray-300 p-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:text-primary"
