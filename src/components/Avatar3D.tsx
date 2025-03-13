@@ -41,7 +41,7 @@ export default function Avatar3D() {
   return (
     <Canvas
       camera={{
-        position: isMobile ? [0, 6, 7] : [0.1, 4, 1], // Adjust camera for mobile
+        position: isMobile ? [0, 4, 1] : [0.1, 4, 1], // Adjust camera for mobile
         fov: isMobile ? 30 : 40, // Adjust field of view for mobile
       }}
       style={{ width: "100%", height: isMobile ? "400px" : "600px" }} // Adjust height for mobile
