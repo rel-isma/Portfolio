@@ -118,7 +118,7 @@ export default function ProjectPage() {
         </div>
       )}
       <AnimatedSection
-        className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12"
+        className="max-w-6xl mx-auto "
         id=""
       >
         <Breadcrumb items={breadcrumbItems} />
