@@ -21,7 +21,7 @@ export function Sidebar() {
             className="text-white"
           />
         </div>
-        <h2 className="text-xl font-semibold">Rachid El-ismailyly</h2>
+        <h2 className="text-xl font-semibold">Rachid El-ismaiyly</h2>
       </div>
 
       {/* Profile Image */}

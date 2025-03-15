@@ -940,7 +940,7 @@ export default function Home() {
                     className="text-white"
                   />
                 </div>
-                <h2 className="text-xl font-semibold">Rachid El-ismailyly</h2>
+                <h2 className="text-xl font-semibold">Rachid El-ismaiyly</h2>
               </div>
               <p className="text-gray-600 dark:text-gray-300">
                 Full-stack developer specializing in modern web applications.
@@ -1036,7 +1036,7 @@ export default function Home() {
           <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-gray-600 dark:text-gray-300">
-                © {new Date().getFullYear()} Rachid El-ismailyly. All rights
+                © {new Date().getFullYear()} Rachid El-ismaiyly. All rights
                 reserved.
               </p>
               <div className="flex space-x-6">
