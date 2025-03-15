@@ -65,20 +65,52 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: 'Relisma',
-  description: 'I Build All Kinds Of Websites And Web Applications That Help Businesses Grow And Meet Their Needs. From Interactive User Interfaces To Powerful Backend Systems, I Focus On Delivering High-Quality, Scalable, And User-Friendly Solutions.',
-  icons: {
-    icon: [
+  title: "Rachid El-Ismaiyly | Full-Stack Web Developer & Software Engineer",
+  description:
+    "Experienced full-stack developer specializing in modern web applications. Expertise in React, Next.js, Django, and scalable backend solutions.",
+  keywords: [
+    "Rachid El-Ismaiyly",
+    "Portfolio",
+    "rachid el ismaili",
+    "rachid el ismaily",
+    "Rel Isma",
+    "Relisma",
+    "Full-Stack Developer",
+    "Software Engineer",
+    "Web Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Django Developer",
+    "Python Developer",
+    "JavaScript Engineer",
+    "Frontend Developer",
+    "Backend Developer",
+    "UI/UX Designer",
+    "Performance Optimization",
+  ],
+  authors: [{ name: "Rachid El-Ismaiyly", url: "https://rachidelismaiyly.me" }],
+  openGraph: {
+    title: "Rachid El-Ismaiyly | Full-Stack Developer & Software Engineer",
+    description:
+      "Building high-performance web applications using React, Next.js, and Django. Helping businesses scale with modern and scalable technology.",
+    url: "https://rachidelismaiyly.me",
+    siteName: "Rachid El-Ismaiyly Portfolio",
+    images: [
       {
-        media: '(prefers-color-scheme: light)',
-        url: '/relismalogo.svg',
-        href: '/relismalogo.svg',
-      },
-      {
-        media: '(prefers-color-scheme: dark)',
-        url: '/relismaDark.svg',
-        href: '/relismaDark.svg',
+        url: "/relisma-preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Preview of Rachid El-Ismaiyly's Portfolio",
       },
     ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rachid El-Ismaiyly | Full-Stack Developer & Software Engineer",
+    description:
+      "Expert in React, Next.js, and Django. Crafting scalable and high-performance web applications for businesses.",
+    images: ["/relisma-preview.jpg"],
   },
 };
+
