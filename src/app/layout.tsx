@@ -65,7 +65,7 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Rachid El-Ismaiyly | Full-Stack Web Developer & Software Engineer",
+  title: "Rachid El-Ismaiyly | Full-Stack Web Developer",
   description:
     "Experienced full-stack developer specializing in modern web applications. Expertise in React, Next.js, Django, and scalable backend solutions.",
   keywords: [
