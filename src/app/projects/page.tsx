@@ -95,9 +95,10 @@ export default function ProjectsPage() {
                 <div className="aspect-[4/3] relative">
                   <Image
                     src={project.image || "/placeholder.svg"}
-                    alt={project.title}
+                    alt={project.title + ' project screenshot'}
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                     fill
+                    aria-label={project.title + ' project image'}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="absolute bottom-0 p-6 text-white">

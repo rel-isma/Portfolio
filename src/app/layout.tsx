@@ -20,16 +20,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${syne.className} flex flex-col md:flex-row md:h-screen`}
-      >
+      <head>
+        <title>Rachid El Ismaiyly | Full-Stack Developer Portfolio</title>
+        <meta name="description" content="Portfolio of Rachid El Ismaiyly, Full-Stack Developer. Projects, skills, and contact information." />
+        <meta property="og:title" content="Rachid El Ismaiyly | Full-Stack Developer Portfolio" />
+        <meta property="og:description" content="Portfolio of Rachid El Ismaiyly, Full-Stack Developer." />
+        <meta property="og:image" content="/public/relisma_pic.jpg" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Rachid El Ismaiyly | Full-Stack Developer Portfolio" />
+        <meta name="twitter:description" content="Portfolio of Rachid El Ismaiyly, Full-Stack Developer." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://yourdomain.com" />
+      </head>
+      <body className={`${syne.className} flex flex-col md:flex-row md:h-screen`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {/* Add Toaster here */}
           <Toaster
             position="top-center"
             toastOptions={{
@@ -44,15 +54,20 @@ export default function RootLayout({
             }}
           />
           <AiAssistant />
-
           <div className="flex flex-col md:flex-row w-full max-w-[1440px] overflow-hidden mx-auto">
-            <Sidebar />
+            <aside aria-label="Sidebar Navigation">
+              <Sidebar />
+            </aside>
             <div className="flex flex-col flex-grow overflow-hidden w-full">
               <main
                 className="flex-grow overflow-auto no-scrollbar p-8 !pt-0  relative w-full"
                 id="main-content"
+                tabIndex={-1}
+                aria-label="Main Content"
               >
-                <Navbar />
+                <header>
+                  <Navbar />
+                </header>
                 {children}
                 <ProgressBar />
               </main>
