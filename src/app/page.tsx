@@ -29,13 +29,15 @@ import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { staggerContainer } from "@/lib/animations";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { scrollAnimation } from "@/lib/animations";
 import React from "react";
 import toast from "react-hot-toast";
-import Avatar3D from "@/components/Avatar3D";
 import { OrderServiceModal } from "@/components/order-service-modal";
 import { projects } from "@/lib/projectData";
+
+// Lazy load heavy components
+const Avatar3D = lazy(() => import("@/components/Avatar3D"));
 
 // 🔹 Animated Section (With Scroll Tracking)
 const AnimatedSection = ({
@@ -92,7 +94,12 @@ const AnimatedElement = ({
   );
 };
 
-// export { AnimatedSection, AnimatedElement };
+// Loading component for lazy loaded components
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center h-96">
+    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+  </div>
+);
 
 export default function Home() {
   const [typedText, setTypedText] = useState("");
@@ -242,6 +249,9 @@ export default function Home() {
                   alt={projects[0].title + ' project screenshot'}
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={false}
+                  loading="lazy"
                   aria-label={projects[0].title + ' project image'}
                 />
               </div>
@@ -271,13 +281,16 @@ export default function Home() {
             >
               <Link href={`/projects/${project.slug}`}>
                 <div className="aspect-[4/3] relative">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title + ' project screenshot'}
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    fill
-                    aria-label={project.title + ' project image'}
-                  />
+                                  <Image
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.title + ' project screenshot'}
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={false}
+                  loading="lazy"
+                  aria-label={project.title + ' project image'}
+                />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="absolute bottom-0 p-6 text-white">
@@ -305,6 +318,9 @@ export default function Home() {
                   alt={projects[3].title}
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={false}
+                  loading="lazy"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
@@ -469,7 +485,9 @@ export default function Home() {
             <AnimatedElement className="relative h-[400px] md:h-[600px] w-full">
               {/* Placeholder for future 3D avatar */}
               <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl flex items-center justify-center">
-                <Avatar3D />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Avatar3D />
+                </Suspense>
               </div>
             </AnimatedElement>
           </div>

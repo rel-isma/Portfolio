@@ -8,10 +8,15 @@ import type React from "react";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Toaster } from "react-hot-toast";
 import { AiAssistant } from "@/components/AiAssistant";
+import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { Metadata } from "next";
 
 // const inter = Inter({ subsets: ["latin"] });
-const syne = Syne({ subsets: ["latin"] });
+const syne = Syne({ 
+  subsets: ["latin"],
+  display: 'swap',
+  preload: true,
+});
 
 export default function RootLayout({
   children,
@@ -31,7 +36,42 @@ export default function RootLayout({
         <meta name="twitter:title" content="Rachid El Ismaiyly | Full-Stack Developer Portfolio" />
         <meta name="twitter:description" content="Portfolio of Rachid El Ismaiyly, Full-Stack Developer." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://yourdomain.com" />
+        <link rel="canonical" href="https://rachidelismaiyly.me" />
+        
+        {/* Preload critical resources */}
+        <link rel="preload" href="/model.glb" as="fetch" crossOrigin="anonymous" />
+        <link rel="preload" href="/Rachid_El_ismaiyly_Full-Stack.pdf" as="document" />
+        
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Performance optimizations */}
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="color-scheme" content="light dark" />
+        
+        {/* Resource hints */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
+                    });
+                });
+              }
+            `,
+          }}
+        />
       </head>
       <body className={`${syne.className} flex flex-col md:flex-row md:h-screen`}>
         <ThemeProvider
@@ -54,6 +94,7 @@ export default function RootLayout({
             }}
           />
           <AiAssistant />
+          <PerformanceMonitor />
           <div className="flex flex-col md:flex-row w-full max-w-[1440px] overflow-hidden mx-auto">
             <aside aria-label="Sidebar Navigation">
               <Sidebar />
@@ -80,6 +121,7 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rachidelismaiyly.me'),
   title: "Rachid El-Ismaiyly | Full-Stack Web Developer",
   description:
     "Experienced full-stack developer specializing in modern web applications. Expertise in React, Next.js, Django, and scalable backend solutions.",
@@ -104,6 +146,19 @@ export const metadata: Metadata = {
     "Performance Optimization",
   ],
   authors: [{ name: "Rachid El-Ismaiyly", url: "https://rachidelismaiyly.me" }],
+  creator: "Rachid El-Ismaiyly",
+  publisher: "Rachid El-Ismaiyly",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     title: "Rachid El-Ismaiyly | Full-Stack Developer & Software Engineer",
     description:
@@ -119,6 +174,7 @@ export const metadata: Metadata = {
       },
     ],
     type: "website",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
@@ -126,6 +182,12 @@ export const metadata: Metadata = {
     description:
       "Expert in React, Next.js, and Django. Crafting scalable and high-performance web applications for businesses.",
     images: ["/relisma-preview.jpg"],
+    creator: "@rachidelismaiyly",
   },
+  alternates: {
+    canonical: "https://rachidelismaiyly.me",
+  },
+  category: "technology",
+  classification: "Portfolio",
 };
 
