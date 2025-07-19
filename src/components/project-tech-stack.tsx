@@ -27,7 +27,7 @@ export function ProjectTechStack({ technologies }: ProjectTechStackProps) {
           >
             <div className="relative h-12 w-12">
               <Image
-                src={tech.icon || "/placeholder.svg"}
+                src={`/${tech.icon}` || "/placeholder.svg"}
                 alt={tech.name}
                 fill
                 className="object-contain"
