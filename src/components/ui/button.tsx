@@ -5,17 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden group",
+  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden group active:scale-[0.98]",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-lg hover:-translate-y-0.5",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground hover:shadow-md",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-md",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
@@ -36,22 +36,45 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
   href?: string;
   target?: "_blank" | "_self"; // Support for target="_blank"
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, href, target, ...props }, ref) => {
-    const content = (
+  ({ className, variant, size, asChild = false, href, target, ...props }, ref) => {
+    const buttonClassName = cn(buttonVariants({ variant, size, className }));
+
+    const createContent = (children: React.ReactNode) => (
       <span className="flex items-center justify-center w-full h-full">
         <span className="flex items-center justify-center w-full transition-all duration-300 ease-in-out transform group-hover:-translate-y-[150%] group-hover:opacity-0">
-          {props.children}
+          {children}
         </span>
         <span className="absolute flex items-center justify-center w-full transition-all duration-300 ease-in-out transform translate-y-[150%] group-hover:translate-y-0 group-hover:opacity-100">
-          {props.children}
+          {children}
         </span>
       </span>
     );
+
+    // If asChild is true, apply button styles to the child element
+    if (asChild) {
+      const child = React.Children.only(props.children as React.ReactElement);
+      const childWithProps = child as React.ReactElement<{ 
+        className?: string; 
+        children?: React.ReactNode 
+      }>;
+      
+      return React.cloneElement(
+        childWithProps,
+        {
+          className: cn(
+            buttonClassName,
+            childWithProps.props.className
+          ),
+        },
+        createContent(childWithProps.props.children)
+      );
+    }
 
     if (href) {
       if (target === "_blank") {
@@ -61,9 +84,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(buttonVariants({ variant, size, className }))}
+            className={buttonClassName}
           >
-            {content}
+            {createContent(props.children)}
           </a>
         );
       } else {
@@ -71,9 +94,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         return (
           <Link
             href={href}
-            className={cn(buttonVariants({ variant, size, className }))}
+            className={buttonClassName}
           >
-            {content}
+            {createContent(props.children)}
           </Link>
         );
       }
@@ -82,11 +105,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // Default to a regular <button> if no href (with animation)
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={buttonClassName}
         ref={ref}
         {...props}
       >
-        {content}
+        {createContent(props.children)}
       </button>
     );
   }

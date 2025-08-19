@@ -12,18 +12,13 @@ import {
   Code2,
   ExternalLink,
   Github,
-  GitFork,
-  GitCommit,
   Link2,
-  Star,
-  Users2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { staggerContainer, scrollAnimation } from "@/lib/animations";
 import { format } from "date-fns";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { projects } from "@/lib/projectData";
-import NotFound from "@/components/notFound";
 import { useState } from "react";
 
 const AnimatedSection = ({
@@ -87,18 +82,13 @@ export default function ProjectPage() {
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
-    return <NotFound />;
+    return <div>Project not found</div>;
   }
 
   const breadcrumbItems = [
     { label: "Projects", href: "/projects" },
     { label: project.title, href: `/projects/${params.slug}` },
   ];
-
-  const totalLines = Object.values(project.languages).reduce(
-    (a, b) => a + b,
-    0
-  );
 
   return (
     <div className="min-h-full pb-10 bg-gradient-radial from-background to-background/80 dark:from-background-dark dark:to-background-dark/80">
@@ -214,92 +204,36 @@ export default function ProjectPage() {
           </div>
         </AnimatedElement>
 
-        {/* GitHub Stats */}
-        <AnimatedElement className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 flex items-center gap-4 shadow-lg transition-transform duration-300 hover:scale-105">
-            <GitCommit className="h-10 w-10 text-primary" />
-            <div>
-              <div className="text-2xl font-bold">{project.stats.commits}</div>
-              <div className="text-sm text-muted-foreground">Commits</div>
-            </div>
-          </div>
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 flex items-center gap-4 shadow-lg transition-transform duration-300 hover:scale-105">
-            <Star className="h-10 w-10 text-primary" />
-            <div>
-              <div className="text-2xl font-bold">{project.stats.stars}</div>
-              <div className="text-sm text-muted-foreground">Stars</div>
-            </div>
-          </div>
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 flex items-center gap-4 shadow-lg transition-transform duration-300 hover:scale-105">
-            <GitFork className="h-10 w-10 text-primary" />
-            <div>
-              <div className="text-2xl font-bold">{project.stats.forks}</div>
-              <div className="text-sm text-muted-foreground">Forks</div>
-            </div>
-          </div>
-          <div className="bg-white dark:bg-secondary rounded-2xl p-6 flex items-center gap-4 shadow-lg transition-transform duration-300 hover:scale-105">
-            <Users2 className="h-10 w-10 text-primary" />
-            <div>
-              <div className="text-2xl font-bold">
-                {project.stats.contributors}
-              </div>
-              <div className="text-sm text-muted-foreground">Contributors</div>
-            </div>
-          </div>
-        </AnimatedElement>
-
         {/* Languages Used */}
         <AnimatedElement className="mb-8 sm:mb-12">
           <div className="bg-white dark:bg-secondary rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-8">
-              Languages Used
+              Languages
             </h2>
-            <div className="space-y-4 sm:space-y-6">
-              {Object.entries(project.languages).map(([language, lines]) => {
-                const percentage = ((lines / totalLines) * 100).toFixed(1);
-
-                return (
-                  <motion.div
-                    key={language}
-                    className="flex items-center gap-3 sm:gap-6 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:bg-muted/50"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                    <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
-                      <Image
-                        src={`/${language.toLowerCase()}.svg`}
-                        alt={`${language} logo`}
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-center mb-1 sm:mb-2">
-                        <div>
-                          <h3 className="font-medium text-sm sm:text-lg">
-                            {language}
-                          </h3>
-                          <p className="text-xs sm:text-sm text-muted-foreground">
-                            {lines.toLocaleString()} lines
-                          </p>
-                        </div>
-                        <span className="text-xs sm:text-sm font-medium">
-                          {percentage}%
-                        </span>
-                      </div>
-                      <div className="h-1.5 sm:h-2 rounded-full bg-muted overflow-hidden">
-                        <motion.div
-                          className={`h-full bg-primary `}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${percentage}%` }}
-                          transition={{ duration: 1, ease: "easeOut" }}
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+              {Object.entries(project.languages).map(([language]) => (
+                <motion.div
+                  key={language}
+                  className="flex flex-col items-center gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:bg-muted/50"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
+                    <Image
+                      src={`/${language.toLowerCase()}.svg`}
+                      alt={`${language} logo`}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="font-medium text-sm sm:text-base">
+                      {language}
+                    </h3>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </AnimatedElement>
@@ -356,18 +290,6 @@ export default function ProjectPage() {
                   </span>
                 </motion.div>
               ))}
-            </div>
-          </div>
-        </AnimatedElement>
-
-        {/* WakaTime Stats */}
-        <AnimatedElement className="mb-12">
-          <div className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-6">Development Stats</h2>
-            <div className="aspect-[21/9] bg-muted rounded-xl flex items-center justify-center">
-              <p className="text-muted-foreground">
-                WakaTime stats will be displayed here
-              </p>
             </div>
           </div>
         </AnimatedElement>
