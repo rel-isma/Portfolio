@@ -1,11 +1,9 @@
 import { Inter } from 'next/font/google';
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Sidebar } from "@/components/sidebar";
-import { Footer } from "@/components/footer";
-import type React from "react";
-import { Toaster } from "react-hot-toast";
 import { PerformanceWrapper } from "@/components/PerformanceWrapper";
+import { LayoutClient } from "./layout-client";
+import type React from "react";
 import type { Metadata } from "next";
 
 const inter = Inter({ 
@@ -74,16 +72,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <PerformanceWrapper>
-            <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/95 flex">
-              <Sidebar />
-              <div className="flex-1 lg:ml-[80px] flex flex-col">
-                <main className="flex-1">
-                  {children}
-                </main>
-                <Footer />
-              </div>
-              <Toaster position="bottom-right" />
-            </div>
+            <LayoutClient>
+              {children}
+            </LayoutClient>
           </PerformanceWrapper>
         </ThemeProvider>
       </body>

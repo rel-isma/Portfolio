@@ -62,7 +62,7 @@ export default function ServicesPage() {
         "Easy content management",
       ],
       icon: Globe,
-      price: "Starting at $800",
+      pricing: "Custom Quote",
       timeline: "1-2 weeks",
       popular: false,
     },
@@ -80,7 +80,7 @@ export default function ServicesPage() {
         "Advanced security measures",
       ],
       icon: LayoutGrid,
-      price: "Starting at $2,500",
+      pricing: "Custom Quote",
       timeline: "4-8 weeks",
       popular: true,
     },
@@ -98,7 +98,7 @@ export default function ServicesPage() {
         "Performance monitoring",
       ],
       icon: Lightbulb,
-      price: "Starting at $5,000",
+      pricing: "Custom Quote",
       timeline: "8-16 weeks",
       popular: false,
     },
@@ -244,8 +244,12 @@ export default function ServicesPage() {
                       <p className="text-muted-foreground mb-4">{service.description}</p>
                       
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-2xl font-bold text-primary">{service.price}</span>
-                        <span className="text-sm text-muted-foreground">{service.timeline}</span>
+                        <span className="text-lg font-semibold text-primary bg-primary/10 px-3 py-1 rounded-lg">
+                          {service.pricing}
+                        </span>
+                        <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-lg">
+                          {service.timeline}
+                        </span>
                       </div>
                     </div>
 
@@ -263,7 +267,7 @@ export default function ServicesPage() {
                       variant={service.popular ? "default" : "outline"}
                       onClick={() => handleOrderService(service.title)}
                     >
-                      Get Started
+                      Get Quote
                       <ArrowUpRight className="ml-2 h-4 w-4" />
                     </Button>
                   </motion.div>
@@ -360,7 +364,7 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
                 <Link href="/contact">
-                  Hire Me
+                  Get Custom Quote
                   <ArrowUpRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

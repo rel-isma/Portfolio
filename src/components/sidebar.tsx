@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download, UserCheck, ChevronRight, User, Home, Code, Briefcase, Mail, BrainCircuit, Menu } from "lucide-react";
+import { Download, UserCheck, ChevronRight, User, Home, Code, Briefcase, Mail, BrainCircuit, ChevronLeft, Bot } from "lucide-react";
 import { SocialLinks } from "@/components/social-links";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
@@ -17,9 +17,14 @@ const navItems = [
   { href: "/projects", label: "Projects", icon: Code },
   { href: "/services", label: "Services", icon: Briefcase },
   { href: "/contact", label: "Contact", icon: Mail },
+  { href: "#ai-assistant", label: "AI Assistant", icon: Bot, isAction: true },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  onOpenAiAssistant?: () => void;
+}
+
+export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
@@ -34,12 +39,12 @@ export function Sidebar() {
       {/* Mobile Toggle Button - Fixed in top-left corner */}
       <motion.button
         onClick={() => setIsMobileOpen(true)}
-        className="lg:hidden fixed top-4 left-4 w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white hover:bg-primary/90 transition-colors z-50 shadow-lg"
+        className="lg:hidden fixed top-2 left-0 w-12 h-12 bg-primary rounded-r-lg flex items-center justify-center text-white hover:bg-primary/90 transition-colors z-50 shadow-lg"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Open sidebar menu"
       >
-        <Menu className="w-6 h-6" />
+        <ChevronRight className="w-6 h-6" />
       </motion.button>
 
       {/* Desktop Sidebar */}
@@ -78,7 +83,34 @@ export function Sidebar() {
           <div className="space-y-2 px-2">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = pathname === item.href && !item.isAction;
+              
+              if (item.isAction) {
+                return (
+                  <motion.button
+                    key={item.href}
+                    onClick={() => onOpenAiAssistant?.()}
+                    className="w-full flex items-center space-x-3 px-3 py-3 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                    whileHover={{ x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Icon className="w-6 h-6 min-w-[24px]" />
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.span
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className="font-medium whitespace-nowrap"
+                        >
+                          {item.label}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
+                );
+              }
               
               return (
                 <Link key={item.href} href={item.href}>
@@ -197,7 +229,7 @@ export function Sidebar() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronLeft className="w-5 h-5" />
                   </motion.button>
                 </div>
               </div>
@@ -207,7 +239,25 @@ export function Sidebar() {
                 <div className="space-y-2 px-4">
                   {navItems.map((item) => {
                     const Icon = item.icon;
-                    const isActive = pathname === item.href;
+                    const isActive = pathname === item.href && !item.isAction;
+                    
+                    if (item.isAction) {
+                      return (
+                        <motion.button
+                          key={item.href}
+                          onClick={() => {
+                            onOpenAiAssistant?.();
+                            setIsMobileOpen(false);
+                          }}
+                          className="w-full flex items-center space-x-3 px-4 py-4 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                          whileHover={{ x: 4 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Icon className="w-6 h-6" />
+                          <span className="font-medium">{item.label}</span>
+                        </motion.button>
+                      );
+                    }
                     
                     return (
                       <Link key={item.href} href={item.href}>

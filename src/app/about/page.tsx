@@ -328,7 +328,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="mt-8">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="text-lg px-8 py-6">
                 <Link href="/projects">
                   <Briefcase className="mr-2 h-5 w-5" />
                   See My Work
