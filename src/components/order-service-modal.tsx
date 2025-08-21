@@ -49,8 +49,6 @@ export function OrderServiceModal({
         body: JSON.stringify({ ...formState, service: selectedService }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
         toast.success("Request submitted successfully! We'll be in touch soon.", {
           duration: 4000,
@@ -58,14 +56,11 @@ export function OrderServiceModal({
         onClose();
         setFormState({ name: "", email: "", phone: "", message: "" });
       } else {
-        console.error("API Error:", data);
-        toast.error(data.error || "Failed to submit request. Please try again.", {
-          duration: 3000,
-        });
+        throw new Error("Failed to submit request");
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.error("Request Error:", error);
-      toast.error("Failed to submit request. Please check your connection and try again.", {
+      toast.error("Failed to submit request. Please try again.", {
         duration: 3000,
       });
     } finally {
