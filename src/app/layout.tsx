@@ -19,8 +19,22 @@ export const metadata: Metadata = {
     template: "%s | Rachid El-Ismaiyly"
   },
   description: "Full Stack Developer specializing in React, Django, and modern web applications. Building scalable solutions and beautiful user experiences.",
-  keywords: ["Full Stack Developer", "React", "Django", "JavaScript", "TypeScript", "Web Development", "Portfolio", "Rachid El-Ismaiyly"],
+  keywords: ["Full Stack Developer", "React", "Django", "JavaScript", "TypeScript", "Web Development", "Portfolio", "Rachid El-Ismaiyly", "Rachid El Ismaiyly", "Rachid El Ismaili"],
   authors: [{ name: "Rachid El-Ismaiyly" }],
+  icons: [
+    {
+      url: "/relismalogo.svg",
+      media: "(prefers-color-scheme: light)",
+    },
+    {
+      url: "/relismaDark.svg", 
+      media: "(prefers-color-scheme: dark)",
+    },
+    {
+      url: "/relismaDark.svg", // Default fallback
+      sizes: "any",
+    }
+  ],
   creator: "Rachid El-Ismaiyly",
   openGraph: {
     type: "website",
