@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download, UserCheck, ChevronRight, User, Home, Code, Briefcase, Mail, BrainCircuit, ChevronLeft, Bot } from "lucide-react";
+import { Download, UserCheck, ChevronRight, User, Home, Code, Briefcase, Mail, BrainCircuit, ChevronLeft, Bot, Sun, Moon } from "lucide-react";
 import { SocialLinks } from "@/components/social-links";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,7 +27,14 @@ interface SidebarProps {
 export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+
+  // Ensure component is mounted before showing theme-dependent content
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close mobile sidebar when route changes
   useEffect(() => {
@@ -56,26 +63,135 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
       >
-        {/* Toggle Button with Theme Toggle */}
+        {/* Toggle Button with Theme Selection */}
         <div className="p-4 border-b">
-          <div className="flex flex-col items-center space-y-3">
-            <motion.button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white hover:bg-primary/90 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+          <AnimatePresence mode="wait">
+            {isExpanded ? (
               <motion.div
-                animate={{ rotate: isExpanded ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
+                key="expanded-header"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="h-[88px] flex flex-col justify-between gap-1"
               >
-                <ChevronRight className="w-5 h-5" />
+                {/* Header with Logo and Close Button */}
+                <div className="flex items-center justify-between h-10 ">
+                  <Image
+                    src="/relismaDark.svg"
+                    alt="Relisma Logo"
+                    width={24}
+                    height={24}
+                    className="w-8 h-8"
+                  />
+                  <motion.button
+                    onClick={() => setIsExpanded(false)}
+                    className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:bg-primary/90 transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Close sidebar"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </motion.button>
+                </div>
+                
+                {/* Theme Selection */}
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2 p-2 border-2 rounded-lg">
+                    {mounted && (
+                      <>
+                        <motion.button
+                          onClick={() => setTheme("light")}
+                          className={`flex items-center justify-center space-x-1 px-2 py-2 rounded-lg text-xs transition-all ${
+                            theme === "light"
+                              ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border-2 border-yellow-500"
+                              : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                          }`}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Sun className="w-4 h-4" />
+                          <span>Light</span>
+                        </motion.button>
+                        <motion.button
+                          onClick={() => setTheme("dark")}
+                          className={`flex items-center justify-center space-x-1 px-2 py-2 rounded-lg text-xs transition-all ${
+                            theme === "dark"
+                              ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-2 border-blue-500"
+                              : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                          }`}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Moon className="w-4 h-4" />
+                          <span>Dark</span>
+                        </motion.button>
+                      </>
+                    )}
+                  </div>
+                </div>
               </motion.div>
-            </motion.button>
-            
-            {/* Theme Toggle - always below the arrow */}
-            <ThemeToggle />
-          </div>
+            ) : (
+              <motion.div
+                key="collapsed-header"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="h-[88px] flex flex-col justify-center space-y-3"
+              >
+                {/* Open Sidebar Button */}
+                <div className="flex justify-center">
+                  <motion.button
+                    onClick={() => setIsExpanded(true)}
+                    className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:bg-primary/90 transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Open sidebar"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </motion.button>
+                </div>
+                
+                {/* Theme Toggle (collapsed state only) */}
+                {mounted && (
+                  <div className="flex justify-center">
+                    <motion.button
+                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                      className="w-8 h-8 bg-muted hover:bg-muted/80 rounded-lg flex items-center justify-center transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      aria-label="Toggle theme"
+                    >
+                      <AnimatePresence mode="wait">
+                        {theme === "light" ? (
+                          <motion.div
+                            key="sun"
+                            initial={{ rotate: -90, scale: 0 }}
+                            animate={{ rotate: 0, scale: 1 }}
+                            exit={{ rotate: 90, scale: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Sun className="w-4 h-4 text-yellow-600" />
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="moon"
+                            initial={{ rotate: 90, scale: 0 }}
+                            animate={{ rotate: 0, scale: 1 }}
+                            exit={{ rotate: -90, scale: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Moon className="w-4 h-4 text-blue-500" />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.button>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Navigation */}
@@ -218,20 +334,63 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="lg:hidden fixed left-0 top-0 bottom-0 w-80 max-w-[85vw] bg-background border-r shadow-2xl z-50 overflow-y-auto flex flex-col"
             >
-              {/* Header with Close and Theme Toggle */}
-              <div className="p-4 border-b flex items-center justify-between">
-                <h2 className="font-semibold text-lg">Menu</h2>
-                <div className="flex items-center space-x-2">
-                  <ThemeToggle />
+              {/* Header with Logo and Close Button */}
+              <div className="p-4 border-b space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <Image
+                      src="/relismaDark.svg"
+                      alt="Relisma Logo"
+                      width={28}
+                      height={28}
+                      className="w-7 h-7"
+                    />
+                  </div>
                   <motion.button
                     onClick={() => setIsMobileOpen(false)}
                     className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary/90 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    aria-label="Close sidebar"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </motion.button>
                 </div>
+                
+                {/* Theme Selection */}
+                {mounted && (
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground text-left">Change Theme</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      <motion.button
+                        onClick={() => setTheme("light")}
+                        className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-xl transition-all ${
+                          theme === "light"
+                            ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border-2 border-yellow-500"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                        }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Sun className="w-5 h-5" />
+                        <span className="text-sm font-medium">Light</span>
+                      </motion.button>
+                      <motion.button
+                        onClick={() => setTheme("dark")}
+                        className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-xl transition-all ${
+                          theme === "dark"
+                            ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-2 border-blue-500"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                        }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Moon className="w-5 h-5" />
+                        <span className="text-sm font-medium">Dark</span>
+                      </motion.button>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Navigation */}

@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://relisma.me'),
+  metadataBase: new URL('https://rachidelismaiyly.me'),
   title: {
     default: "Rachid El-Ismaiyly - Full Stack Developer",
     template: "%s | Rachid El-Ismaiyly"
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://relisma.me",
+    url: "https://rachidelismaiyly.me",
     title: "Rachid El-Ismaiyly - Full Stack Developer",
     description: "Full Stack Developer specializing in React, Django, and modern web applications.",
     siteName: "Rachid El-Ismaiyly Portfolio",

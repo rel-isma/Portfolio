@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Minus, Send, Bot, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MessageSquare, X, Minus, Send, Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 interface QuickAction {
@@ -237,7 +236,7 @@ export function AiAssistant({ isOpenExternal, onOpenChange }: AiAssistantProps) 
                   <Bot className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Rachid's AI Assistant</h2>
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Rachid&apos;s AI Assistant</h2>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Online • Ready to help</p>
                 </div>
               </div>

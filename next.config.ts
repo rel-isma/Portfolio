@@ -85,13 +85,7 @@ const nextConfig: NextConfig = {
   
   // Redirects for performance
   async redirects() {
-    return [
-      {
-        source: '/api/contact',
-        destination: '/api/contact',
-        permanent: true,
-      },
-    ];
+    return [];
   },
 };
 

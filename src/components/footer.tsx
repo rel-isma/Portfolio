@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Instagram, Linkedin, Github } from "lucide-react";
+import { Instagram, Linkedin, Github } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { Button } from "./ui/button";
 
@@ -52,23 +52,6 @@ export function Footer() {
     },
   ];
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "relismailyly@gmail.com",
-      href: "mailto:relismailyly@gmail.com",
-    },
-    {
-      icon: Phone,
-      label: "+212 611 563 140",
-      href: "tel:+212611563140",
-    },
-    {
-      icon: MapPin,
-      label: "Taounate, Morocco",
-      href: "https://maps.google.com/?q=Taounate,Morocco",
-    },
-  ];
 
   const socialLinks = [
     {
