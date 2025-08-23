@@ -13,14 +13,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rachidelismaiyly.me'),
+  metadataBase: new URL('https://rachid.tech'),
   title: {
-    default: "Rachid El-Ismaiyly - Full Stack Developer",
-    template: "%s | Rachid El-Ismaiyly"
+    default: "Rachid El Ismaiyly - Full Stack Developer",
+    template: "%s | Rachid El Ismaiyly"
   },
-  description: "Full Stack Developer specializing in React, Django, and modern web applications. Building scalable solutions and beautiful user experiences.",
-  keywords: ["Full Stack Developer", "React", "Django", "JavaScript", "TypeScript", "Web Development", "Portfolio", "Rachid El-Ismaiyly", "Rachid El Ismaiyly", "Rachid El Ismaili"],
-  authors: [{ name: "Rachid El-Ismaiyly" }],
+  description: "Hi, I'm Rachid El Ismaiyly – a Full Stack Developer specializing in Next.js, React, Django, and modern web applications. Explore my projects, skills, and contact me for collaborations.",
+  keywords: [
+    "Rachid El Ismaiyly portfolio",
+    "Rachid El-Ismaiyly",
+    "Full Stack Developer",
+    "Web Developer Morocco",
+    "React Developer",
+    "Next.js Developer",
+    "Django Developer",
+    "JavaScript Developer",
+    "TypeScript Developer",
+    "Software Engineer Portfolio"
+  ],
+  authors: [{ name: "Rachid El Ismaiyly" }],
+  creator: "Rachid El Ismaiyly",
+  alternates: {
+    canonical: "https://rachid.tech",
+  },
   icons: [
     {
       url: "/relismalogo.svg",
@@ -35,27 +50,26 @@ export const metadata: Metadata = {
       sizes: "any",
     }
   ],
-  creator: "Rachid El-Ismaiyly",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rachidelismaiyly.me",
-    title: "Rachid El-Ismaiyly - Full Stack Developer",
-    description: "Full Stack Developer specializing in React, Django, and modern web applications.",
-    siteName: "Rachid El-Ismaiyly Portfolio",
+    url: "https://rachid.tech",
+    title: "Rachid El Ismaiyly - Full Stack Developer",
+    description: "Full Stack Developer specializing in React, Django, Next.js, and modern web applications.",
+    siteName: "Rachid El Ismaiyly Portfolio",
     images: [
       {
-        url: "/relisma_pic.jpg",
+        url: "/relisma_pic.jpg", // make sure this exists in /public
         width: 1200,
         height: 630,
-        alt: "Rachid El-Ismaiyly - Full Stack Developer",
+        alt: "Rachid El Ismaiyly - Full Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rachid El-Ismaiyly - Full Stack Developer",
-    description: "Full Stack Developer specializing in React, Django, and modern web applications.",
+    title: "Rachid El Ismaiyly - Full Stack Developer",
+    description: "Explore the portfolio of Rachid El Ismaiyly – Full Stack Developer specializing in Next.js, React, and Django.",
     images: ["/relisma_pic.jpg"],
   },
   robots: {
@@ -78,6 +92,33 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* JSON-LD Schema for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Rachid El Ismaiyly",
+              url: "https://rachid.tech",
+              sameAs: [
+                "https://github.com/relisma",
+                "https://www.linkedin.com/in/rachid-elismaiyly/",
+              ],
+              jobTitle: "Full Stack Developer",
+              knowsAbout: [
+                "Next.js",
+                "React",
+                "Django",
+                "TypeScript",
+                "JavaScript",
+                "Web Development"
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
