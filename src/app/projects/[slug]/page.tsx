@@ -252,29 +252,68 @@ export default function ProjectPage() {
               Technologies Used
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
-              {Object.keys(project.languages).map((language) => (
-                <motion.div
-                  key={language}
-                  className="flex flex-col items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800/50 dark:to-slate-700/30 hover:from-primary/5 hover:to-primary/10 dark:hover:from-primary/10 dark:hover:to-primary/5 transition-all duration-300 shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-600 hover:border-primary/30 dark:hover:border-primary/40"
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center shrink-0 bg-gradient-to-br from-white to-gray-50 dark:from-slate-700 dark:to-slate-600 shadow-sm border border-gray-200 dark:border-slate-500">
-                    <Image
-                      src={`/${language.toLowerCase()}.svg`}
-                      alt={`${language} logo`}
-                      width={40}
-                      height={40}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-                    />
-                  </div>
-                  <div className="text-center">
-                    <h3 className="font-semibold text-sm sm:text-base text-foreground">
-                      {language}
-                    </h3>
-                  </div>
-                </motion.div>
-              ))}
+              {project.technologies.map((technology, index) => {
+                // Function to get icon for technology
+                const getTechIcon = (tech: string) => {
+                  const techLower = tech.toLowerCase();
+                  
+                  // Technology to icon mapping
+                  if (techLower.includes('next.js') || techLower.includes('nextjs')) return 'nextjs.svg';
+                  if (techLower.includes('react')) return 'react.svg';
+                  if (techLower.includes('typescript')) return 'typescript.svg';
+                  if (techLower.includes('javascript')) return 'javascript.svg';
+                  if (techLower.includes('three.js')) return 'javascript.svg'; // Generic JS icon for Three.js
+                  if (techLower.includes('tailwind')) return 'tailwinds.svg';
+                  if (techLower.includes('openai') || techLower.includes('ai')) return 'web.svg'; // Generic web icon for APIs
+                  if (techLower.includes('django')) return 'django.svg';
+                  if (techLower.includes('websocket')) return 'websocket.svg';
+                  if (techLower.includes('docker')) return 'docker.svg';
+                  if (techLower.includes('nginx')) return 'web.svg'; // Generic web icon
+                  if (techLower.includes('wordpress')) return 'web.svg'; // Generic web icon
+                  if (techLower.includes('mariadb') || techLower.includes('mysql')) return 'postgresql.svg'; // DB icon
+                  if (techLower.includes('postgresql') || techLower.includes('postgres')) return 'postgresql.svg';
+                  if (techLower.includes('c++') || techLower.includes('cpp')) return 'cpp.svg';
+                  if (techLower.includes('c') && !techLower.includes('css')) return 'c.svg';
+                  if (techLower.includes('python')) return 'python.svg';
+                  if (techLower.includes('html')) return 'html.svg';
+                  if (techLower.includes('css')) return 'css.svg';
+                  if (techLower.includes('shell') || techLower.includes('bash')) return 'bash.svg';
+                  if (techLower.includes('tcp/ip') || techLower.includes('network')) return 'globe.svg';
+                  if (techLower.includes('google maps') || techLower.includes('maps')) return 'globe.svg';
+                  if (techLower.includes('figma')) return 'figma.svg';
+                  if (techLower.includes('vscode')) return 'vscode.svg';
+                  if (techLower.includes('notion')) return 'notion.svg';
+                  
+                  // Default fallback
+                  return 'web.svg';
+                };
+
+                const iconPath = getTechIcon(technology);
+                
+                return (
+                  <motion.div
+                    key={`${technology}-${index}`}
+                    className="flex flex-col items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800/50 dark:to-slate-700/30 hover:from-primary/5 hover:to-primary/10 dark:hover:from-primary/10 dark:hover:to-primary/5 transition-all duration-300 shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-600 hover:border-primary/30 dark:hover:border-primary/40"
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center shrink-0 bg-gradient-to-br from-white to-gray-50 dark:from-slate-700 dark:to-slate-600 shadow-sm border border-gray-200 dark:border-slate-500">
+                      <Image
+                        src={`/${iconPath}`}
+                        alt={`${technology} logo`}
+                        width={40}
+                        height={40}
+                        className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                      />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="font-semibold text-sm sm:text-base text-foreground">
+                        {technology}
+                      </h3>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </AnimatedElement>
