@@ -151,31 +151,6 @@ export default function ProjectsPage() {
               A curated collection of my work spanning web development, software engineering, 
               and innovative digital solutions. Each project represents a unique challenge solved with creativity and precision.
             </p>
-            
-            {/* Enhanced Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto mb-12">
-              <motion.div 
-                className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border shadow-lg"
-                whileHover={{ y: -4 }}
-              >
-                <div className="text-4xl font-bold text-primary mb-2">{stats.total}+</div>
-                <div className="text-sm text-muted-foreground font-medium">Projects Completed</div>
-              </motion.div>
-              <motion.div 
-                className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border shadow-lg"
-                whileHover={{ y: -4 }}
-              >
-                <div className="text-4xl font-bold text-primary mb-2">{stats.categories}</div>
-                <div className="text-sm text-muted-foreground font-medium">Different Categories</div>
-              </motion.div>
-              <motion.div 
-                className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border shadow-lg"
-                whileHover={{ y: -4 }}
-              >
-                <div className="text-4xl font-bold text-primary mb-2">{stats.technologies}+</div>
-                <div className="text-sm text-muted-foreground font-medium">Technologies Used</div>
-              </motion.div>
-            </div>
           </AnimatedElement>
         </div>
       </section>

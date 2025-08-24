@@ -64,7 +64,38 @@ export default function Avatar3D() {
   const exitInteractionMode = () => setIsInteractionMode(false);
 
   return (
-    <div ref={canvasRef} className="relative w-full h-full">
+    <div ref={canvasRef} className="relative w-full h-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center justify-center">
+      {/* Initial Card - Only show when not in interaction mode */}
+      {!isInteractionMode && (
+        <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 sm:p-8 max-w-sm sm:max-w-md mx-4 border border-gray-200 dark:border-gray-700">
+          <div className="text-center space-y-4 sm:space-y-6">
+            {/* Icon */}
+            <div className="mx-auto w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+              <Move3D className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
+            </div>
+            
+            {/* Title */}
+            <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Interactive 3D Avatar
+            </h3>
+            
+            {/* Description */}
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+              Click the button below to explore my 3D avatar. You can rotate, zoom in/out, and move around to see every detail!
+            </p>
+            
+            {/* Button */}
+            <Button
+              onClick={enterInteractionMode}
+              className="w-full bg-gradient-to-r from-primary to-primary/80 text-white border-0 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105"
+              size="lg"
+            >
+              <Move3D className="mr-2 h-5 w-5" />
+              <span className="font-semibold">Explore My Avatar</span>
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Interaction Mode Modal */}
       {isInteractionMode && (
@@ -74,18 +105,18 @@ export default function Avatar3D() {
             onClick={exitInteractionMode}
           />
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div className="relative bg-white dark:bg-secondary rounded-3xl shadow-2xl max-w-4xl w-full max-h-[80vh]">
+            <div className="relative bg-white dark:bg-secondary rounded-3xl shadow-2xl max-w-sm sm:max-w-md md:max-w-4xl w-full max-h-[90vh] sm:max-h-[85vh] overflow-hidden">
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <Move3D className="h-5 w-5" />
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+                    <Move3D className="h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                       Meet My 3D Avatar
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 hidden sm:block">
                       Drag to rotate • Scroll to zoom • Right-click to pan • Press ESC to exit
                     </p>
                   </div>
@@ -94,22 +125,22 @@ export default function Avatar3D() {
                   variant="ghost"
                   size="sm"
                   onClick={exitInteractionMode}
-                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex-shrink-0"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </div>
 
               {/* Avatar in modal */}
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <Canvas
                   camera={{
-                    position: isMobile ? [0, 2, 2] : [0, 2, 2],
-                    fov: isMobile ? 50 : 45,
+                    position: isMobile ? [0, 2, 3] : [0, 2, 2],
+                    fov: isMobile ? 55 : 45,
                   }}
                   style={{
                     width: "100%",
-                    height: isMobile ? "400px" : "500px",
+                    height: isMobile ? "300px" : "400px",
                     borderRadius: "12px",
                   }}
                   gl={{
@@ -144,31 +175,31 @@ export default function Avatar3D() {
                     autoRotate={false}
                     enableDamping={true}
                     dampingFactor={0.02}
-                    zoomSpeed={0.8}
-                    panSpeed={0.8}
-                    rotateSpeed={0.5}
+                    zoomSpeed={isMobile ? 0.6 : 0.8}
+                    panSpeed={isMobile ? 0.6 : 0.8}
+                    rotateSpeed={isMobile ? 0.4 : 0.5}
                   />
                 </Canvas>
               </div>
 
               {/* Instructions */}
-              <div className="px-6 pb-6">
-                <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-4 border border-primary/20">
-                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-sm">
-                    <div className="flex items-center gap-2">
-                      <RotateCw className="h-4 w-4 text-primary" />
+              <div className="px-4 pb-4 sm:px-6 sm:pb-6">
+                <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-3 sm:p-4 border border-primary/20">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-xs sm:text-sm">
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <RotateCw className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                       <span className="font-medium">Drag to rotate</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <ZoomIn className="h-4 w-4 text-primary" />
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <ZoomIn className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                       <span className="font-medium">Scroll to zoom</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Move3D className="h-4 w-4 text-primary" />
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <Move3D className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                       <span className="font-medium">Right-click to pan</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <X className="h-4 w-4 text-primary" />
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <X className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                       <span className="font-medium">ESC to exit</span>
                     </div>
                   </div>
@@ -177,40 +208,6 @@ export default function Avatar3D() {
             </div>
           </div>
         </>
-      )}
-
-      {/* Interactive Avatar Card - Center */}
-      {!isInteractionMode && (
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 max-w-sm mx-4 border border-gray-200 dark:border-gray-700">
-            <div className="text-center space-y-4">
-              {/* Icon */}
-              <div className="mx-auto w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
-                <Move3D className="h-8 w-8 " />
-              </div>
-              
-              {/* Title */}
-              <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text">
-                Interactive 3D Avatar
-              </h3>
-              
-              {/* Description */}
-              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                Click the button below to explore my 3D avatar. You can rotate, zoom in/out, and move around to see every detail!
-              </p>
-              
-              {/* Button */}
-              <Button
-                onClick={enterInteractionMode}
-                className="w-full bg-gradient-to-r from-primary to-primary/80 text-white border-0 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105"
-                size="lg"
-              >
-                <Move3D className="mr-2 h-5 w-5" />
-                <span className="font-semibold">Explore My Avatar</span>
-              </Button>
-            </div>
-          </div>
-        </div>
       )}
     </div>
   );
