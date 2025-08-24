@@ -1,5 +1,3 @@
-import next from "next"
-
 export interface Project {
     id: number
     title: string
