@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://rachid.tech
+
+# Sitemaps
+Sitemap: https://rachid.tech/sitemap.xml

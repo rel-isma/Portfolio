@@ -65,49 +65,6 @@ export default function Avatar3D() {
 
   return (
     <div ref={canvasRef} className="relative w-full h-full">
-      {/* Normal view Canvas */}
-      <Canvas
-        camera={{
-          position: isMobile ? [0, 2, 3] : [0, 2, 3],
-          fov: isMobile ? 50 : 45,
-        }}
-        style={{
-          width: "100%",
-          height: isMobile ? "400px" : "600px",
-        }}
-        gl={{
-          preserveDrawingBuffer: true,
-          antialias: true,
-          alpha: true,
-        }}
-      >
-        <ambientLight intensity={0.7} />
-        <pointLight position={[2, 2, 2]} intensity={0.5} />
-        <pointLight position={[-2, 2, 2]} intensity={0.3} />
-        <Environment preset="warehouse" />
-
-        {/* Always render model with a simple fallback */}
-        <Suspense
-          fallback={
-            <mesh>
-              <sphereGeometry args={[0.2, 16, 16]} />
-              <meshStandardMaterial color="gray" />
-            </mesh>
-          }
-        >
-          <Model url="/model.glb" />
-        </Suspense>
-
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          enableRotate={false}
-          autoRotate={true}
-          autoRotateSpeed={1.2}
-          enableDamping={true}
-          dampingFactor={0.03}
-        />
-      </Canvas>
 
       {/* Interaction Mode Modal */}
       {isInteractionMode && (

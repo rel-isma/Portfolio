@@ -74,7 +74,7 @@ export default function AboutPage() {
     {
       icon: Calendar,
       label: "Experience",
-      value: "3+ Years",
+      value: "1+ Years",
       subtext: "Full-Stack Development",
     },
     {

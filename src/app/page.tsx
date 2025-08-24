@@ -149,8 +149,8 @@ export default function HomePage() {
               <AnimatedElement delay={0.6}>
                 <div className="grid grid-cols-3 gap-8 pt-8 border-t">
                   {[
-                    { number: "50+", label: "Projects Completed", icon: Code },
-                    { number: "3+", label: "Years Experience", icon: Award },
+                    { number: "15+", label: "Projects Completed", icon: Code },
+                    { number: "1+", label: "Years Experience", icon: Award },
                     { number: "100%", label: "Client Satisfaction", icon: Users },
                   ].map((stat, index) => {
                     const Icon = stat.icon;

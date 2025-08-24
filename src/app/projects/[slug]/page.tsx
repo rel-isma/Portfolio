@@ -91,7 +91,7 @@ export default function ProjectPage() {
         id=""
       >
         {/* Back Button */}
-        <div className="mb-6 sm:mb-8">
+        <div className="my-6 sm:my-8">
           <Button
             asChild
             variant="outline"
