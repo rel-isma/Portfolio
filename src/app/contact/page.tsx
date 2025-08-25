@@ -167,7 +167,7 @@ export default function ContactPage() {
                 <div className="text-sm text-muted-foreground">Response Time</div>
               </div>
               <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border">
-                <div className="text-3xl font-bold text-primary mb-2">50+</div>
+                <div className="text-3xl font-bold text-primary mb-2">15+</div>
                 <div className="text-sm text-muted-foreground">Projects Done</div>
               </div>
               <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border">
