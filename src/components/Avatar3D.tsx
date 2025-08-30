@@ -67,7 +67,7 @@ export default function Avatar3D() {
     <div ref={canvasRef} className="relative w-full h-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center justify-center">
       {/* Initial Card - Only show when not in interaction mode */}
       {!isInteractionMode && (
-        <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 sm:p-8 max-w-sm sm:max-w-md mx-4 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 sm:p-8 max-w-sm sm:max-w-md mx-4 border border-border">
           <div className="text-center space-y-4 sm:space-y-6">
             {/* Icon */}
             <div className="mx-auto w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
@@ -107,7 +107,7 @@ export default function Avatar3D() {
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="relative bg-white dark:bg-secondary rounded-3xl shadow-2xl max-w-sm sm:max-w-md md:max-w-4xl w-full max-h-[90vh] sm:max-h-[85vh] overflow-hidden">
               {/* Header */}
-              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border">
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
                   <div className="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
                     <Move3D className="h-4 w-4 sm:h-5 sm:w-5" />

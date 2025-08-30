@@ -162,15 +162,15 @@ export default function ContactPage() {
             
             {/* Quick Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16 max-w-2xl mx-auto">
-              <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border">
+              <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">24h</div>
                 <div className="text-sm text-muted-foreground">Response Time</div>
               </div>
-              <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border">
+              <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">15+</div>
                 <div className="text-sm text-muted-foreground">Projects Done</div>
               </div>
-              <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border">
+              <div className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl border border-border">
                 <div className="text-3xl font-bold text-primary mb-2">100%</div>
                 <div className="text-sm text-muted-foreground">Satisfaction</div>
               </div>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
@@ -212,7 +212,7 @@ export default function ContactPage() {
                     placeholder="Company Name"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
@@ -223,7 +223,7 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
@@ -233,7 +233,7 @@ export default function ContactPage() {
                     placeholder="Phone Number"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
                   />
                 </div>
               </div>
@@ -245,7 +245,7 @@ export default function ContactPage() {
                   required
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="text-lg min-h-[150px] border-0 border-b-2 border-gray-300 dark:border-gray-700 rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                  className="text-lg min-h-[150px] border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
                 />
               </div>
 

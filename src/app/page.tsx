@@ -147,7 +147,7 @@ export default function HomePage() {
 
               {/* Stats */}
               <AnimatedElement delay={0.6}>
-                <div className="grid grid-cols-3 gap-8 pt-8 border-t">
+                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
                   {[
                     { number: "15+", label: "Projects Completed", icon: Code },
                     { number: "1+", label: "Years Experience", icon: Award },
@@ -176,7 +176,7 @@ export default function HomePage() {
                 
                 {/* Profile Card */}
                 <motion.div
-                  className="relative w-full max-w-md h-full bg-background rounded-3xl overflow-hidden shadow-2xl border"
+                  className="relative w-full max-w-md h-full bg-background rounded-3xl overflow-hidden shadow-2xl border border-border"
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -196,7 +196,7 @@ export default function HomePage() {
                     
                     {/* Name Badge */}
                     <div className="absolute bottom-6 left-6 right-6">
-                      <div className="bg-background/90 backdrop-blur-sm rounded-2xl p-4 border shadow-lg">
+                      <div className="bg-background/90 backdrop-blur-sm rounded-2xl p-4 border border-border shadow-lg">
                         <h3 className="text-xl font-bold text-center">Rachid El-Ismaiyly</h3>
                         <p className="text-primary text-center font-medium">Full Stack Developer</p>
                       </div>

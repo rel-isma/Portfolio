@@ -8,12 +8,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { SocialLinks } from "@/components/social-links";
-import { Download, UserCheck, User, Home, Code, Briefcase, Mail, BrainCircuit } from "lucide-react";
+import { Download, UserCheck, User, Home, Code, Briefcase, Mail, BrainCircuit, GraduationCap } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/about", label: "About", icon: User },
+  { href: "/education", label: "Education", icon: GraduationCap },
   { href: "/skills", label: "Skills & Tech", icon: BrainCircuit },
   { href: "/projects", label: "Projects", icon: Code },
   { href: "/services", label: "Services", icon: Briefcase },

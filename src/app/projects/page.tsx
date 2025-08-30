@@ -168,7 +168,7 @@ export default function ProjectsPage() {
                   className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category
                       ? "bg-primary text-white shadow-lg scale-105"
-                      : "bg-muted/70 hover:bg-muted text-muted-foreground hover:text-foreground border border-muted-foreground/20 hover:border-primary/30"
+                      : "bg-muted/70 hover:bg-muted text-muted-foreground hover:text-foreground border border-border hover:border-primary/30"
                   }`}
                   whileHover={{ scale: selectedCategory === category ? 1.05 : 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -241,7 +241,7 @@ export default function ProjectsPage() {
               {filteredProjects.map((project, index) => (
                 <AnimatedElement key={project.id} delay={index * 0.1}>
                   <motion.div
-                    className="group relative bg-background rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border transition-all duration-500"
+                    className="group relative bg-background rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-border transition-all duration-500"
                     whileHover={{ y: -12 }}
                     layout
                   >
@@ -341,7 +341,7 @@ export default function ProjectsPage() {
                         {project.technologies.slice(0, 4).map((tech) => (
                           <motion.span
                             key={tech}
-                            className="inline-flex items-center rounded-full bg-gradient-to-r from-muted/80 to-muted/60 px-3 py-1 text-xs font-medium transition-colors hover:bg-primary/10 border border-muted-foreground/10"
+                            className="inline-flex items-center rounded-full bg-gradient-to-r from-muted/80 to-muted/60 px-3 py-1 text-xs font-medium transition-colors hover:bg-primary/10 border border-border"
                             whileHover={{ scale: 1.05 }}
                           >
                             {tech}

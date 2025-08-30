@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download, UserCheck, ChevronRight, User, Home, Code, Briefcase, Mail, BrainCircuit, ChevronLeft, Bot, Sun, Moon } from "lucide-react";
+import { Download, UserCheck, ChevronRight, User, Home, Code, Briefcase, Mail, BrainCircuit, ChevronLeft, Bot, Sun, Moon, GraduationCap } from "lucide-react";
 import { SocialLinks } from "@/components/social-links";
 import { useTheme } from "next-themes";
 import Image from "next/image";
@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/about", label: "About", icon: User },
+  { href: "/education", label: "Education", icon: GraduationCap },
   { href: "/skills", label: "Skills & Tech", icon: BrainCircuit },
   { href: "/projects", label: "Projects", icon: Code },
   { href: "/services", label: "Services", icon: Briefcase },
@@ -59,12 +60,12 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
         initial={{ width: "80px" }}
         animate={{ width: isExpanded ? "320px" : "80px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="hidden lg:flex fixed left-0 top-0 h-full flex-col bg-background border-r shadow-lg z-50 overflow-hidden"
+        className="hidden lg:flex fixed left-0 top-0 h-full flex-col bg-background border-r border-border shadow-lg z-50 overflow-hidden"
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
       >
         {/* Toggle Button with Theme Selection */}
-        <div className="p-4 border-b">
+        <div className="p-4 border-b border-border">
           <AnimatePresence mode="wait">
             {isExpanded ? (
               <motion.div
@@ -97,7 +98,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                 
                 {/* Theme Selection */}
                 <div className="space-y-2">
-                  <div className="grid grid-cols-2 gap-2 p-2 border-2 rounded-lg">
+                  <div className="grid grid-cols-2 gap-2 p-2 border border-border rounded-lg">
                     {mounted && (
                       <>
                         <motion.button
@@ -105,7 +106,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                           className={`flex items-center justify-center space-x-1 px-2 py-2 rounded-lg text-xs transition-all ${
                             theme === "light"
                               ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border-2 border-yellow-500"
-                              : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                              : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-border"
                           }`}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -118,7 +119,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                           className={`flex items-center justify-center space-x-1 px-2 py-2 rounded-lg text-xs transition-all ${
                             theme === "dark"
                               ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-2 border-blue-500"
-                              : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                              : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-border"
                           }`}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -206,11 +207,13 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                   <motion.button
                     key={item.href}
                     onClick={() => onOpenAiAssistant?.()}
-                    className="w-full flex items-center space-x-3 px-3 py-3 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                    className="w-full flex items-center justify-start space-x-3 px-3 py-3 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
                     whileHover={{ x: 4 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Icon className="w-6 h-6 min-w-[24px]" />
+                    <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-6 h-6" />
+                    </div>
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.span
@@ -231,7 +234,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
               return (
                 <Link key={item.href} href={item.href}>
                   <motion.div
-                    className={`flex items-center space-x-3 px-3 py-3 rounded-xl transition-colors ${
+                    className={`flex items-center justify-start space-x-3 px-3 py-3 rounded-xl transition-colors ${
                       isActive
                         ? "bg-primary text-white"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -239,7 +242,9 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                     whileHover={{ x: 4 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Icon className="w-6 h-6 min-w-[24px]" />
+                    <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-6 h-6" />
+                    </div>
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.span
@@ -267,7 +272,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="p-4 border-t space-y-4"
+              className="p-4 border-t border-border space-y-4"
             >
               {/* Profile Info */}
               <div className="text-center">
@@ -332,10 +337,10 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed left-0 top-0 bottom-0 w-80 max-w-[85vw] bg-background border-r shadow-2xl z-50 overflow-y-auto flex flex-col"
+              className="lg:hidden fixed left-0 top-0 bottom-0 w-80 max-w-[85vw] bg-background border-r border-border shadow-2xl z-50 overflow-y-auto flex flex-col"
             >
               {/* Header with Logo and Close Button */}
-              <div className="p-4 border-b space-y-4">
+              <div className="p-4 border-b border-border space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <Image
@@ -367,7 +372,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                         className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-xl transition-all ${
                           theme === "light"
                             ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border-2 border-yellow-500"
-                            : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-border"
                         }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -380,7 +385,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                         className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-xl transition-all ${
                           theme === "dark"
                             ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-2 border-blue-500"
-                            : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-transparent"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground border border-border"
                         }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -408,11 +413,13 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                             onOpenAiAssistant?.();
                             setIsMobileOpen(false);
                           }}
-                          className="w-full flex items-center space-x-3 px-4 py-4 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                          className="w-full flex items-center justify-start space-x-3 px-4 py-4 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
                           whileHover={{ x: 4 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <Icon className="w-6 h-6" />
+                          <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <Icon className="w-6 h-6" />
+                          </div>
                           <span className="font-medium">{item.label}</span>
                         </motion.button>
                       );
@@ -421,7 +428,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                     return (
                       <Link key={item.href} href={item.href}>
                         <motion.div
-                          className={`flex items-center space-x-3 px-4 py-4 rounded-xl transition-colors ${
+                          className={`flex items-center justify-start space-x-3 px-4 py-4 rounded-xl transition-colors ${
                             isActive
                               ? "bg-primary text-white"
                               : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -429,7 +436,9 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                           whileHover={{ x: 4 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <Icon className="w-6 h-6" />
+                          <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <Icon className="w-6 h-6" />
+                          </div>
                           <span className="font-medium">{item.label}</span>
                         </motion.div>
                       </Link>
@@ -439,7 +448,7 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
               </nav>
 
               {/* Profile & Actions - At bottom */}
-              <div className="p-6 border-t space-y-6">
+              <div className="p-6 border-t border-border space-y-6">
                 {/* Profile Info */}
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-b from-primary/10 to-primary/5 rounded-xl mx-auto mb-4 relative overflow-hidden">

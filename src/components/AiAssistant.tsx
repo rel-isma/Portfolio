@@ -230,7 +230,7 @@ export function AiAssistant({ isOpenExternal, onOpenChange }: AiAssistantProps) 
             className="fixed inset-0 z-50 bg-white dark:bg-gray-900 flex flex-col"
           >
             {/* Clean Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+            <div className="flex items-center justify-between p-4 border-b border-border bg-white dark:bg-gray-900">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
                   <Bot className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -268,7 +268,7 @@ export function AiAssistant({ isOpenExternal, onOpenChange }: AiAssistantProps) 
                       className={`max-w-2xl px-4 py-3 rounded-2xl shadow-sm ${
                         message.sender === "user"
                           ? "bg-blue-600 text-white"
-                          : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700"
+                          : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-border"
                       }`}
                     >
                       <div className="text-sm lg:text-base">
@@ -284,7 +284,7 @@ export function AiAssistant({ isOpenExternal, onOpenChange }: AiAssistantProps) 
                     <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
                       <Bot className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <div className="bg-white dark:bg-gray-800 px-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-700">
+                    <div className="bg-white dark:bg-gray-800 px-4 py-3 rounded-2xl border border-border">
                       <div className="flex space-x-1">
                         <motion.div
                           animate={{ opacity: [0.4, 1, 0.4] }}
@@ -329,7 +329,7 @@ export function AiAssistant({ isOpenExternal, onOpenChange }: AiAssistantProps) 
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.1 + (index * 0.1) }}
                           onClick={() => handleQuickAction(action)}
-                          className="text-left p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-800 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 bg-white dark:bg-gray-800/50"
+                          className="text-left p-4 rounded-xl border border-border hover:bg-blue-50 dark:hover:bg-gray-800 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 bg-white dark:bg-gray-800/50"
                         >
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                             {action.text}
@@ -344,7 +344,7 @@ export function AiAssistant({ isOpenExternal, onOpenChange }: AiAssistantProps) 
             </div>
 
             {/* Clean Input Area - Fixed at Bottom */}
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+            <div className="p-4 border-t border-border bg-white dark:bg-gray-900">
               <div className="max-w-4xl mx-auto">
                 <div className="flex space-x-3">
                   <input
@@ -352,7 +352,7 @@ export function AiAssistant({ isOpenExternal, onOpenChange }: AiAssistantProps) 
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     placeholder="Ask me anything about Rachid..."
-                    className="flex-1 px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 text-base"
+                    className="flex-1 px-6 py-3 border border-input rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 text-base"
                     onKeyPress={(e) => {
                       if (e.key === "Enter") {
                         handleSendMessage();

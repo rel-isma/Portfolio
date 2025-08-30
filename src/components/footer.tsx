@@ -77,7 +77,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-muted/30 border-t">
+    <footer className="bg-muted/30 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
@@ -139,7 +139,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t">
+        <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 mb-6">
             <div className="text-center md:text-left">
               <h4 className="font-semibold text-lg mb-2">Ready to Work Together?</h4>
@@ -155,7 +155,7 @@ export function Footer() {
               </Link>
             </Button>
           </div>
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 pt-6 border-t">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 pt-6 border-t border-border">
             <p className="text-muted-foreground text-sm">
               © {currentYear} Rachid El-Ismaiyly. All rights reserved.
             </p>
