@@ -137,7 +137,7 @@ export function MobileSidebar() {
                     Hire Me
                   </Button>
                   <Button
-                    href="/Rachid_El_ismaiyly_Full-Stack.pdf"
+                    href="/resume/Rachid_El_ismaiyly_Resume.pdf"
                     target="_blank"
                     variant="outline"
                     className="w-full"

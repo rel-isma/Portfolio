@@ -207,7 +207,9 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                   <motion.button
                     key={item.href}
                     onClick={() => onOpenAiAssistant?.()}
-                    className="w-full flex items-center justify-start space-x-3 px-3 py-3 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                    className={`w-full flex items-center ${
+                      isExpanded ? "justify-start space-x-3 px-3" : "justify-center"
+                    } py-3 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted`}
                     whileHover={{ x: 4 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -234,7 +236,9 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
               return (
                 <Link key={item.href} href={item.href}>
                   <motion.div
-                    className={`flex items-center justify-start space-x-3 px-3 py-3 rounded-xl transition-colors ${
+                    className={`flex items-center ${
+                      isExpanded ? "justify-start space-x-3 px-3" : "justify-center"
+                    } py-3 rounded-xl transition-colors ${
                       isActive
                         ? "bg-primary text-white"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
