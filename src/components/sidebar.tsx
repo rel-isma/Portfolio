@@ -18,14 +18,10 @@ const navItems = [
   { href: "/projects", label: "Projects", icon: Code },
   { href: "/services", label: "Services", icon: Briefcase },
   { href: "/contact", label: "Contact", icon: Mail },
-  { href: "#ai-assistant", label: "AI Assistant", icon: Bot, isAction: true },
+  { href: "/ai-assistant", label: "AI Assistant", icon: Bot },
 ];
 
-interface SidebarProps {
-  onOpenAiAssistant?: () => void;
-}
-
-export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
+export function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -200,39 +196,8 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
           <div className="space-y-2 px-2">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href && !item.isAction;
-              
-              if (item.isAction) {
-                return (
-                  <motion.button
-                    key={item.href}
-                    onClick={() => onOpenAiAssistant?.()}
-                    className={`w-full flex items-center ${
-                      isExpanded ? "justify-start space-x-3 px-3" : "justify-center"
-                    } py-3 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted`}
-                    whileHover={{ x: 4 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <AnimatePresence>
-                      {isExpanded && (
-                        <motion.span
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -10 }}
-                          transition={{ duration: 0.2 }}
-                          className="font-medium whitespace-nowrap"
-                        >
-                          {item.label}
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </motion.button>
-                );
-              }
-              
+              const isActive = pathname === item.href;
+
               return (
                 <Link key={item.href} href={item.href}>
                   <motion.div
@@ -407,28 +372,8 @@ export function Sidebar({ onOpenAiAssistant }: SidebarProps) {
                 <div className="space-y-2 px-4">
                   {navItems.map((item) => {
                     const Icon = item.icon;
-                    const isActive = pathname === item.href && !item.isAction;
-                    
-                    if (item.isAction) {
-                      return (
-                        <motion.button
-                          key={item.href}
-                          onClick={() => {
-                            onOpenAiAssistant?.();
-                            setIsMobileOpen(false);
-                          }}
-                          className="w-full flex items-center justify-start space-x-3 px-4 py-4 rounded-xl transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
-                          whileHover={{ x: 4 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
-                            <Icon className="w-6 h-6" />
-                          </div>
-                          <span className="font-medium">{item.label}</span>
-                        </motion.button>
-                      );
-                    }
-                    
+                    const isActive = pathname === item.href;
+
                     return (
                       <Link key={item.href} href={item.href}>
                         <motion.div

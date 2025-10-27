@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button";
 import { 
   ArrowUpRight, 
   Star, 
-  ExternalLink,
-  Github,
   Calendar,
   Code2,
   Layers
@@ -16,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import { projects } from "@/lib/projectData";
+import { useRouter } from "next/navigation";
 
 const AnimatedElement = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
   const [ref, inView] = useInView({
@@ -38,6 +37,7 @@ const AnimatedElement = ({ children, className = "", delay = 0 }: { children: Re
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const router = useRouter();
 
   // Get unique categories
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
@@ -60,6 +60,10 @@ export default function ProjectsPage() {
     technologies: Array.from(new Set(projects.flatMap(p => p.technologies))).length,
   };
 
+  const navigateToProject = (slug: string) => {
+    router.push(`/projects/${slug}`);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -71,66 +75,6 @@ export default function ProjectsPage() {
         
         <div className="max-w-6xl mx-auto relative">
           <AnimatedElement className="text-center">
-            {/* Profile Image with Beautiful Shape */}
-            <motion.div 
-              className="relative mx-auto mb-8 w-32 h-32 md:w-40 md:h-40"
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            >
-              {/* Animated Background Gradient */}
-              <motion.div
-                className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary via-primary/80 to-secondary p-1"
-                animate={{ 
-                  rotate: [0, 360],
-                }}
-                transition={{ 
-                  duration: 20, 
-                  repeat: Infinity, 
-                  ease: "linear" 
-                }}
-              >
-                <div className="w-full h-full rounded-3xl bg-background p-1">
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                    <Image
-                      src="/relisma_pic.jpg"
-                      alt="Rachid El Ismaiyly - Full Stack Developer"
-                      fill
-                      className="object-cover"
-                      priority
-                      sizes="(max-width: 768px) 128px, 160px"
-                    />
-                    {/* Overlay gradient for better integration */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-primary/5" />
-                  </div>
-                </div>
-              </motion.div>
-              
-              {/* Floating Elements */}
-              <motion.div
-                className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full"
-                animate={{
-                  y: [-5, 5, -5],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div
-                className="absolute -bottom-1 -left-1 w-4 h-4 bg-secondary rounded-full"
-                animate={{
-                  y: [5, -5, 5],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5
-                }}
-              />
-            </motion.div>
 
             <motion.div 
               className="inline-flex items-center rounded-full bg-gradient-to-r from-primary/10 to-primary/5 px-6 py-3 text-sm font-medium text-primary mb-8 border border-primary/20"
@@ -241,7 +185,11 @@ export default function ProjectsPage() {
               {filteredProjects.map((project, index) => (
                 <AnimatedElement key={project.id} delay={index * 0.1}>
                   <motion.div
-                    className="group relative bg-background rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-border transition-all duration-500"
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter') navigateToProject(project.slug); }}
+                    onClick={() => navigateToProject(project.slug)}
+                    className="group relative bg-background rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-border transition-all duration-500 cursor-pointer"
                     whileHover={{ y: -12 }}
                     layout
                   >
@@ -280,7 +228,7 @@ export default function ProjectsPage() {
                             )}
                           </div>
 
-                          {/* Action Buttons */}
+                          {/* Action Buttons (REMOVED: liveDemo & sourceCode) */}
                           <motion.div 
                             className="flex justify-between items-end"
                             initial={{ opacity: 0, y: 20 }}
@@ -288,30 +236,7 @@ export default function ProjectsPage() {
                             transition={{ delay: 0.4 }}
                           >
                             <div className="flex space-x-3">
-                              {project.liveDemo && (
-                                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                  <Link
-                                    href={project.liveDemo}
-                                    target="_blank"
-                                    className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200 border border-white/30"
-                                    onClick={(e) => e.stopPropagation()}
-                                  >
-                                    <ExternalLink className="h-4 w-4" />
-                                  </Link>
-                                </motion.div>
-                              )}
-                              {project.sourceCode && (
-                                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                  <Link
-                                    href={project.sourceCode}
-                                    target="_blank"
-                                    className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200 border border-white/30"
-                                    onClick={(e) => e.stopPropagation()}
-                                  >
-                                    <Github className="h-4 w-4" />
-                                  </Link>
-                                </motion.div>
-                              )}
+                              {/* demo & github buttons removed for cleaner card */}
                             </div>
                             <motion.div 
                               className="p-3 rounded-full bg-primary/90 backdrop-blur-md text-white"
@@ -366,17 +291,18 @@ export default function ProjectsPage() {
                         </div>
                       </div>
 
-                      {/* Enhanced View Project Button */}
-                      <Link href={`/projects/${project.slug}`} className="block">
+                      {/* Enhanced View Project Button (navigates to project) */}
+                      <div>
                         <Button 
                           variant="outline" 
                           size="lg" 
                           className="w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300"
+                          onClick={() => navigateToProject(project.slug)}
                         >
                           Explore Project
                           <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                         </Button>
-                      </Link>
+                      </div>
                     </div>
 
                     {/* Hover Glow Effect */}

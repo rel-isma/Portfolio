@@ -124,15 +124,6 @@ export default function EducationPage() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         {/* Hero Header */}
         <AnimatedElement className="text-center mb-20">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary via-blue-600 to-purple-600 rounded-2xl mb-8 shadow-2xl"
-          >
-            <GraduationCap className="w-10 h-10 text-white" />
-          </motion.div>
-          
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -141,7 +132,7 @@ export default function EducationPage() {
           >
             My Educational
             <br />
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-primary bg-clip-text text-transparent">
               Journey
             </span>
           </motion.h1>
