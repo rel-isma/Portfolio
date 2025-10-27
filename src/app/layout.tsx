@@ -22,6 +22,14 @@ export const metadata: Metadata = {
   keywords: [
     "Rachid El Ismaiyly portfolio",
     "Rachid El-Ismaiyly",
+    "rachid el ismaily",
+    "rachid el ismaili",
+    "rachid el ismaiyly",
+    "rachid el ismaiyly portfolio",
+    "rachid el ismaiyly developer",
+    "rachid el ismaiyly cv",
+    "rachid el ismaiyly resume",
+    "rachid el ismaiyly contact",
     "Full Stack Developer",
     "Web Developer Morocco",
     "React Developer",
@@ -38,7 +46,7 @@ export const metadata: Metadata = {
   },
   icons: [
     {
-      url: "/relismalogo.svg",
+      url: "/relismaDark.svg",
       media: "(prefers-color-scheme: light)",
     },
     {
