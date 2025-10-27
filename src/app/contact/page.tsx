@@ -9,8 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { 
   Mail, 
   Phone, 
-  Send, 
-  MessageSquare, 
+  Send,
   Clock,
   CheckCircle,
   Loader2,

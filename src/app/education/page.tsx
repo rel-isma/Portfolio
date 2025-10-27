@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Button } from "@/components/ui/button";
-import { 
-  GraduationCap, 
+import {
   School, 
   Calendar, 
   MapPin, 
