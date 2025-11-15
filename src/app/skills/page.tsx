@@ -42,28 +42,28 @@ interface Skill {
 
 const skills: Skill[] = [
   // Languages
-  { name: "Python", icon: "python.svg", category: "Languages", level: "Advanced", description: "Backend development, automation, data analysis", experience: "3+ years" },
-  { name: "JavaScript", icon: "javascript.svg", category: "Languages", level: "Advanced", description: "Modern ES6+, async programming, DOM manipulation", experience: "3+ years" },
-  { name: "TypeScript", icon: "typescript.svg", category: "Languages", level: "Advanced", description: "Type-safe JavaScript, complex type systems", experience: "2+ years" },
+  { name: "Python", icon: "python.svg", category: "Languages", level: "Advanced", description: "Backend development, automation, data analysis", experience: "1+ years" },
+  { name: "JavaScript", icon: "javascript.svg", category: "Languages", level: "Advanced", description: "Modern ES6+, async programming, DOM manipulation", experience: "2+ years" },
+  { name: "TypeScript", icon: "typescript.svg", category: "Languages", level: "Advanced", description: "Type-safe JavaScript, complex type systems", experience: "1+ years" },
   { name: "C++", icon: "cpp.svg", category: "Languages", level: "Advanced", description: "Systems programming, algorithms, data structures", experience: "2 years" },
-  { name: "C", icon: "c.svg", category: "Languages", level: "Advanced", description: "Low-level programming, memory management", experience: "1+ years" },
+  { name: "C", icon: "c.svg", category: "Languages", level: "Advanced", description: "Low-level programming, memory management", experience: "3+ years" },
 
   // Frameworks
-  { name: "Django", icon: "django.svg", category: "Frameworks", level: "Advanced", description: "Full-stack web framework, REST APIs, authentication", experience: "3+ years" },
-  { name: "React", icon: "react.svg", category: "Frameworks", level: "Advanced", description: "Component-based UI, hooks, state management", experience: "3+ years" },
-  { name: "Next.js", icon: "nextjs.svg", category: "Frameworks", level: "Advanced", description: "Server-side rendering, API routes, optimization", experience: "2+ years" },
-  { name: "Django REST", icon: "drf.svg", category: "Frameworks", level: "Advanced", description: "API development, serialization, authentication", experience: "2+ years" },
+  { name: "Django", icon: "django.svg", category: "Frameworks", level: "Advanced", description: "Full-stack web framework, REST APIs, authentication", experience: "1+ years" },
+  { name: "React", icon: "react.svg", category: "Frameworks", level: "Advanced", description: "Component-based UI, hooks, state management", experience: "1+ years" },
+  { name: "Next.js", icon: "nextjs.svg", category: "Frameworks", level: "Advanced", description: "Server-side rendering, API routes, optimization", experience: "1+ years" },
+  { name: "Django REST", icon: "drf.svg", category: "Frameworks", level: "Advanced", description: "API development, serialization, authentication", experience: "1+ years" },
   { name: "WebSocket", icon: "websocket.svg", category: "Frameworks", level: "Intermediate", description: "Real-time communication, chat applications", experience: "1+ years" },
 
   // Libraries
-  { name: "Tailwind CSS", icon: "tailwinds.svg", category: "Libraries", level: "Advanced", description: "Utility-first CSS, responsive design", experience: "2+ years" },
+  { name: "Tailwind CSS", icon: "tailwinds.svg", category: "Libraries", level: "Advanced", description: "Utility-first CSS, responsive design", experience: "1+ years" },
   { name: "Framer Motion", icon: "react.svg", category: "Libraries", level: "Intermediate", description: "React animations, transitions, gestures", experience: "1+ years" },
 
   // Tools
   { name: "Git", icon: "bash.svg", category: "Tools", level: "Advanced", description: "Version control, branching, collaboration", experience: "3+ years" },
   { name: "VS Code", icon: "vscode.svg", category: "Tools", level: "Expert", description: "Code editing, debugging, extensions", experience: "3+ years" },
   { name: "Figma", icon: "figma.svg", category: "Tools", level: "Intermediate", description: "UI/UX design, prototyping, collaboration", experience: "1+ years" },
-  { name: "Notion", icon: "notion.svg", category: "Tools", level: "Advanced", description: "Project management, documentation", experience: "2+ years" },
+  { name: "Notion", icon: "notion.svg", category: "Tools", level: "Advanced", description: "Project management, documentation", experience: "1+ years" },
   
   // Databases
   { name: "PostgreSQL", icon: "postgresql.svg", category: "Databases", level: "Advanced", description: "Relational database, complex queries, optimization", experience: "2+ years" },

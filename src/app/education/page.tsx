@@ -13,7 +13,8 @@ import {
   ChevronRight,
   Download,
   ExternalLink,
-  BookOpenCheck
+  BookOpenCheck,
+  ArrowUpRight
 } from "lucide-react";
 import Link from "next/link";
 
@@ -112,41 +113,37 @@ export default function EducationPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10 relative overflow-hidden">
-      {/* Modern Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/3 rounded-full blur-3xl" />
-      </div>
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        {/* Hero Header */}
-        <AnimatedElement className="text-center mb-20">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-foreground via-primary to-blue-600 bg-clip-text text-transparent mb-6 leading-tight"
-          >
-            My Educational
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-primary bg-clip-text text-transparent">
-              Journey
-            </span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-medium"
-          >
-            From foundational sciences to advanced software engineering, 
-            <br className="hidden md:block" />
-            every step has shaped my path in technology.
-          </motion.p>
-        </AnimatedElement>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-transparent to-transparent">
+        <div className="max-w-7xl mx-auto text-center">
+          <AnimatedElement>
+            <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary mb-6">
+              <BookOpenCheck className="mr-2 h-4 w-4" />
+              Academic Background
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+              My <span className="text-primary">Educational</span>
+              <br />
+              Journey to <span className="text-primary">Excellence</span>
+            </h1>
+            <p className="text-xl text-foreground max-w-3xl mx-auto mb-8 font-medium">
+              From foundational sciences to advanced software engineering, 
+              every step has shaped my path in technology and innovation.
+            </p>
+            <Button asChild size="lg">
+              <Link href="#education">
+                Explore My Journey
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </AnimatedElement>
+        </div>
+      </section>
+
+      {/* Education Timeline Section */}
+      <section id="education" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
 
         {/* Education Timeline */}
         <div className="space-y-16">
@@ -181,11 +178,11 @@ export default function EducationPage() {
                       </div>
                       
                       <div className="space-y-3 mb-6">
-                        <div className="flex items-center text-muted-foreground">
+                        <div className="flex items-center text-foreground">
                           <Calendar className="w-5 h-5 mr-3 text-primary" />
                           <span className="font-medium">{edu.period}</span>
                         </div>
-                        <div className="flex items-center text-muted-foreground">
+                        <div className="flex items-center text-foreground">
                           <MapPin className="w-5 h-5 mr-3 text-primary" />
                           <span className="font-medium">{edu.location}</span>
                         </div>
@@ -205,7 +202,7 @@ export default function EducationPage() {
                     
                     {/* Right: Details */}
                     <div className="lg:col-span-2 space-y-8">
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-lg text-foreground leading-relaxed font-medium">
                         {edu.description}
                       </p>
                       
@@ -259,7 +256,7 @@ export default function EducationPage() {
                                     {project.difficulty}
                                   </span>
                                 </div>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-sm text-foreground leading-relaxed">
                                   {project.description}
                                 </p>
                               </motion.div>
@@ -274,59 +271,42 @@ export default function EducationPage() {
             </AnimatedElement>
           ))}
         </div>
+        </div>
+      </section>
 
-        {/* Call to Action */}
-        <AnimatedElement className="text-center mt-20" delay={0.6}>
-          <div className="relative bg-gradient-to-r from-primary/10 via-blue-500/10 to-purple-500/10 rounded-3xl p-8 md:p-12 border border-primary/20 overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]" />
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
-            
-            <div className="relative z-10">
-              <motion.h3 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-3xl md:text-4xl font-bold text-foreground mb-4"
-              >
-                Let&apos;s Build Something Amazing
-              </motion.h3>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
-              >
-                Ready to turn ideas into reality? Let&apos;s connect and create innovative solutions together.
-              </motion.p>
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              >
-                <Button size="lg" className="group px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                  <Link href="/contact" className="flex items-center">
-                    Get In Touch
-                    <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" className="group px-8 py-3 rounded-2xl font-semibold">
-                  <Link href="/skills" className="flex items-center">
-                    <Brain className="w-5 h-5 mr-2" />
-                    View My Skills
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" className="group px-8 py-3 rounded-2xl font-semibold">
-                  <Link href="/resume/Rachid_El_ismaiyly_Resume.pdf" target="_blank" className="flex items-center">
-                    <Download className="w-5 h-5 mr-2" />
-                    Download Resume
-                  </Link>
-                </Button>
-              </motion.div>
-            </div>
+        {/* Call to Action Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-transparent to-transparent">
+          <div className="max-w-4xl mx-auto text-center">
+        <AnimatedElement className="text-center" delay={0.6}>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            Ready to Start Your <span className="text-primary">Project</span>?
+          </h2>
+          <p className="text-xl text-foreground mb-8 max-w-2xl mx-auto font-medium">
+            Ready to turn ideas into reality? Let&apos;s connect and create innovative solutions together.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg">
+              <Link href="/contact">
+                Get In Touch
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/skills">
+                <Brain className="mr-2 h-5 w-5" />
+                View My Skills
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/resume/Rachid_El_ismaiyly_Resume.pdf" target="_blank">
+                <Download className="mr-2 h-5 w-5" />
+                Download Resume
+              </Link>
+            </Button>
           </div>
         </AnimatedElement>
-      </div>
+          </div>
+        </section>
     </div>
   );
 }

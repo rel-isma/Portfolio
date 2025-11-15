@@ -14,9 +14,11 @@ import {
   CheckCircle,
   Loader2,
   Globe,
-  Calendar
+  Calendar,
+  MessageSquare,
+  ArrowDown
 } from "lucide-react";
-import { FaWhatsapp, FaLinkedin, FaGithub } from "react-icons/fa6";
+import { FaWhatsapp, FaLinkedin, FaDiscord } from "react-icons/fa6";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
@@ -98,7 +100,7 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      description: "Get in touch via email",
+      description: "Drop me an email",
       value: "relismailyly@gmail.com",
       href: "mailto:relismailyly@gmail.com",
       color: "bg-blue-500/10 text-blue-600 border-blue-200"
@@ -106,7 +108,7 @@ export default function ContactPage() {
     {
       icon: FaWhatsapp,
       title: "WhatsApp",
-      description: "Quick chat on WhatsApp",
+      description: "Quick chat",
       value: "+212 611 563 140",
       href: "https://wa.me/+212611563140",
       color: "bg-green-500/10 text-green-600 border-green-200"
@@ -118,36 +120,63 @@ export default function ContactPage() {
       value: "+212 611 563 140",
       href: "tel:+212611563140",
       color: "bg-purple-500/10 text-purple-600 border-purple-200"
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: FaLinkedin,
-      name: "LinkedIn",
-      href: "https://linkedin.com/in/rachid-el-ismaiyly",
-      color: "hover:text-blue-600"
     },
     {
-      icon: FaGithub,
-      name: "GitHub", 
-      href: "https://github.com/rel-isma",
-      color: "hover:text-gray-900 dark:hover:text-white"
+      icon: FaDiscord,
+      title: "Discord",
+      description: "Chat on Discord",
+      value: "@rel_isma",
+      href: "https://discord.com/users/rel_isma",
+      color: "bg-indigo-500/10 text-indigo-600 border-indigo-200"
+    },
+    {
+      icon: FaLinkedin,
+      title: "LinkedIn",
+      description: "Connect professionally",
+      value: "Rachid El Ismaiyly",
+      href: "https://linkedin.com/in/rachid-el-ismaiyly",
+      color: "bg-blue-700/10 text-blue-700 border-blue-300"
     }
   ];
 
   return (
     <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-transparent to-transparent">
+        <div className="max-w-7xl mx-auto text-center">
+          <AnimatedElement>
+            <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary mb-6">
+              <MessageSquare className="mr-2 h-4 w-4" />
+              Get In Touch
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+              Let&apos;s Build Something <span className="text-primary">Amazing</span>
+              <br />
+              Together
+            </h1>
+            <p className="text-xl text-foreground max-w-3xl mx-auto mb-8 font-medium">
+              Have a project in mind? I&apos;m here to help turn your ideas into reality. 
+              Reach out and let&apos;s start the conversation.
+            </p>
+            <Button asChild size="lg" variant="outline">
+              <Link href="#contact-form">
+                Start Conversation
+                <ArrowDown className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </AnimatedElement>
+        </div>
+      </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="contact-form" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <AnimatedElement delay={0.2}>
             <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              Ready to <span className="text-primary">Start</span> Your Next Project?
-            </h1>
-              <p className="text-lg text-muted-foreground">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+              Send Me a <span className="text-primary">Message</span>
+            </h2>
+              <p className="text-lg text-foreground font-medium">
                 Fill out the form below and I&apos;ll get back to you within 24 hours.
               </p>
             </div>
@@ -158,42 +187,42 @@ export default function ContactPage() {
                   <Input
                     type="text"
                     name="name"
-                    placeholder="Name*"
+                    placeholder="Your Name*"
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-foreground/50 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
                   <Input
                     type="text"
                     name="company"
-                    placeholder="Company Name"
+                    placeholder="Company Name (Optional)"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-foreground/50 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
                   <Input
                     type="email"
                     name="email"
-                    placeholder="Email*"
+                    placeholder="Your Email*"
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-foreground/50 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
                   <Input
                     type="tel"
                     name="phone"
-                    placeholder="Phone Number"
+                    placeholder="Phone Number (Optional)"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                    className="text-lg border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary placeholder:text-foreground/50 transition-colors"
                   />
                 </div>
               </div>
@@ -201,11 +230,11 @@ export default function ContactPage() {
               <div className="space-y-2">
                 <Textarea
                   name="message"
-                  placeholder="A Few Words*"
+                  placeholder="Tell me about your project...*"
                   required
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="text-lg min-h-[150px] border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors"
+                  className="text-lg min-h-[150px] border-0 border-b-2 border-input rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none placeholder:text-foreground/50 transition-colors"
                 />
               </div>
 
@@ -239,29 +268,29 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto">
           <AnimatedElement className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Other Ways to <span className="text-primary">Reach Me</span>
+              Other Ways to <span className="text-primary">Connect</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-foreground font-medium">
               Choose the communication method that works best for you.
             </p>
           </AnimatedElement>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {contactMethods.map((method, index) => {
               const Icon = method.icon;
               return (
                 <AnimatedElement key={method.title} delay={index * 0.1}>
                   <Link href={method.href} target={method.href.startsWith('http') ? '_blank' : undefined}>
                     <motion.div
-                      className={`p-8 rounded-2xl border bg-background hover:shadow-lg transition-all duration-300 cursor-pointer h-full text-center group ${method.color}`}
+                      className={`p-6 rounded-2xl border bg-background hover:shadow-lg transition-all duration-300 cursor-pointer h-full text-center group ${method.color}`}
                       whileHover={{ y: -4, scale: 1.02 }}
                     >
-                      <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-current/10 mb-6 mx-auto">
-                        <Icon className="w-8 h-8" />
+                      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-current/10 mb-4 mx-auto">
+                        <Icon className="w-6 h-6" />
                       </div>
-                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{method.title}</h3>
-                      <p className="text-muted-foreground mb-4">{method.description}</p>
-                      <p className="font-medium">{method.value}</p>
+                      <h3 className="text-base font-semibold mb-1 group-hover:text-primary transition-colors">{method.title}</h3>
+                      <p className="text-xs text-foreground/70 mb-3 font-medium">{method.description}</p>
+                      <p className="text-sm font-bold text-foreground break-words">{method.value}</p>
                     </motion.div>
                   </Link>
                 </AnimatedElement>
@@ -269,57 +298,6 @@ export default function ContactPage() {
             })}
           </div>
 
-          {/* Social Links & Additional Info */}
-          <AnimatedElement delay={0.4} className="text-center">
-            <h3 className="text-2xl font-bold mb-8">Let&apos;s Connect</h3>
-            <div className="flex justify-center space-x-6 mb-12">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <Link key={social.name} href={social.href} target="_blank">
-                    <motion.div
-                      className={`p-6 rounded-2xl bg-background border hover:bg-primary/5 transition-all duration-300 ${social.color}`}
-                      whileHover={{ scale: 1.05, y: -4 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Icon className="w-8 h-8" />
-                    </motion.div>
-                  </Link>
-                );
-              })}
-            </div>
-            
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <motion.div 
-                className="flex items-center justify-center space-x-3 p-6 bg-background rounded-2xl border"
-                whileHover={{ scale: 1.02 }}
-              >
-                <Clock className="w-6 h-6 text-primary" />
-                <span className="font-medium">24h Response</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center justify-center space-x-3 p-6 bg-background rounded-2xl border"
-                whileHover={{ scale: 1.02 }}
-              >
-                <Globe className="w-6 h-6 text-primary" />
-                <span className="font-medium">Morocco (GMT+1)</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center justify-center space-x-3 p-6 bg-background rounded-2xl border"
-                whileHover={{ scale: 1.02 }}
-              >
-                <Calendar className="w-6 h-6 text-primary" />
-                <span className="font-medium">Available Mon-Sat</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center justify-center space-x-3 p-6 bg-background rounded-2xl border"
-                whileHover={{ scale: 1.02 }}
-              >
-                <CheckCircle className="w-6 h-6 text-primary" />
-                <span className="font-medium">Free Consultation</span>
-              </motion.div>
-            </div>
-          </AnimatedElement>
         </div>
       </section>
     </div>
